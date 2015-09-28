@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  location: MyString
+  available: false
+  date: 2015-09-28 15:41:09
+  price: 1.5
+  image_url: MyString
+  owner_id: 
+
+two:
+  title: MyString
+  location: MyString
+  available: false
+  date: 2015-09-28 15:41:09
+  price: 1.5
+  image_url: MyString
+  owner_id: 
