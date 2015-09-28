@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
   has_many :cars, :foreign_key => 'visitor_id'
   has_many :reviews, :foreign_key => 'visitor_id'
   has_many :spots, :foreign_key => 'owner_id'
