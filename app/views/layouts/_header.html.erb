@@ -250,21 +250,9 @@
 						</li><!-- /.searchbox -->
 
 						<% if user_signed_in? && current_user %>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle js-activated">Edit Profile</a>
 
-								<ul class="dropdown-menu">
-									<li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
-								</ul><!-- /.dropdown-menu -->
-							</li><!-- /.dropdown -->
-
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle js-activated">Log Out</a>
-
-								<ul class="dropdown-menu">
-									<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
-								</ul><!-- /.dropdown-menu -->
-							</li><!-- /.dropdown -->
+							<li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+							<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
 
 						<% else %>
 
