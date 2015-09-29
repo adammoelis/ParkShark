@@ -1,9 +1,17 @@
-<div class="spot-<%= spot.id %>">
-  <%= spot.title %>
-  <%= spot.address %>
-  <%= spot.city %>
-  <%= spot.state %>
-  <%= spot.zip_code %>
-  <%= spot.price %>
-  <%= image_tag "#{spot.image_url}" %>
-</div>
+<li class="item thumb interactive" id="spot-<%= spot.id %>">
+  <figure>
+
+    <div class="icon-overlay icn-link">
+      <a href=" <%= spot_path(spot) %>"><%= image_tag "#{spot.image_url}"%></a>
+    </div><!-- /.icon-overlay -->
+
+    <figcaption class="bordered no-top-border">
+      <div class="info">
+
+        <h4> <%= link_to "#{spot.title}", spot_path(spot) %></h4>
+        <p> <%= spot.city %>, <%= spot.state %></p>
+      </div><!-- /.info -->
+    </figcaption>
+
+  </figure>
+</li><!-- /.item -->

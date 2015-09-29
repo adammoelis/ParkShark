@@ -27,7 +27,7 @@ figure {
 figure img {
     width: 100%;
     height: auto;
-}
+  }
 figure :not(.icon-overlay) a:hover,
 figure:not(.icon-overlay) > a:hover {
 	opacity: .7;
