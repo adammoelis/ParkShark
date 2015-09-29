@@ -1,0 +1,16 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<%= root_path %>">ParkShark</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li><p class="navbar-text">Signed in as <a href="#" class="navbar-link"><%= current_user.email %></a></p></li>
+        <li><%= link_to "Log out", destroy_user_session_path, method: 'delete' %></li>
+      <% else %>
+        <li><%= link_to "Log in", new_session_path(resource_name) %></li>
+        <li><%= link_to "Sign up", new_registration_path(resource_name) %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
