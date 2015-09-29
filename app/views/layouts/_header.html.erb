@@ -5,7 +5,7 @@
     </div>
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-        <li><p class="navbar-text">Signed in as <a href="#" class="navbar-link"><%= current_user.email %></a></p></li>
+        <li><p class="navbar-text">Signed in as <%= link_to current_user.email, user_path(current_user), class: 'navbar-link' %></p></li>
         <li><%= link_to "Log out", destroy_user_session_path, method: 'delete' %></li>
       <% else %>
         <li><%= link_to "Log in", new_session_path(resource_name) %></li>
