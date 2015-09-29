@@ -1,1 +1,9 @@
-<%= @spot.id %>
+<div class="spot-<%= spot.id %>">
+  <%= spot.title %>
+  <%= spot.address %>
+  <%= spot.city %>
+  <%= spot.state %>
+  <%= spot.zip_code %>
+  <%= spot.price %>
+  <%= image_tag "#{spot.image_url}" %>
+</div>

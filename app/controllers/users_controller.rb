@@ -20,6 +20,9 @@ class UsersController < ApplicationController
 
   def edit
     @user
+
+  def user_spots
+    @spots = @user.spots
   end
 
   private
