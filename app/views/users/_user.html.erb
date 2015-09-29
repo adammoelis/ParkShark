@@ -1,5 +1,9 @@
 <div>
-  <%= image_tag "#{user.avatar_file_name}" %>
+  <% if user.avatar.exists? %>
+    <%= image_tag user.avatar.url(:medium) %>
+  <% else %>
+    <%= image_tag user.avatar_file_name %>
+  <% end %>
   <%= user.name %>
   <%= user.email %>
   <%= user.location %>
