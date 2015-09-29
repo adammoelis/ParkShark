@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :cars
   resources :spots
-  resources :users
+  resources :users do
+    resources :spots
+  end
 end

@@ -1,6 +1,10 @@
 class SpotsController < ApplicationController
   before_action :find_spot, only: [:show]
 
+  def index
+    @spots = Spot.all
+  end
+
   def new
   end
 

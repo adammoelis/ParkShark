@@ -3,6 +3,8 @@
   <p>What would you like to do?</p>
   <button type="button" class="btn btn-default">Find a parking spot</button>
   <button type="button" class="btn btn-default">Rent a parking spot</button>
+  <% if user_signed_in? %>
+    <%= link_to "Create a Spot", new_spot_path, class: "btn btn-default" %>
+    <%= link_to "My Spots", user_spots_path(current_user), class: "btn btn-default" %>
+  <% end %>
 </div>
-
-<%= link_to "Create a Spot", new_spot_path %>
