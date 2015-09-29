@@ -1,4 +1,4 @@
 <%= render @user %>
-<% if user_signed_in? && current_user.id == @user.id %>
+<% if user_signed_in? && current_user? %>
   <%= link_to 'Edit Profile', edit_user_path, class: 'btn btn-default' %>
 <% end %>
