@@ -19,6 +19,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 # enable image uploads
 gem "paperclip", "~> 4.3"
 gem 'geocoder'
+gem 'maskedinput-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
