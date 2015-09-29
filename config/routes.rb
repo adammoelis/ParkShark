@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   resources :cars
   resources :spots
   resources :users do
-    resources :spots
+    get 'spots', to: "users#user_spots"
   end
 end
