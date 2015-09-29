@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929135621) do
+ActiveRecord::Schema.define(version: 20150929145859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20150929135621) do
 
   create_table "spots", force: :cascade do |t|
     t.string   "title"
-    t.string   "location"
+    t.string   "address"
     t.boolean  "available"
     t.datetime "date"
     t.float    "price"
@@ -67,23 +67,22 @@ ActiveRecord::Schema.define(version: 20150929135621) do
     t.integer  "zip_code"
     t.datetime "beginning_time"
     t.datetime "ending_time"
-    t.string   "address"
   end
 
   add_index "spots", ["owner_id"], name: "index_spots_on_owner_id", using: :btree
 
   create_table "transactions", force: :cascade do |t|
     t.integer  "spot_id"
-    t.boolean  "complete"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "status"
   end
 
   add_index "transactions", ["spot_id"], name: "index_transactions_on_spot_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "address"
+    t.string   "location"
     t.string   "image_url"
     t.string   "phone"
     t.datetime "created_at",                          null: false
