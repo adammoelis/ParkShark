@@ -1,23 +1,3 @@
-<!-- <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="<%= root_path %>">ParkShark</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to 'All Spots', spots_path %></li>
-      <li><%= link_to 'View Users', users_path %></li>
-      <% if user_signed_in? && current_user %>
-        <li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
-        <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
-        <li><p class="navbar-text">Signed in as <%= link_to current_user.email, user_path(current_user), class: 'navbar-link' %></p></li>
-        <li class="round-image-50"><%= image_tag(current_user.avatar.url(:thumb)) %></li>
-      <% else %>
-        <li><%= link_to "Log in", new_session_path(resource_name) %></li>
-        <li><%= link_to "Sign up", new_registration_path(resource_name) %></li>
-      <% end %>
-    </ul>
-  </div>
-</nav> -->
 <!-- ============================================================= HEADER ============================================================= -->
 
 <header>
@@ -29,6 +9,10 @@
 				<ul class="info pull-left">
 					<li><a href="#"><i class="icon-mail-1 contact"></i> info@reen.com</a></li>
 					<li><i class="icon-mobile contact"></i> +00 (123) 456 78 90</li>
+					<% if user_signed_in? && current_user %>
+						<li class ="contact">Signed in as <%= link_to current_user.email, user_path(current_user) %></li>
+						<li class="round-image-50 contact"><%= image_tag(current_user.avatar.url(:thumb)) %></li>
+					<% end %>
 				</ul><!-- /.info -->
 
 				<ul class="social pull-right">
@@ -57,7 +41,7 @@
 
 					<!-- ============================================================= LOGO ============================================================= -->
 
-					<a class="navbar-brand" href="index.html"><%= image_tag asset_path("logo.svg"), class: "logo" %></a>
+					<a class="navbar-brand" href="<%= root_path %>"><%= image_tag asset_path("logo.svg"), class: "logo" %></a>
 
 					<!-- ============================================================= LOGO : END ============================================================= -->
 
@@ -67,16 +51,21 @@
 					<ul class="nav navbar-nav">
 
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle js-activated">Home</a>
+							<a href="#" class="dropdown-toggle js-activated">Users</a>
 
 							<ul class="dropdown-menu">
-								<li><a href="index.html">Product Style</a></li>
-								<li><a href="index2.html">Service Style</a></li>
-								<li><a href="index3.html">Agency Style</a></li>
-								<li><a href="index4.html">Portfolio Style</a></li>
-								<li><a href="index5.html">Showcase Style</a></li>
+								<li><%= link_to 'View Users', users_path %></li>
 							</ul><!-- /.dropdown-menu -->
 						</li><!-- /.dropdown -->
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle js-activated">Spots</a>
+
+							<ul class="dropdown-menu">
+								<li><%= link_to 'All The Spots', spots_path %></li>
+							</ul><!-- /.dropdown-menu -->
+						</li><!-- /.dropdown -->
+
 
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle js-activated">Portfolio</a>
@@ -138,56 +127,6 @@
 								<li><a href="pricing.html">Pricing I</a></li>
 								<li><a href="pricing2.html">Pricing II</a></li>
 								<li><a href="sidenav.html">Side Navigation</a></li>
-							</ul><!-- /.dropdown-menu -->
-						</li><!-- /.dropdown -->
-
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle js-activated">Features</a>
-
-							<ul class="dropdown-menu">
-
-								<li><a href="slider-carousel.html">Slider/Carousel</a></li>
-								<li><a href="modal.html">Modal</a></li>
-								<li><a href="tab.html">Tab</a></li>
-								<li><a href="accordion.html">Accordion</a></li>
-								<li><a href="isotope.html">Isotope</a></li>
-								<li><a href="styles.html">Styles</a></li>
-								<li><a href="font-icons.html">Font Icons</a></li>
-								<li><a href="backgrounds.html">Backgrounds</a></li>
-
-								<li class="dropdown-submenu">
-									<a href="#">Colors</a>
-
-									<ul class="dropdown-menu">
-										<li><a class="changecolor green" title="Green color">Green</a></li>
-										<li><a class="changecolor blue" title="Blue color">Blue</a></li>
-										<li><a class="changecolor red" title="Red color">Red</a></li>
-										<li><a class="changecolor pink" title="Pink color">Pink</a></li>
-										<li><a class="changecolor purple" title="Purple color">Purple</a></li>
-										<li><a class="changecolor orange" title="Orange color">Orange</a></li>
-										<li><a class="changecolor navy" title="Navy color">Navy</a></li>
-										<li><a class="changecolor gray" title="Gray color">Gray</a></li>
-									</ul><!-- /.dropdown-menu -->
-								</li><!-- /.dropdown-submenu -->
-
-								<li class="dropdown-submenu">
-									<a href="#">Submenu Levels</a>
-
-									<ul class="dropdown-menu">
-										<li><a href="#">Second Level</a></li>
-										<li><a href="#">Second Level</a></li>
-
-										<li class="dropdown-submenu">
-											<a href="#">More</a>
-
-											<ul class="dropdown-menu">
-												<li><a href="#">Third Level</a></li>
-												<li><a href="#">Third Level</a></li>
-											</ul><!-- /.dropdown-menu -->
-										</li><!-- /.dropdown-submenu -->
-									</ul><!-- /.dropdown-menu -->
-								</li><!-- /.dropdown-submenu -->
-
 							</ul><!-- /.dropdown-menu -->
 						</li><!-- /.dropdown -->
 
@@ -310,7 +249,32 @@
 							</div><!-- /.dropdown-menu -->
 						</li><!-- /.searchbox -->
 
+						<% if user_signed_in? && current_user %>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle js-activated">Edit Profile</a>
+
+								<ul class="dropdown-menu">
+									<li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+								</ul><!-- /.dropdown-menu -->
+							</li><!-- /.dropdown -->
+
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle js-activated">Log Out</a>
+
+								<ul class="dropdown-menu">
+									<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+								</ul><!-- /.dropdown-menu -->
+							</li><!-- /.dropdown -->
+
+						<% else %>
+
+							<li><%= link_to "Log in", new_session_path(resource_name) %></li>
+							<li><%= link_to "Sign up", new_registration_path(resource_name) %></li>
+
+						<% end %>
+
 					</ul><!-- /.nav -->
+
 
 					<!-- ============================================================= MAIN NAVIGATION : END ============================================================= -->
 
