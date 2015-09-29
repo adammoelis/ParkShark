@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(params[:user])
+    if @user.update(user_params)
       # success
     else
       # error handling
@@ -20,8 +20,10 @@ class UsersController < ApplicationController
 
   def edit
     @user
+  end
 
   def user_spots
+    @user = User.find(params[:user_id])
     @spots = @user.spots
   end
 
