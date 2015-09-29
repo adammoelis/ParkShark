@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :cars
   resources :spots
-  resources :users
+  resources :users do
+    get 'spots', to: "users#user_spots"
+  end
 end
