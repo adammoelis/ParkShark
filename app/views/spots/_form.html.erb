@@ -6,19 +6,19 @@
     <%= f.label :city, 'City' %>
     <%= f.text_field :city %>
     <%= f.label :state, 'State' %>
-    <%= f.text_field :state %>
+    <%= select_tag 'spot[state]', options_for_select(us_states) %>
     <%= f.label :zip_code, 'Zip Code' %>
     <%= f.text_field :zip_code %>
     <%= f.label :beginning_time, 'Start' %>
       <div class='input-group date datetimepicker1' id='datetimepicker1'>
-          <input type='text' class="form-control" name="spots[beginning_time]" />
+          <input type='text' class="form-control" name="spot[beginning_time]" />
           <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
           </span>
       </div>
     <%= f.label :ending_time, 'End' %>
     <div class='input-group date datetimepicker1' id='datetimepicker2'>
-        <input type='text' class="form-control" name="spots[ending_time]" />
+        <input type='text' class="form-control" name="spot[ending_time]" />
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
         </span>
