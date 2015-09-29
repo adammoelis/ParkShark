@@ -16,6 +16,7 @@
 //= require jquery.form
 //= require jquery.validate.min
 //= require bootstrap-sprockets
+//= require moment
 //= require bootstrap-datetimepicker
 //= require bootstrap-hover-dropdown.min
 //= require skrollr.min
@@ -29,7 +30,7 @@
 //= require viewport-units-buggyfill
 //= require scripts
 //= require turbolinks
-//= require moment
+//= require maskedinput
 //= require_tree .
 
 $(function() {
