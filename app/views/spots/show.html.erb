@@ -49,6 +49,24 @@
 
 	<!-- ============================================================= SECTION – PORTFOLIO POST : END ============================================================= -->
 
+	<!-- ============================================================= REVIEWS SECTION ============================================================= -->
+
+
+	<ul>
+	<% @spot.reviews.each do |review| %>
+		<li>
+			<h3> <%= review.visitor.name %></h3>
+			<h3><%= review.rating %></h3>
+			<h4>Review Written: <%= review.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</h4>
+			<p><%= review.body %></p>
+		</li>
+	<% end %>
+
+	</ul>
+	<!-- ============================================================= REVIEWS SECTION : END ============================================================= -->
+
+
+
 
 	<!-- ============================================================= SECTION – MORE WORKS ============================================================= -->
 
@@ -62,7 +80,7 @@
 							<div class="panel-heading text-center">
 								<h4 class="panel-title">
 									<a class="panel-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#content">
-										<span>More works</span>
+										<span>Other Nearby Parking Spots</span>
 									</a>
 								</h4>
 							</div><!-- /.panel-heading -->
