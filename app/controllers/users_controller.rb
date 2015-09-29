@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user, only: [:show, :update, :edit]
+  before_action :correct_user?, only: [:edit]
 
   def index
     @users = User.all
   end
 
   def show
-    @user
   end
 
   def update
@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user
   end
 
   def user_spots
@@ -35,5 +34,9 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def correct_user?
+    redirect_to user_path(current_user) unless current_user.id == @user.id
   end
 end
