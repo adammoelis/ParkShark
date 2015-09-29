@@ -2,7 +2,7 @@
 10.times do
   User.create(
     name: Faker::Name.name,
-    image_url: Faker::Avatar.image,
+    avatar_file_name: Faker::Avatar.image,
     phone: Faker::PhoneNumber.cell_phone,
     email:Faker::Internet.email,
     password: Faker::Internet.password(8)
