@@ -15,6 +15,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'bootstrap-sass', '~> 3.3.5'
 
+# enable image uploads
+gem "paperclip", "~> 4.3"
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -28,6 +31,7 @@ gem 'devise'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
+gem 'faker'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

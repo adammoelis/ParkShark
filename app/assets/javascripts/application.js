@@ -12,12 +12,25 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require moment
+//= require jquery.easing.1.3.min
+//= require jquery.form
+//= require jquery.validate.min
 //= require bootstrap-sprockets
 //= require bootstrap-datetimepicker
+//= require bootstrap-hover-dropdown.min
+//= require skrollr.min
+//= require skrollr.stylesheets.min
+//= require waypoints.min
+//= require waypoints-sticky.min
+//= require owl.carousel.min
+//= require jquery.isotope.min
+//= require jquery.easytabs.min
+//= require google.maps.api.v3
+//= require viewport-units-buggyfill
+//= require scripts
+//= require turbolinks
+//= require moment
 //= require_tree .
-
 
 $(function() {
   $('.datetimepicker1').datetimepicker();

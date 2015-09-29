@@ -1,0 +1,13 @@
+<%= form_for @user, url: users_path, html: { multipart: true } do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :phone %>
+  <%= f.text_field :phone %>
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  <%= f.label :avatar %>
+  <%= f.file_field :avatar %>
+  <%= f.submit class: 'btn btn-default' %>
+<% end %>
