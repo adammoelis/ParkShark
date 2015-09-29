@@ -67,8 +67,20 @@
 			<p><%= review.body %></p>
 		</li>
 	<% end %>
-
 	</ul>
+
+	<% if user_signed_in? && current_user %>
+		<%= form_for Review.new do |f| %>
+			<%= f.label :rating, 'Rating' %>
+			<%= f.text_field :rating %>
+			<%= f.label :body, 'Content' %>
+			<%= f.text_field :body %>
+			<%= hidden_field_tag 'review[spot_id]', @spot.id  %>
+			<%= hidden_field_tag 'review[visitor_id]', current_user.id %>
+			<%= f.submit %>
+		<% end %>
+	<% end %>
+
 	<!-- ============================================================= REVIEWS SECTION : END ============================================================= -->
 
 
