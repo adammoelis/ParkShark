@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
   <title>ParkShark</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -9,9 +17,11 @@
 <body>
   <%= render 'layouts/header' %>
   <div class="container-fluid">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <!-- <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> -->
     <%= yield %>
   </div>
+  <%= render 'layouts/share' %>
+  <%= render 'layouts/footer' %>
 </body>
 </html>
