@@ -1,4 +1,5 @@
-<% if current_user.longitude && current_user.latitude %>
+
+<% if current_user && current_user.longitude && current_user.latitude %>
   <%= link_to "Find Nearby Parking Spots", nearby_spots_path, class: "btn btn-large", id: "my-location" %><br>
 <% elsif session[:longitude] && session[:latitude] %>
   <%= link_to "Find Nearby Parking Spots", nearby_spots_path, class: "btn btn-large", id: "my-location" %><br>

@@ -33,5 +33,6 @@ class HomeController < ApplicationController
       session[:latitude] = params[:latitude]
       session[:longitude] = params[:longitude]
     end
+    
   end
 end
