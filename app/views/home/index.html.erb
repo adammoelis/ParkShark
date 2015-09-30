@@ -1,42 +1,60 @@
-<!-- <div class="col-md-8 col-xs-12">
-  <h1>Welcome</h1>
-  <p>What would you like to do?</p>
-  <button type="button" class="btn btn-default">Find a parking spot</button>
-  <button type="button" class="btn btn-default">Rent a parking spot</button>
-  <%= link_to "All Spots", spots_path, class: "btn btn-default" %>
-  <%= link_to "View Users", users_path, class: "btn btn-default" %>
-  <% if user_signed_in? %>
-    <%= link_to "Create a Spot", new_spot_path, class: "btn btn-default" %>
-    <%= link_to "My Spots", user_spots_path(current_user), class: "btn btn-default" %>
-  <% end %>
-</div>
-
-<%= link_to "Create a Spot", new_spot_path %> -->
+<main>
 
 <!-- ============================================================= MAIN ============================================================= -->
 
-<main>
+	<section id="who-we-are">
+		<div class="container inner-top inner-bottom-sm">
 
-	<!-- ============================================================= SECTION – GET IN TOUCH ============================================================= -->
-
-	<section id="get-in-touch" class="inner-bottom">
-		<div class="container inner light-bg">
 			<div class="row">
 				<div class="col-md-8 col-sm-9 center-block text-center">
 					<header>
 						<h1>Welcome to ParkShark</h1>
 						<p>Quickly find an affordable place to park your car.</p>
 					</header>
-					<%= link_to "Find a parking spot", spots_path, class: "btn btn-large" %><br>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+
+			<div class="row inner-top-sm">
+				<div class="col-md-1">
+					<div class="icon pull-right">
+						<i class="icon-lamp icn"></i>
+					</div><!-- /.icon -->
+				</div><!-- /.col -->
+
+				<div class="col-md-3 inner-bottom-xs">
+					<h2>Find Parking</h2>
+					<p class="text-small">Magnis modipsae que lib voloratati andigen daepeditem quiate re porem aut labor. Laceaque quiae.</p>
 					<%= render 'layouts/find_me' %>
+				</div><!-- /.col -->
+
+				<div class="col-md-1">
+					<div class="icon pull-right">
+						<i class="icon-star-empty-1 icn"></i>
+					</div><!-- /.icon -->
+				</div><!-- /.col -->
+
+				<div class="col-md-3 inner-bottom-xs">
+					<h2>Get Paid</h2>
+					<p class="text-small">Magnis modipsae que lib voloratati andigen daepeditem quiate re porem aut labor. Laceaque quiae.</p>
 					<%= link_to "List a parking spot", new_spot_path, class: "btn btn-large" %><br>
+				</div><!-- /.col -->
+
+
+				<div class="col-md-1">
+					<div class="icon pull-right">
+						<i class="icon-heart-empty-1 icn"></i>
+					</div><!-- /.icon -->
+				</div><!-- /.col -->
+
+				<div class="col-md-3 inner-bottom-xs">
+					<h2>Join Free</h2>
+					<p class="text-small">Magnis modipsae que lib voloratati andigen daepeditem quiate re porem aut labor. Laceaque quiae sitiorem.</p>
+					<%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-large" %><br>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
 		</div><!-- /.container -->
 	</section>
 
-	<!-- ============================================================= SECTION – GET IN TOUCH : END ============================================================= -->
-
+	<!-- ============================================================= MAIN : END ============================================================= -->
+	
 </main>
-
-<!-- ============================================================= MAIN : END ============================================================= -->
