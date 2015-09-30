@@ -18,7 +18,7 @@ end
     address: Faker::Address.street_address,
     available: true,
     price: Faker::Number.number(3),
-    image_url: Faker::Avatar.image,
+    picture_file_name: Faker::Avatar.image,
     owner_id: Faker::Number.number(1),
     city: Faker::Address.city,
     state: Faker::Address.state,
