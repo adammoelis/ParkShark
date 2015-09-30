@@ -25,6 +25,8 @@ class UsersController < ApplicationController
   def user_spots
     @user = User.find(params[:user_id])
     @spots = @user.spots
+    @title = 'My Spots'
+    @subtitle = 'View your listings below.'
   end
 
   private

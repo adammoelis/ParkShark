@@ -1,8 +1,11 @@
 class SpotsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :update, :edit, :delete]
   before_action :find_spot, only: [:show]
 
   def index
     @spots = Spot.all
+    @title = 'Your Car Needs A Home'
+    @subtitle = 'Browse available parking spots below!'
   end
 
   def new
@@ -10,9 +13,9 @@ class SpotsController < ApplicationController
 
   def create
     @spot = Spot.new(post_params)
+    @spot.owner_id = current_user.id
     if @spot.save
       redirect_to spot_path(@spot)
-
     else
 
     end
@@ -24,7 +27,7 @@ class SpotsController < ApplicationController
   private
 
   def post_params
-    params.require(:spot).permit(:title, :address, :city, :state, :image_url, :date, :price, :beginning_time, :ending_time, )
+    params.require(:spot).permit(:title, :address, :city, :state, :picture, :date, :available, :zip_code, :price, :beginning_time, :ending_time)
   end
 
   def find_spot

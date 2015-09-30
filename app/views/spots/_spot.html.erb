@@ -2,7 +2,11 @@
   <figure>
 
     <div class="icon-overlay icn-link">
-      <a href=" <%= spot_path(spot) %>"><%= image_tag "#{spot.image_url}"%></a>
+      <% if spot.picture.exists? %>
+        <a href=" <%= spot_path(spot) %>"><%= image_tag spot.picture.url(:medium) %></a>
+      <% else %>
+        <a href=" <%= spot_path(spot) %>"><%= image_tag spot.picture_file_name %></a>
+      <% end %>
     </div><!-- /.icon-overlay -->
 
     <figcaption class="bordered no-top-border">
