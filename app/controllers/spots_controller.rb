@@ -13,6 +13,7 @@ class SpotsController < ApplicationController
 
   def create
     @spot = Spot.new(post_params)
+    @spot.available = true
     @spot.owner_id = current_user.id
     if @spot.save
       redirect_to spot_path(@spot)
