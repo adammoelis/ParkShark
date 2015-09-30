@@ -11,23 +11,17 @@
 
 				<div class="col-md-8">
 					<div id="owl-work" class="owl-carousel owl-inner-pagination owl-inner-nav owl-ui-md">
-
 						<div class="item">
 							<figure>
-                <%= image_tag @spot.picture.url %>
+                	<%= image_tag @spot.pictures[0].picture.url(:medium) %>
 							</figure>
 						</div><!-- /.item -->
 
             <div class="item">
               <figure>
-                <%= image_tag @spot.picture.url %>
+								<%= image_tag @spot.pictures[1].picture.url(:medium) %>
               </figure>
             </div><!-- /.item -->
-						<div class="item">
-							<figure>
-									<!-- <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_KEY'] %>&q=<%= @spot.full_address %>&maptype=satellite" allowfullscreen></iframe> -->
-							</figure>
-						</div><!-- /.item -->
 
 					</div><!-- /.owl-carousel -->
 				</div><!-- /.col -->

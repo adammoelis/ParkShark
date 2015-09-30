@@ -15,6 +15,12 @@ class SpotsController < ApplicationController
     @spot = Spot.new(post_params)
     @spot.owner_id = current_user.id
     if @spot.save
+      if params[:pictures]
+        params[:pictures].each { |picture|
+          @spot.pictures.create(picture: picture)
+        }
+      end
+      flash[:notice] = 'Your spot was listed successfully.'
       redirect_to spot_path(@spot)
     else
 
@@ -27,7 +33,7 @@ class SpotsController < ApplicationController
   private
 
   def post_params
-    params.require(:spot).permit(:title, :address, :city, :state, :picture, :date, :available, :zip_code, :price, :beginning_time, :ending_time)
+    params.require(:spot).permit(:title, :address, :city, :state, :pictures, :date, :available, :zip_code, :price, :beginning_time, :ending_time)
   end
 
   def find_spot
