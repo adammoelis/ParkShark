@@ -9,6 +9,7 @@ class SpotsController < ApplicationController
   end
 
   def new
+    @spot = Spot.new
   end
 
   def create
@@ -23,11 +24,20 @@ class SpotsController < ApplicationController
       flash[:notice] = 'Your spot was listed successfully.'
       redirect_to spot_path(@spot)
     else
-
     end
   end
 
   def show
+  end
+
+  def edit
+    @spot = Spot.find(params[:id])
+  end
+
+  def update
+    @spot = Spot.find(params[:id])
+    @spot.update(post_params)
+    redirect_to spot_path
   end
 
   private
