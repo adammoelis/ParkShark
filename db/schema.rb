@@ -114,9 +114,9 @@ ActiveRecord::Schema.define(version: 20150930173513) do
     t.datetime "avatar_updated_at"
     t.string   "gender"
     t.date     "birthday"
-    t.text     "bio"
     t.string   "latitude"
     t.string   "longitude"
+    t.text     "bio"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
