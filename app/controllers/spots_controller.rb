@@ -4,6 +4,8 @@ class SpotsController < ApplicationController
 
   def index
     @spots = Spot.all
+    @title = 'Your Car Needs A Home'
+    @subtitle = 'Browse available parking spots below!'
   end
 
   def new

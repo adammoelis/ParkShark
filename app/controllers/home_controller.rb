@@ -19,4 +19,20 @@ class HomeController < ApplicationController
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
+  def my_location
+
+  end
+
+  def set_location
+    if current_user
+      current_user.latitude = params[:latitude]
+      current_user.longitude = params[:longitude]
+      current_user.save
+    else
+      session[:latitude] = params[:latitude]
+      session[:longitude] = params[:longitude]
+    end
+    
+  end
 end

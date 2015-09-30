@@ -29,7 +29,6 @@
 						<ul class="item-details inner-top-xs outer-top-xs border-top">
               <li><%= @user.gender %></li>
               <li><%= @user.age(@user.birthday) %> years old</li>
-              <li><%= @user.location %></li>
               <li><%= number_to_phone(@user.phone, area_code: true) %></li>
 						</ul><!-- /.item-details -->
 					</header>

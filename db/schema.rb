@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(version: 20150930173513) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "location"
     t.string   "phone"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
@@ -116,6 +115,8 @@ ActiveRecord::Schema.define(version: 20150930173513) do
     t.string   "gender"
     t.date     "birthday"
     t.text     "bio"
+    t.string   "latitude"
+    t.string   "longitude"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
