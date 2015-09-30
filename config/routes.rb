@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'home/about', to: 'home#about', as: 'about'
   get 'home/contact', to: 'home#contact', as: 'contact'
+  get 'my_location', to: 'home#location', as:'my_location'
 
   resources :transactions
   resources :messages
