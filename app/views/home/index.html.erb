@@ -28,7 +28,7 @@
 						<p>Easily find an affordable place to park your car.</p>
 					</header>
 					<%= link_to "Find a parking spot", spots_path, class: "btn btn-large" %><br>
-					<%= link_to "Find Me!", my_location_path, class: "btn btn-large", id: "my-location", remote: true %><br>
+					<%= render 'layouts/find_me' %>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
 		</div><!-- /.container -->
