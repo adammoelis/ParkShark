@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:update, :edit, :delete]
   before_action :find_user, only: [:show, :update, :edit]
   before_action :correct_user?, only: [:edit]
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:avatar, :name, :gender, :email, :phone, :location)
+    params.require(:user).permit(:avatar, :name, :gender, :email, :phone, :location, :bio, :birthday)
   end
 
   def find_user
