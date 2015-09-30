@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'home/about', to: 'home#about', as: 'about'
   get 'home/contact', to: 'home#contact', as: 'contact'
   get 'my_location', to: 'home#location', as:'my_location'
-
+  post 'my_location', to: 'home#set_location', as:'set_location'
   resources :transactions
   resources :messages
   resources :reviews

@@ -19,4 +19,12 @@ class HomeController < ApplicationController
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
+  def my_location
+
+  end
+
+  def set_location
+    binding.pry
+  end
 end

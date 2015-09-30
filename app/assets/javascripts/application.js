@@ -35,5 +35,18 @@
 
 $(function() {
     $('.datetimepicker1').datetimepicker();
+    getLocation()
 
 });
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(sendPositionData);
+    } else {
+        return "Geolocation is not supported by this browser.";
+    }
+}
+
+function sendPositionData(position) {
+    $.post( "/my_location", { latitude: position.coords.latitude, longitude: position.coords.longitude } );
+}
