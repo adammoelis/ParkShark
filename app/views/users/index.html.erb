@@ -1,1 +1,44 @@
-<%= render @users %>
+<!-- ============================================================= MAIN ============================================================= -->
+
+  <main>
+
+    <!-- ============================================================= SECTION – PORTFOLIO ============================================================= -->
+
+    <section id="portfolio">
+      <div class="container inner">
+        <div class="row">
+          <div class="col-md-8 col-sm-9 center-block text-center">
+            <header>
+              <h1>Park Sharkers</h1>
+              <p>Get in touch with your fellow Sharks below!</p>
+            </header>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+
+      <div class="container inner-bottom">
+        <div class="row">
+          <div class="col-sm-12 portfolio">
+
+            <ul class="filter text-center">
+              <li><a href="#" data-filter="*" class="active">All</a></li>
+              <li><a href="#" data-filter=".identity">Owners</a></li>
+              <li><a href="#" data-filter=".interactive">Visitors</a></li>
+            </ul><!-- /.filter -->
+
+            <ul class="items col-3 gap">
+
+              <%= render @users %>
+
+            </ul><!-- /.items -->
+
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section>
+
+    <!-- ============================================================= SECTION – PORTFOLIO : END ============================================================= -->
+
+  </main>
+
+  <!-- ============================================================= MAIN : END ============================================================= -->

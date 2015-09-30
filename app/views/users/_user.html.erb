@@ -1,11 +1,19 @@
-<div>
-  <% if user.avatar.exists? %>
-    <%= image_tag user.avatar.url(:medium) %>
-  <% else %>
-    <%= image_tag user.avatar_file_name %>
-  <% end %>
-  <%= user.name %>
-  <%= user.email %>
-  <%= user.location %>
-  <%= user.phone %>
-</div>
+<li class="item thumb interactive" id="user-<%= user.id %>">
+  <figure>
+    <div class="icon-overlay icn-link">
+      <% if user.avatar.exists? %>
+        <a href=" <%= user_path(user) %>"><%= image_tag user.avatar.url(:medium) %></a>
+      <% else %>
+        <a href=" <%= user_path(user) %>"><%= image_tag user.avatar_file_name %></a>
+      <% end %>
+    </div><!-- /.icon-overlay -->
+
+    <figcaption class="bordered no-top-border">
+      <div class="info">
+
+        <h4><%= link_to "#{user.name}", user_path(user) %></h4>
+        <p><%= user.location %></p>
+      </div><!-- /.info -->
+    </figcaption>
+  </figure>
+</li><!-- /.item -->

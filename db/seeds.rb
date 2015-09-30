@@ -4,6 +4,7 @@
     name: Faker::Name.name,
     avatar_file_name: Faker::Avatar.image,
     phone: Faker::PhoneNumber.cell_phone,
+    location: Faker::Address.city + ', ' + Faker::Address.state,
     email:Faker::Internet.email,
     password: Faker::Internet.password(8)
   )
