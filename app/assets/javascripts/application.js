@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.easing.1.3.min
 //= require jquery.form
@@ -29,8 +30,8 @@
 //= require google.maps.api.v3
 //= require viewport-units-buggyfill
 //= require scripts
-//= require turbolinks
 //= require maskedinput
+//= require turbolinks
 //= require_tree .
 
 $(function() {
