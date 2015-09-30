@@ -5,6 +5,8 @@
     avatar_file_name: Faker::Avatar.image,
     phone: Faker::PhoneNumber.cell_phone,
     location: Faker::Address.city + ', ' + Faker::Address.state,
+    bio: Faker::Lorem.paragraph(6),
+    birthday: Faker::Date.between(20.years.ago, Date.today),
     email:Faker::Internet.email,
     password: Faker::Internet.password(8)
   )
