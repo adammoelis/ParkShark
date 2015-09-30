@@ -1,4 +1,4 @@
 <%= form_tag(nearby_spots_path, method: "get") do %>
-  <%= text_field_tag(:q, "Ex: Los Angeles, CA") %>
-  <%= submit_tag("Find Parking!",class: "btn btn-large" ) %>
+  <%= text_field_tag(:q, nil, placeholder: "Ex: Los Angeles, CA") %>
+  <%= submit_tag("Find Parking!", class: "btn btn-large" ) %>
 <% end %>
