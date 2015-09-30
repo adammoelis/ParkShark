@@ -37,6 +37,17 @@
 			</div><!-- /.row -->
 		</div><!-- /.container -->
 
+		<ul>
+		<% @user.reviews.each do |review| %>
+			<li>
+				<h3><%= review.rating %>/10  |  <%= review.visitor.name %></h3>
+				<h4><%= review.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</h4>
+				<p><%= review.body %></p>
+			</li>
+			<%= link_to "Go to spot", spot_path(review.spot.id), class: "btn btn-large" %><br>
+		<% end %>
+		</ul>
+
 	</section>
 
 	<!-- ============================================================= SECTION – PORTFOLIO POST : END ============================================================= -->
