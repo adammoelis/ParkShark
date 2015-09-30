@@ -14,6 +14,7 @@
 
         <h4> <%= link_to "#{spot.title}", spot_path(spot) %></h4>
         <p> <%= spot.city %>, <%= spot.state %></p>
+        <%= button_to "Re-List Spot!" if !spot.available && current_user == spot.owner %>
       </div><!-- /.info -->
     </figcaption>
 
