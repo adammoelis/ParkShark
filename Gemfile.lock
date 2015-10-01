@@ -60,6 +60,8 @@ GEM
       will_paginate
     bootstrap3-datetimepicker-rails (4.15.35)
       momentjs-rails (>= 2.8.1)
+    braintree (2.49.0)
+      builder (>= 2.0.0)
     builder (3.2.2)
     byebug (6.0.2)
     carrierwave (0.10.0)
@@ -248,6 +250,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.5)
   bootstrap-will_paginate
   bootstrap3-datetimepicker-rails (~> 4.15.35)
+  braintree
   byebug
   chosen-rails
   coffee-rails (~> 4.1.0)
@@ -274,3 +277,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
   will_paginate
+
+BUNDLED WITH
+   1.10.6
