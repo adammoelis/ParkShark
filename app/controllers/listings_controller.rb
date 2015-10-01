@@ -24,7 +24,7 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     @listing.available = false
     @listing.save
-    @reservation = Reservation.new(owner: @spot.owner, visitor: current_user, spot: @spot)
+    @reservation = Reservation.new(owner: @spot.owner, visitor: current_user, spot: @spot, listing: @listing)
     @reservation.save
     redirect_to spot_path(@spot)
   end
