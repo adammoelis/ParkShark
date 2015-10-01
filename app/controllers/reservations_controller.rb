@@ -22,5 +22,16 @@ class ReservationsController < ApplicationController
   def new
     @spot = Spot.find(params[:spot_id])
     @listing = Listing.find(params[:listing_id])
+    @owner = @spot.owner
+    @visitor = current_user
+    @listing = Listing.find(params[:listing_id])
+    @token = get_client_token
   end
+
+  private
+
+  def get_client_token
+    Braintree::ClientToken.generate
+  end
+
 end
