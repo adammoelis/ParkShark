@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   resources :messages, only: [:new, :create]
 
   root to: 'home#index'
+  get 'spots/:id/reserve', to: 'reservations#reserve_spot', as: 'reserve_spot'
+  post 'spots/:id/reserve', to: 'reservations#confirm_spot', as: 'confirm_spot'
   get 'home/about', to: 'home#about', as: 'about'
   get 'home/contact', to: 'home#contact', as: 'contact'
   get 'my_location', to: 'home#location', as:'my_location'

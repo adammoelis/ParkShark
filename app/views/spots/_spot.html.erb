@@ -1,4 +1,4 @@
-<li class="item thumb interactive" id="spot-<%= spot.id %>">
+<li class="item thumb <%= spot.class_type %>" id="spot-<%= spot.id %>">
   <figure>
 
     <div class="icon-overlay icn-link">
@@ -14,6 +14,7 @@
 
         <h4> <%= link_to "#{spot.title}", spot_path(spot) %></h4>
         <p> <%= spot.city %>, <%= spot.state %></p>
+        <%= button_to "Re-List Spot!" if !spot.available && current_user == spot.owner %>
       </div><!-- /.info -->
     </figcaption>
 
