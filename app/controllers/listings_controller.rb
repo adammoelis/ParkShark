@@ -17,6 +17,15 @@ class ListingsController < ApplicationController
     redirect_to spot_path(@spot)
   end
 
+  def update
+    binding.pry
+    @spot = Spot.find(params[:spot_id])
+    @listing = Listing.find(params[:id])
+    @listing.available = false
+    @listing.save
+    redirect_to spot_path(@spot)
+  end
+
   private
 
   def parse_time(type_of_time)

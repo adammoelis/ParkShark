@@ -25,8 +25,7 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  get 'spots/:id/reserve', to: 'reservations#reserve_spot', as: 'reserve_spot'
-  post 'spots/:id/reserve', to: 'reservations#confirm_spot', as: 'confirm_spot'
+  post 'spots/:id/listings/:id/reserve', to: 'reservations#confirm_spot', as: 'confirm_spot'
 
 
   get 'home/about', to: 'home#about', as: 'about'

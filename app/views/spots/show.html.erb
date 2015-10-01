@@ -41,7 +41,6 @@
 					<% else %>
 						<%= render 'already_reserved_button' %>
 					<% end %>
-
 						<% if current_user.id == @spot.owner.id %>
 							<%= link_to "Edit this spot", edit_spot_path(@spot), class: "btn btn-large" %>
 							<%= link_to "Create a New Listing", new_spot_listing_path(@spot), class: "btn btn-large" %>
@@ -60,12 +59,8 @@
 	<ul>
 		<h2>Listings</h2>
 	<% @spot.listings.each do |listing| %>
-		<li>
-			<h2></h2>
-			<h3>Available from <%= listing.beginning_time.strftime("%B %d, %Y %H:%M") %>  -  <%= listing.ending_time.strftime("%B %d, %Y %H:%M") %></h3>
-			<%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} if listing.available %>
-			<h4>Posted: <%= listing.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(listing.created_at) %> ago)</h4>
-		</li>
+		<%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
+
 	<% end %>
 	</ul>
 	<!-- ============================================================= REVIEWS SECTION ============================================================= -->
@@ -73,24 +68,12 @@
 
 	<ul>
 	<% @spot.reviews.each do |review| %>
-		<li>
-			<h3><%= review.rating %>/10  |  <%= review.visitor.name %></h3>
-			<h4><%= review.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</h4>
-			<p><%= review.body %></p>
-		</li>
+		<%= render partial: 'review', locals: {review: review} %>
 	<% end %>
 	</ul>
 
 	<% if user_signed_in? && current_user %>
-		<%= form_for Review.new do |f| %>
-			<%= f.label :rating, 'Rating' %>
-			<%= f.text_field :rating %>
-			<%= f.label :body, 'Content' %>
-			<%= f.text_field :body %>
-			<%= hidden_field_tag 'review[spot_id]', @spot.id  %>
-			<%= hidden_field_tag 'review[visitor_id]', current_user.id %>
-			<%= f.submit %>
-		<% end %>
+		<%= render partial: 'review_form' %>
 	<% end %>
 
 	<!-- ============================================================= REVIEWS SECTION : END ============================================================= -->

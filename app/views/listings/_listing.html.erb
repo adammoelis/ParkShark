@@ -1,0 +1,10 @@
+<li>
+  <h2></h2>
+  <h3>Available from <%= listing.beginning_time.strftime("%B %d, %Y %H:%M") %>  -  <%= listing.ending_time.strftime("%B %d, %Y %H:%M") %></h3>
+  <% if listing.available %>
+    <%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} %>
+  <% else %>
+    <%= render partial: 'listings/already_reserved_button', locals: {spot: @spot, listing: listing} %>
+  <% end %>
+  <h4>Posted: <%= listing.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(listing.created_at) %> ago)</h4>
+</li>
