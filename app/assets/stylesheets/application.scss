@@ -46,3 +46,9 @@
 .alert-alert {
   @extend .alert-warning;
 }
+
+.form-control {
+  border-radius: 3px !important;
+  -webkit-border-radius: 3px !important;
+  -moz-border-radius: 3px !important;
+}
