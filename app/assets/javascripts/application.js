@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery.turbolinks
+//= require chosen-jquery
 //= require jquery_ujs
 //= require jquery.easing.1.3.min
 //= require jquery.form
@@ -32,12 +33,13 @@
 //= require scripts
 //= require maskedinput
 //= require turbolinks
+//= require messages
+//= require ImageSelect.jquery.js
 //= require_tree .
 
 $(function() {
     $('.datetimepicker1').datetimepicker();
     getLocation()
-
 });
 
 function getLocation() {

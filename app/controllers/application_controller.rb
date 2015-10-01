@@ -16,11 +16,20 @@ class ApplicationController < ActionController::Base
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:warning] = 'Resource not found.'
+    redirect_back_or root_path
+  end
+
+  def redirect_back_or(path)
+    redirect_to request.referer || path
+  end
+
   private
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :location, :phone, :gender, :birthday, :bio, :avatar, :picture, :pictures, :password, :current_password) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :location, :phone, :gender, :birthday, :bio, :avatar, :pictures, :password, :current_password) }
   end
 
   def current_user?

@@ -48,9 +48,10 @@
 					</ul><!-- /.nav -->
 
 					<ul class="nav navbar-nav pull-right">
-						<% if user_signed_in? && current_user %>
+						<% if user_signed_in? %>
 							<li><%= link_to 'My Profile', user_path(current_user) %></li>
 							<li><%= link_to "My Spots", user_spots_path(current_user) %></li>
+							<li><%= link_to 'My Conversations', conversations_path %></li>
 							<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
 							<li><%= image_tag(current_user.avatar.url(:thumb), class: 'round-image-50') %><li>
 						<% else %>

@@ -1,6 +1,27 @@
 Rails.application.routes.draw do
 
+  get 'conversations/index'
+
   devise_for :users, controllers: { sessions: "users/sessions" }
+
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :reply
+    end
+
+    member do
+      post :restore
+    end
+
+    collection do
+      delete :empty_trash
+    end
+
+    member do
+      post :mark_as_read
+    end
+  end
+  resources :messages, only: [:new, :create]
 
   root to: 'home#index'
   get 'home/about', to: 'home#about', as: 'about'

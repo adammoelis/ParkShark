@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user?, only: [:edit]
 
   def index
-    @users = User.all
+    @users = User.order('created_at DESC').paginate(page: params[:page], per_page: 30)
   end
 
   def show
