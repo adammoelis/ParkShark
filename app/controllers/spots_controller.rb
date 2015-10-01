@@ -12,8 +12,6 @@ class SpotsController < ApplicationController
     @spot = Spot.new
   end
 
-
-
   def create
     @spot = Spot.new(post_params)
     @spot.available = true
