@@ -36,12 +36,6 @@
 							<iframe id="map" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_KEY'] %>&q=<%= @spot.full_address %>&maptype=satellite" allowfullscreen></iframe>
 						</ul><!-- /.item-details -->
 
-						<% if @spot.available %>
-							<%= render partial: 'reserve_button', locals: {spot: @spot} %>
-						<% else %>
-							<%= render 'already_reserved_button' %>
-						<% end %>
-
 						<% if current_user && current_user.id == @spot.owner.id %>
 							<%= link_to "Edit this spot", edit_spot_path(@spot), class: "btn btn-large" %>
 							<%= link_to "Create a New Listing", new_spot_listing_path(@spot), class: "btn btn-large" %>
