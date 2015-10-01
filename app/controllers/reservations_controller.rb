@@ -10,6 +10,10 @@ class ReservationsController < ApplicationController
   def confirm_spot
     @spot = Spot.find(params[:spot_id])
     @listing = Spot.find(params[:listing_id])
+    @reservation = Reservation.new
+    @reservation.visitor = current_user
+    @reservation.owner = @spot.owner
+    @reservation.save
     @listing.available = false
     @listing.save
     redirect_to spot_path(@spot)

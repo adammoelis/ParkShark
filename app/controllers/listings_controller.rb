@@ -3,7 +3,6 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
-
   end
 
   def create
@@ -13,8 +12,11 @@ class ListingsController < ApplicationController
     @listing.price = params[:listing][:price]
     @listing.spot = @spot
     @listing.available = true
-    @listing.save
-    redirect_to spot_path(@spot)
+    if @listing.save
+      redirect_to spot_path(@spot)
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -22,6 +24,8 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     @listing.available = false
     @listing.save
+    @reservation = Reservation.new(owner: @spot.owner, visitor: current_user, spot: @spot)
+    @reservation.save
     redirect_to spot_path(@spot)
   end
 
