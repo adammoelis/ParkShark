@@ -21,6 +21,15 @@
                     <% end %>
                     </ul>
                   </div>
+                  <div class="col-md-6 col-sm-9">
+                    <ul>
+                      <h2>My Upcoming Reserved Spots</h2>
+                      <% Reservation.all.where(visitor: current_user).each do |reservation|%>
+                          <%= render partial: 'listings/listing', locals: {listing: reservation.listing} %>
+                      <% end %>
+                    </ul>
+                  </div>
+
                 <!-- /.col -->
             </div><!-- /.row -->
    </div>

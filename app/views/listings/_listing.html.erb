@@ -5,10 +5,10 @@
 
   <% if !listing.available  %>
     <%= render partial: 'listings/already_reserved_button', locals: {spot: @spot, listing: listing} %>
-    <% if current_user == @spot.owner %>
+    <% if current_user == listing.spot.owner %>
       <p>Occupied by: <%= listing.reservation.visitor.email if listing.reservation%></p>
     <% end %>
-  <% elsif current_user == @spot.owner %>
+  <% elsif current_user == listing.spot.owner %>
     <%= render partial: 'listings/pending_button', locals: {spot: @spot, listing: listing} %>
   <% else %>
     <%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} %>

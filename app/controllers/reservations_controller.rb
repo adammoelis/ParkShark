@@ -21,6 +21,6 @@ class ReservationsController < ApplicationController
 
   def new
     @spot = Spot.find(params[:spot_id])
-    @listing = Spot.find(params[:listing_id])
+    @listing = Listing.find(params[:listing_id])
   end
 end
