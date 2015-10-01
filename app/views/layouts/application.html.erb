@@ -17,11 +17,7 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script
 <body>
   <%= render 'layouts/header' %>
-  <div class="container-fluid">
-    <%= flash[:notice] %>
-    <%= flash[:error] %>
     <%= yield %>
-  </div>
   <%= render 'layouts/footer' %>
 </body>
 </html>

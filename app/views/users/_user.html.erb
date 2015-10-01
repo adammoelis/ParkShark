@@ -1,11 +1,7 @@
 <li class="item thumb interactive" id="user-<%= user.id %>">
   <figure>
     <div class="icon-overlay icn-link">
-      <% if user.avatar.exists? %>
-        <a href=" <%= user_path(user) %>"><%= image_tag user.avatar.url(:medium) %></a>
-      <% else %>
-        <a href=" <%= user_path(user) %>"><%= image_tag user.avatar_file_name %></a>
-      <% end %>
+      <%= image_for user, :medium %>
     </div><!-- /.icon-overlay -->
 
     <figcaption class="bordered no-top-border">
