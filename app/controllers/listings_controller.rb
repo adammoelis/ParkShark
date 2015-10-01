@@ -12,8 +12,8 @@ class ListingsController < ApplicationController
     @listing.ending_time = parse_time('ending_time')
     @listing.price = params[:price]
     @listing.spot = @spot
+    @listing.available = true
     @listing.save
-    binding.pry
     redirect_to spot_path(@spot)
   end
 
