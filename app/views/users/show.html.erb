@@ -9,11 +9,7 @@
 			<div class="row">
 
 				<div class="col-md-4 text-center">
-          <% if @user.avatar.exists? %>
-            <%= image_tag @user.avatar.url(:medium), class: 'img-rounded' %>
-          <% else %>
-            <%= image_tag @user.avatar_file_name, class: 'img-rounded' %>
-          <% end %>
+          <%= image_for @user, :medium %>
           <div>
             <% if user_signed_in? && current_user? %>
               <%= link_to 'Edit Profile', edit_user_path, class: 'btn btn-default' %>
