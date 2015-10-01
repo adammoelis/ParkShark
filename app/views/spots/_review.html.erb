@@ -1,0 +1,5 @@
+<li>
+  <h3><%= review.rating %>/10  |  <%= review.visitor.name %></h3>
+  <h4><%= review.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</h4>
+  <p><%= review.body %></p>
+</li>
