@@ -19,16 +19,6 @@ class ListingsController < ApplicationController
     end
   end
 
-  def update
-    @spot = Spot.find(params[:spot_id])
-    @listing = Listing.find(params[:id])
-    @listing.available = false
-    @listing.save
-    @reservation = Reservation.new(owner: @spot.owner, visitor: current_user, spot: @spot)
-    @reservation.save
-    redirect_to spot_path(@spot)
-  end
-
   private
 
   def parse_time(type_of_time)
