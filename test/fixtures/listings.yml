@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  beginning_time: 2015-10-01 10:41:50
+  ending_time: 2015-10-01 10:41:50
+  available: false
+  owner_id: 
+
+two:
+  beginning_time: 2015-10-01 10:41:50
+  ending_time: 2015-10-01 10:41:50
+  available: false
+  owner_id: 
