@@ -3,6 +3,7 @@ class Spot < ActiveRecord::Base
   has_many :reviews, :dependent => :destroy
   has_many :listings, :dependent => :destroy
   has_many :pictures, :dependent => :destroy
+  has_many :purchases
   has_many :reservations, :dependent => :destroy
   geocoded_by :full_address
   after_validation :geocode, :if => :address_changed?
