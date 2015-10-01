@@ -7,7 +7,7 @@ class PurchasesController < ApplicationController
     @listing = Listing.find(params[:listing_id])
     nonce = params[:payment_method_nonce]
     result = Braintree::Transaction.sale(
-      :amount => @spot.price,
+      :amount => @listing.price,
       :payment_method_nonce => nonce,
       :options => {
         :submit_for_settlement => true
