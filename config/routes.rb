@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :purchases
   get 'conversations/index'
 
   devise_for :users, controllers: { sessions: "users/sessions" }
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'spots/:id/reserve', to: 'reservations#reserve_spot', as: 'reserve_spot'
   post 'spots/:id/reserve', to: 'reservations#confirm_spot', as: 'confirm_spot'
+  post 'purchases/checkout', to: 'purchases#checkout', as: 'checkout'
   get 'home/about', to: 'home#about', as: 'about'
   get 'home/contact', to: 'home#contact', as: 'contact'
   get 'my_location', to: 'home#location', as:'my_location'

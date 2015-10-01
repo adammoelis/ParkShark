@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001135203) do
+ActiveRecord::Schema.define(version: 20151001145613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,18 @@ ActiveRecord::Schema.define(version: 20151001135203) do
     t.integer  "spot_id"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.integer  "visitor_id"
+    t.integer  "spot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "purchases", ["owner_id"], name: "index_purchases_on_owner_id", using: :btree
+  add_index "purchases", ["spot_id"], name: "index_purchases_on_spot_id", using: :btree
+  add_index "purchases", ["visitor_id"], name: "index_purchases_on_visitor_id", using: :btree
+
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating"
     t.text     "body"
@@ -179,6 +191,7 @@ ActiveRecord::Schema.define(version: 20151001135203) do
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
+  add_foreign_key "purchases", "spots"
   add_foreign_key "reviews", "spots"
   add_foreign_key "transactions", "spots"
 end

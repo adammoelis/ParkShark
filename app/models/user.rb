@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   has_many :spots, :foreign_key => 'owner_id'
   has_many :messages, :foreign_key => 'author_id'
   has_many :messages, :foreign_key => 'recipient_id'
-  has_many :transactions, :foreign_key => 'visitor_id'
-  has_many :transactions, :foreign_key => 'owner_id'
+  has_many :purchases, :foreign_key => 'visitor_id'
+  has_many :purchases, :foreign_key => 'owner_id'
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   acts_as_messageable
