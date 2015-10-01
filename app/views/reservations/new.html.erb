@@ -1,4 +1,17 @@
-CREDIT CARD PAYMENT STUFF
-ONCE WE VERIFY THIS CHECKOUT BUTTON BELOW
-<%= button_to "Confirm Purchase", spot_listing_path(@spot, @listing), method: 'patch' %>
-<%= link_to "Cancel", spot_path(@spot), class: 'btn btn-default' %>
+<main>
+    <section>
+        <div class="container inner-top-sm inner-bottom-sm">
+            <div class="row">
+                <div class="col-md-6 col-sm-9 center-block">
+                    <header>
+                        <h1>Confirm Purchase</h1>
+                    </header>
+                    CREDIT CARD PAYMENT STUFF
+                    ONCE WE VERIFY THIS CHECKOUT BUTTON BELOW
+                    <%= button_to "Confirm Purchase", spot_listing_path(@spot, @listing), method: 'patch' %>
+                    <%= link_to "Cancel", spot_path(@spot), class: 'btn btn-default' %>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+   </div>
+ </section>
+</main>

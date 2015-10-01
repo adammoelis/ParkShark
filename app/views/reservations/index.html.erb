@@ -1,13 +1,28 @@
-<ul>
-  <h2>Occupied Listings</h2>
-<% @listings.where(available: ['false', nil]).each do |listing| %>
-  <%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
-<% end %>
-</ul>
 
-<ul>
-  <h2>Available Listings</h2>
-<% @listings.where(available: 'true').each do |listing| %>
-  <%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
-<% end %>
-</ul>
+<main>
+    <section>
+        <div class="container inner-top-sm inner-bottom-sm">
+            <div class="row">
+                <div class="col-md-6 col-sm-9">
+                    <header>
+                    </header>
+                    <ul>
+                      <h2>Occupied Listings</h2>
+                    <% @listings.where(available: ['false', nil]).each do |listing| %>
+                      <%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
+                    <% end %>
+                    </ul>
+                  </div>
+                  <div class="col-md-6 col-sm-9">
+                    <ul>
+                      <h2>Available Listings</h2>
+                    <% @listings.where(available: 'true').each do |listing| %>
+                      <%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
+                    <% end %>
+                    </ul>
+                  </div>
+                <!-- /.col -->
+            </div><!-- /.row -->
+   </div>
+ </section>
+</main>
