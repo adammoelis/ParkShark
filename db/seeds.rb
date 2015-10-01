@@ -20,6 +20,7 @@ end
     owner_id: Faker::Number.number(1),
     city: Faker::Address.city,
     state: Faker::Address.state,
+    description: Faker::Lorem.paragraph(6),
     zip_code: Faker::Address.zip_code,
     beginning_time: Faker::Date.between(2.days.ago, Date.today),
     ending_time: Faker::Date.forward(23)
@@ -34,14 +35,6 @@ end
     year: Faker::Number.number(4),
     license_plate: Faker::Internet.password(6),
     visitor_id: User.all.sample.id
-  )
-end
-
-10.times do
-  Message.create(
-    body:Faker::Lorem.paragraph,
-    author_id: User.all.sample.id,
-    recipient_id: User.all.sample.id
   )
 end
 
