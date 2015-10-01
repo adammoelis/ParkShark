@@ -1,7 +1,7 @@
 module ApplicationHelper
-  def image_for(user, title = user.name)
+  def image_for(user, size = :thumb, title = user.name)
     if user.avatar.exists?
-      image_tag user.avatar.url(:thumb), title: title, class: 'img-rounded'
+      image_tag user.avatar.url(size), title: title, class: 'img-rounded'
     else
       image_tag user.avatar_file_name, title: title, class: 'img-rounded'
     end

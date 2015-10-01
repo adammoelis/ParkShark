@@ -3,8 +3,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :cars, :foreign_key => 'visitor_id'
   has_many :reviews, :foreign_key => 'visitor_id'
+  has_many :reservations, :foreign_key => 'visitor_id'
+  has_many :reservations, :foreign_key => 'owner_id'
   has_many :reviews, :foreign_key => 'owner_id', :through => 'spots'
   has_many :spots, :foreign_key => 'owner_id'
+  has_many :listings, :foreign_key => 'owner_id', :through => 'spots'
   has_many :messages, :foreign_key => 'author_id'
   has_many :messages, :foreign_key => 'recipient_id'
   has_many :purchases, :foreign_key => 'visitor_id'
