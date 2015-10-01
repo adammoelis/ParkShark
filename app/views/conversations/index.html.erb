@@ -1,31 +1,46 @@
-<h2>Your Conversations</h2>
+<main>
+  <section>
+    <div class="container inner-top-sm inner-bottom-sm">
+      <div class="row">
+        <div class="col-md-6 col-sm-9 center-block">
+          <header>
+            <h1>Your Conversations</h1>
+          </header>
 
-<div class="row">
-  <div class="col-sm-3">
-    <ul class="nav nav-pills nav-stacked">
-      <%= mailbox_section 'inbox', @box %>
-      <%= mailbox_section 'sent', @box %>
-      <%= mailbox_section 'trash', @box %>
-    </ul>
-  </div>
+          
+          <div class="row">
+            <div class="col-sm-3">
+              <ul class="nav nav-pills nav-stacked">
+                <%= mailbox_section 'inbox', @box %>
+                <%= mailbox_section 'sent', @box %>
+                <%= mailbox_section 'trash', @box %>
+              </ul>
+            </div>
 
-  <div class="col-sm-9">
-    <ul class="list-group">
-      <%= render partial: 'conversations/conversation', collection: @conversations %>
-    </ul>
+            <div class="col-sm-9">
+              <ul class="list-group">
+                <%= render partial: 'conversations/conversation', collection: @conversations %>
+              </ul>
 
-    <%= will_paginate %>
-  </div>
+              <%= will_paginate %>
+            </div>
 
-  <div class="col-sm-9">
-    <% if @box == 'trash' %>
-      <p><%= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn btn-danger', method: :delete,
-                     data: {confirm: 'Are you sure?'} %></p>
-    <% end %>
-    <ul class="list-group">
-      <%= render partial: 'conversations/conversation', collection: @conversations %>
-    </ul>
+            <div class="col-sm-9">
+              <% if @box == 'trash' %>
+                <p><%= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn btn-danger', method: :delete,
+                               data: {confirm: 'Are you sure?'} %></p>
+              <% end %>
+              <ul class="list-group">
+                <%= render partial: 'conversations/conversation', collection: @conversations %>
+              </ul>
 
-    <%= will_paginate %>
-  </div>
-</div>
+              <%= will_paginate %>
+            </div>
+          </div>
+
+
+       </div><!-- /.col -->
+     </div><!-- /.row -->
+   </div>
+ </section>
+</main>
