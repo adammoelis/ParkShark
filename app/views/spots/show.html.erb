@@ -50,38 +50,39 @@
 
 	<!-- ============================================================= SECTION – PORTFOLIO POST : END ============================================================= -->
 	<!-- ============================================================= Listings SECTION ============================================================= -->
-<div class="col-md-3">
-	<ul>
-		<h2>Occupied Listings</h2>
-	<% @spot.listings.where(available: ['false', nil]).each do |listing| %>
-		<%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
-	<% end %>
-	</ul>
-</div>
-
-<div class="col-md-3">
-	<ul>
-		<h2>Available Listings</h2>
-	<% @spot.listings.where(available: 'true').each do |listing| %>
-		<%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
-	<% end %>
-	</ul>
-</div>
-	<!-- ============================================================= REVIEWS SECTION ============================================================= -->
-
-<div class="col-md-3">
-	<ul>
-		<h2>Review</h2>
-		<% @spot.reviews.each do |review| %>
-			<%= render partial: 'review', locals: {review: review} %>
+<section class="container">
+	<div class="col-md-4">
+		<ul>
+			<h2>Occupied Listings</h2>
+		<% @spot.listings.where(available: ['false', nil]).each do |listing| %>
+			<%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
 		<% end %>
-	</ul>
+		</ul>
+	</div>
 
-	<% if user_signed_in? && current_user %>
-		<%= render partial: 'review_form' %>
-	<% end %>
-</div>
+	<div class="col-md-4">
+		<ul>
+			<h2>Available Listings</h2>
+		<% @spot.listings.where(available: 'true').each do |listing| %>
+			<%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
+		<% end %>
+		</ul>
+	</div>
+		<!-- ============================================================= REVIEWS SECTION ============================================================= -->
 
+	<div class="col-md-4">
+		<ul>
+			<h2>Review</h2>
+			<% @spot.reviews.each do |review| %>
+				<%= render partial: 'review', locals: {review: review} %>
+			<% end %>
+		</ul>
+
+		<% if user_signed_in? && current_user %>
+			<%= render partial: 'review_form' %>
+		<% end %>
+	</div>
+</section>
 	<!-- ============================================================= REVIEWS SECTION : END ============================================================= -->
 
 
