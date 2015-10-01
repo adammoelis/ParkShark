@@ -12,4 +12,12 @@ class Spot < ActiveRecord::Base
   def address_without_street
     "#{self.city}, #{self.state}, #{self.zip_code}"
   end
+
+  def class_type
+    if self.available
+      "available"
+    else
+      "reserved"
+    end
+  end
 end

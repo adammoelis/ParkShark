@@ -12,8 +12,11 @@ class SpotsController < ApplicationController
     @spot = Spot.new
   end
 
+
+
   def create
     @spot = Spot.new(post_params)
+    @spot.available = true
     @spot.owner_id = current_user.id
     if @spot.save
       if params[:pictures]
