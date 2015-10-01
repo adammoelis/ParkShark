@@ -43,6 +43,7 @@ gem 'devise'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
 gem 'faker'
+gem "braintree"
 
 # Use Unicorn as the app server
 # gem 'unicorn'

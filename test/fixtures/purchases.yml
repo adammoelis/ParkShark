@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner_id: 
+  visitor_id: 
+  spot_id: 
+
+two:
+  owner_id: 
+  visitor_id: 
+  spot_id: 
