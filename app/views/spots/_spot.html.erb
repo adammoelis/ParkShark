@@ -14,7 +14,8 @@
 
         <h4> <%= link_to "#{spot.title}", spot_path(spot) %></h4>
         <p> <%= spot.city %>, <%= spot.state %></p>
-        <%= button_to "Re-List Spot!" if !spot.available && current_user == spot.owner %>
+        <%= button_to "Re-List Spot", nil, class: 'btn btn-small' if !spot.available && current_user == spot.owner %>
+        <%= button_to 'Remove Spot', spot_path(spot), class: 'btn btn-small', method: :delete, data: { confirm: 'Are you sure?' } if current_user == spot.owner %>
       </div><!-- /.info -->
     </figcaption>
 

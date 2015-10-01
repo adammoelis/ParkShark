@@ -12,8 +12,6 @@ class SpotsController < ApplicationController
     @spot = Spot.new
   end
 
-
-
   def create
     @spot = Spot.new(post_params)
     @spot.available = true
@@ -27,6 +25,8 @@ class SpotsController < ApplicationController
       flash[:notice] = 'Your spot was listed successfully.'
       redirect_to spot_path(@spot)
     else
+      flash[:error] = 'Sorry, something went wrong when listing your spot.'
+      redirect_to user_spots_path(current_user)
     end
   end
 
@@ -41,6 +41,15 @@ class SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @spot.update(post_params)
     redirect_to spot_path
+  end
+
+  def destroy
+    @spot = Spot.find(params[:id])
+    if @spot.destroy
+      flash[:notice] = 'Your spot was removed successfully.'
+      redirect_to user_spots_path(current_user)
+    else
+    end
   end
 
   private
