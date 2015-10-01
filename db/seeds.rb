@@ -1,5 +1,5 @@
 
-100.times do
+10.times do
   User.create(
     name: Faker::Name.name,
     avatar_file_name: Faker::Avatar.image,
@@ -11,13 +11,12 @@
   )
 end
 
-100.times do
+10.times do
   Spot.create(
     title: Faker::Name.title,
     address: Faker::Address.street_address,
     available: true,
     price: Faker::Number.number(3),
-    picture_file_name: Faker::Avatar.image,
     owner_id: Faker::Number.number(1),
     city: Faker::Address.city,
     state: Faker::Address.state,
@@ -27,7 +26,7 @@ end
   )
 end
 
-100.times do
+10.times do
   Car.create(
     make: Faker::Company.name,
     model: Faker::Company.name,
@@ -38,7 +37,7 @@ end
   )
 end
 
-100.times do
+10.times do
   Message.create(
     body:Faker::Lorem.paragraph,
     author_id: User.all.sample.id,
@@ -46,7 +45,7 @@ end
   )
 end
 
-100.times do
+10.times do
   Review.create(
     rating: Faker::Number.number(1),
     body:Faker::Lorem.paragraph,

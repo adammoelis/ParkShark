@@ -1,10 +1,9 @@
 <h2>List your parking spot</h2>
-
-<%= form_for Spot.new, html: { class: 'form-horizontal', multipart: true } do |f| %>
+<%= form_for @spot, html: { class: 'form-horizontal', multipart: true } do |f| %>
   <div class="form-group">
-      <%= f.label :picture, class: 'col-sm-2 control-label'  %>
+      <%= f.label :pictures, class: 'col-sm-2 control-label'  %>
       <div class="col-sm-6">
-          <%= f.file_field :picture %>
+          <%= f.file_field :pictures, type: :file, multiple: true, name: "pictures[]" %>
       </div>
   </div>
 
