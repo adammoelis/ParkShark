@@ -1,6 +1,7 @@
 class Spot < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User'
-  has_many :reviews
+  has_many :reviews, :dependent => :destroy
+  has_many :listings, :dependent => :destroy
   has_many :pictures, :dependent => :destroy
   geocoded_by :full_address
   after_validation :geocode, :if => :address_changed?

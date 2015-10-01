@@ -44,6 +44,7 @@
 
 						<% if current_user.id == @spot.owner.id %>
 							<%= link_to "Edit this spot", edit_spot_path(@spot), class: "btn btn-large" %>
+							<%= link_to "Create a New Listing", edit_spot_path(@spot), class: "btn btn-large" %>
 						<% end %>
 					</header>
 				</div><!-- /.col -->
