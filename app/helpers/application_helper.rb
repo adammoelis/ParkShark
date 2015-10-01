@@ -14,4 +14,24 @@ module ApplicationHelper
       user.avatar_file_name
     end
   end
+
+  def render_page_template(title, partial = 'form')
+    page = <<-HTML
+    <main>
+      <section>
+        <div class="container inner-top-sm inner-bottom-sm">
+          <div class="row">
+            <div class="col-md-6 col-sm-9 center-block">
+              <header>
+                <h1>#{title}</h1>
+              </header>
+              #{render partial}
+           </div><!-- /.col -->
+         </div><!-- /.row -->
+       </div>
+     </section>
+    </main>
+    HTML
+    page.html_safe
+  end
 end
