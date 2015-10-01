@@ -15,3 +15,6 @@
 
 .env
 Procfile
+
+/system/users
+/system/spots
