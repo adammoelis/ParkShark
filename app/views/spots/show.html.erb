@@ -42,7 +42,7 @@
 						<%= render 'already_reserved_button' %>
 					<% end %>
 
-						<% if current_user.id == @spot.owner.id %>
+						<% if current_user && current_user.id == @spot.owner.id %>
 							<%= link_to "Edit this spot", edit_spot_path(@spot), class: "btn btn-large" %>
 						<% end %>
 					</header>
