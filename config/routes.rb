@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get 'my_location', to: 'home#location', as:'my_location'
   post 'my_location', to: 'home#set_location', as:'set_location'
   get 'nearby-parking', to: 'search#nearby', as: 'nearby_spots'
+  resources :reservations
   resources :transactions
   resources :messages
   resources :reviews

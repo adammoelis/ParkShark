@@ -1,6 +1,7 @@
 <li>
   <h2></h2>
   <h3>Available from <%= listing.beginning_time.strftime("%B %d, %Y %H:%M") %>  -  <%= listing.ending_time.strftime("%B %d, %Y %H:%M") %></h3>
+  <h3><%= number_to_currency(listing.price) %></h3>
   <% if listing.available %>
     <%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} %>
   <% else %>

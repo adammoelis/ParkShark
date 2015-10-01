@@ -10,7 +10,7 @@ class ListingsController < ApplicationController
     @listing = Listing.new
     @listing.beginning_time = parse_time('beginning_time')
     @listing.ending_time = parse_time('ending_time')
-    @listing.price = params[:price]
+    @listing.price = params[:listing][:price]
     @listing.spot = @spot
     @listing.available = true
     @listing.save
@@ -18,7 +18,6 @@ class ListingsController < ApplicationController
   end
 
   def update
-    binding.pry
     @spot = Spot.find(params[:spot_id])
     @listing = Listing.find(params[:id])
     @listing.available = false

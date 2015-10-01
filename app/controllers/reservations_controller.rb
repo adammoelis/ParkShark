@@ -1,5 +1,8 @@
 class ReservationsController < ApplicationController
 
+  def index
+    @listings = current_user.listings
+  end
   def reserve_spot
     @spot = Spot.find(params[:id])
   end
@@ -9,7 +12,6 @@ class ReservationsController < ApplicationController
     @listing = Spot.find(params[:listing_id])
     @listing.available = false
     @listing.save
-    binding.pry
     redirect_to spot_path(@spot)
   end
 
