@@ -34,4 +34,8 @@ module ApplicationHelper
     HTML
     page.html_safe
   end
+
+  def distance_between(object1, object2)
+    Geocoder::Calculations.distance_between([object1.latitude, object1.longitude], [object2.latitude, object2.longitude])
+  end
 end
