@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   def nearby
     if params[:q]
-      @spots = Spot.near(params[:q], 10)
+      @spots = Spot.near(params[:q], params[:radius])
     elsif current_user
       @spots = Spot.near([current_user.latitude, current_user.longitude], 10)
     else
