@@ -42,27 +42,6 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :beginning_time, 'Start Time', class: 'col-sm-2 control-label' %>
-    <div class="col-sm-9">
-      <%= f.datetime_select :beginning_time, class: 'form-control', name: 'spot[beginning_time]'%>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :ending_time, 'End Time', class: 'col-sm-2 control-label' %>
-    <div class="col-sm-9">
-      <%= f.datetime_select :ending_time, class: 'form-control', name: 'spot[ending_time]'%>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :price, 'Price ($)', class: 'col-sm-2 control-label' %>
-    <div class="col-sm-9">
-        <%= f.text_field :price, :placeholder => '$20' %>
-    </div>
-  </div>
-
-  <div class="form-group">
       <%= f.label :description, class: 'col-sm-2 control-label'  %>
       <div class="col-sm-9">
           <%= f.text_area :description, class: 'form-control', :placeholder => "Share some things about your spot" %>
