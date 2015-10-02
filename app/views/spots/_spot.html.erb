@@ -15,7 +15,12 @@
         <h4> <%= link_to "#{spot.title}", spot_path(spot) %></h4>
         <p> <%= spot.city %>, <%= spot.state %></p>
         <%= button_to 'Remove Spot', spot_path(spot), class: 'btn btn-small', method: :delete, data: { confirm: 'Are you sure?' } if current_user == spot.owner %>
-        <%= distance_between(current_user, spot).round(1) if current_user %> miles away
+        <% if current_user %>
+          <%= "#{distance_between(current_user, spot).round(1)} miles away" if current_user %>
+        <% else %>
+          <%= "#{distance_between_me_and(spot).round(1)} miles away" if !current_user %>
+        <% end %>
+
       </div><!-- /.info -->
     </figcaption>
 
