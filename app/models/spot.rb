@@ -52,4 +52,12 @@ class Spot < ActiveRecord::Base
   def distance_from_location(latitude, longitude)
     Geocoder::Calculations.distance_between([self.latitude, self.longitude], [latitude, longitude])
   end
+
+  def show_price_range
+    if highest_price_listing && lowest_price_listing && highest_price_listing != lowest_price_listing
+      "$#{self.lowest_price_listing.price} - $#{self.highest_price_listing.price}"
+    else
+      "$#{highest_price_listing.price}"
+    end
+  end
 end
