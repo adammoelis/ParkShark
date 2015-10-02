@@ -5,6 +5,7 @@ class Spot < ActiveRecord::Base
   has_many :pictures, :dependent => :destroy
   has_many :purchases
   has_many :reservations, :dependent => :destroy
+  validates_presence_of :title, :address, :city, :state, :zip_code
   geocoded_by :full_address
   after_validation :geocode, :if => :address_changed?
 

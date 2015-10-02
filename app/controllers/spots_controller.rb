@@ -26,7 +26,7 @@ class SpotsController < ApplicationController
       redirect_to spot_path(@spot)
     else
       flash[:error] = 'Sorry, something went wrong when listing your spot.'
-      redirect_to user_spots_path(current_user)
+      render 'new'
     end
   end
 
