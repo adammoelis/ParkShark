@@ -20,6 +20,7 @@
         <% else %>
           <%= "#{distance_between_me_and(spot).round(1)} miles away" if !current_user %>
         <% end %>
+        <p><%= spot.show_price_range %></p>
 
       </div><!-- /.info -->
     </figcaption>

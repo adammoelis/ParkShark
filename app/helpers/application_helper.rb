@@ -43,4 +43,12 @@ module ApplicationHelper
     Geocoder::Calculations.distance_between([session[:latitude], session[:longitude]], [object.latitude, object.longitude])
   end
 
+  def current_location
+    if current_user
+      [current_user.latitude, current_user.longitude]
+    else
+      [session[:latitude], session[:longitude]]
+    end
+  end
+
 end
