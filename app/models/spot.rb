@@ -44,4 +44,12 @@ class Spot < ActiveRecord::Base
   def closest_time_listing
     listings.min_by{|listing| listing.beginning_time}
   end
+
+  def distance_from_user(user_object)
+    Geocoder::Calculations.distance_between([self.latitude, self.longitude], [user_object.latitude, user_object.longitude])
+  end
+
+  def distance_from_location(latitude, longitude)
+    Geocoder::Calculations.distance_between([self.latitude, self.longitude], [latitude, longitude])
+  end
 end
