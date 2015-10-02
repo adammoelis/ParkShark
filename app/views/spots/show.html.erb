@@ -29,9 +29,7 @@
 						<p class="text-small"><%= @spot.description %></p>
 
 						<ul class="item-details inner-top-xs outer-top-xs border-top">
-							<li class="date"> <%= @spot.beginning_time.strftime("%B %d, %Y %I:%M %Z %p") %> - <%= @spot.ending_time.strftime("%B %d, %Y %I:%M %Z %p") %></li>
 							<li class="categories"> <%= @spot.city %>, <%= @spot.state %></li>
-							<li class="client"> <%= number_to_currency(@spot.price) %></li>
 							<li class="url"><a href="http://demo.fuviz.com/reen">Zip Code: <%= @spot.zip_code %></a></li>
 							<iframe id="map" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_KEY'] %>&q=<%= @spot.full_address %>&maptype=satellite" allowfullscreen></iframe>
 						</ul><!-- /.item-details -->
