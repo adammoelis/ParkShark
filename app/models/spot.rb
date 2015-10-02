@@ -32,4 +32,16 @@ class Spot < ActiveRecord::Base
       "reserved"
     end
   end
+
+  def lowest_price_listing
+    listings.min_by{|listing| listing.price}
+  end
+
+  def highest_price_listing
+    listings.max_by{|listing| listing.price}
+  end
+
+  def closest_time_listing
+    listings.min_by{|listing| listing.beginning_time}
+  end
 end

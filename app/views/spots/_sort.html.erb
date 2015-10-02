@@ -1,0 +1,7 @@
+<div class="col-md-3 col-sm-9 center-block text-center">
+  <%= form_tag(nearby_spots_path, method: "get") do %>
+  <%= label_tag(:sort_type, "Sort By:") %>
+  <%= select_tag "sort_type", options_for_select([ "Price", "Closest Time" ]) %>
+  <%= submit_tag("Sort") %>
+  <% end %>
+</div>
