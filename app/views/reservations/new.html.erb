@@ -1,65 +1,15 @@
 <main>
-    <section>
-        <div class="container inner-top-sm inner-bottom-sm">
-            <div class="row">
-                <div class="col-md-6 col-sm-9 center-block">
-                    <header>
-                        <h1>Confirm Purchase</h1>
-                    </header>
-                    <div class="form-container radius-box glassy-bg small-10 small-centered medium-8 large-6 columns">
-                      <h2 class="mbs">New Transaction</h2>
-                      <%= form_tag checkout_path do%>
-                        <p>Please enter your payment details:</p>
-                        <%= hidden_field_tag "owner_id", @owner.id %>
-                        <%= hidden_field_tag "visitor_id", @visitor.id %>
-                        <%= hidden_field_tag "spot_id", @spot.id %>
-                        <%= hidden_field_tag "listing_id", @listing.id %>
-                        <div>
-                          <%= label_tag "first_name" %>*
-                          <%= text_field_tag "first_name" %>
-                        </div>
-                        <div>
-                          <%= label_tag "last_name" %>*
-                          <%= text_field_tag "last_name" %>
-                        </div>
-                        <div>
-                          <%= label_tag "phone_number" %>*
-                          <%= text_field_tag "phone_number" %>
-                        </div>
-                        <div>
-                          <%= label_tag "company" %>
-                          <%= text_field_tag "company" %>
-                        </div>
-                        <div>
-                          <%= label_tag "street_address" %>*
-                          <%= text_field_tag "street_address" %>
-                        </div>
-                        <div>
-                          <%= label_tag "extended_address" %>
-                          <%= text_field_tag "extended_address" %>
-                        </div>
-                        <div>
-                          <%= label_tag "city" %>*
-                          <%= text_field_tag "city" %>
-                        </div>
-                        <div>
-                          <%= label_tag "state" %>*
-                          <%= text_field_tag "state" %>
-                        </div>
-                        <div>
-                          <%= label_tag "zip_code" %>*
-                          <%= text_field_tag "zip_code" %>
-                        </div>
-                        <div id="dropin"></div>
-                        <%= submit_tag "Purchase #{@spot.title} for #{number_to_currency(@listing.price)}", class: "button mt1" %>
-                      <%end%>
-                    </div>
-                    <%= link_to "Cancel", spot_path(@spot), class: 'btn btn-default' %>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-   </div>
- </section>
+  <section>
+    <div class="container inner-top-sm inner-bottom-sm">
+      <div class="row">
+        <div class="col-md-6 col-sm-9 center-block">
+        <%= render 'form' %>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div>
+  </section>
 </main>
+
 <script>
   braintree.setup("<%= j @token %>", 'dropin', {
     container: 'dropin'
