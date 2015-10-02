@@ -65,6 +65,7 @@ jQuery(function() {
   });
 
   completer.autoCompleteInit({
-    country: "us"
+    country: "us",
+    region: "us"
   });
 });
