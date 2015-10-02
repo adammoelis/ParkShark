@@ -1,5 +1,6 @@
 class SpotsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :update, :edit, :delete]
+  before_action :valid_payment_option?, only: [:new]
   before_action :find_spot, only: [:show]
 
   def index
@@ -53,6 +54,13 @@ class SpotsController < ApplicationController
   end
 
   private
+
+  def valid_payment_option?
+    unless current_user.brain_tree_id
+      flash[:notice] = "Please submit your payment informaton so you can receive payments!"
+      redirect_to edit_user_path(current_user.id)
+    end
+  end
 
   def post_params
     params.require(:spot).permit(:title, :address, :city, :state, :pictures, :description, :date, :available, :zip_code, :price, :beginning_time, :ending_time)

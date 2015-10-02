@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      create_braintree_user
       flash[:notice] = 'Your profile was updated successfully!'
     else
       flash[:error] = 'Sorry, something went wrong when updating your profile.'
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @token = get_client_token
   end
 
   def user_spots
@@ -42,4 +44,27 @@ class UsersController < ApplicationController
   def correct_user?
     redirect_to user_path(current_user) unless current_user?
   end
+
+  def get_client_token
+    Braintree::ClientToken.generate
+  end
+
+  def create_braintree_user
+    split_name = params[:user][:name].split(" ")
+    result = Braintree::Customer.create(
+      :first_name => split_name[0],
+      :last_name => split_name[1],
+      :payment_method_nonce => params[:payment_method_nonce]
+    )
+    if result.success?
+      current_user.brain_tree_id = result.customer.id
+      current_user.payment_token = result.customer.payment_methods[0].token
+      current_user.save
+      binding.pry
+    else
+      flash[:notice] = result.messages
+      redirect_to edit_user_path(current_user.id)
+    end
+  end
+
 end
