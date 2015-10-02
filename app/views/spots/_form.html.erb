@@ -61,3 +61,11 @@
     </div>
   </div>
 <% end %>
+
+<% if @spot.errors.full_messages.size > 0  %>
+  <div class="alert alert-danger">
+    <% @spot.errors.full_messages.each do |msg| %>
+     <li><%= msg %></li>
+    <% end %>
+  </div>
+<% end %>
