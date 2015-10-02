@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require chosen-jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require jquery.easing.1.3.min
 //= require jquery.form
 //= require jquery.validate.min
@@ -35,6 +36,7 @@
 //= require turbolinks
 //= require messages
 //= require ImageSelect.jquery.js
+//= require gmaps-auto-complete
 //= require_tree .
 
 $(function() {
@@ -53,3 +55,16 @@ function getLocation() {
 function sendPositionData(position) {
     $.post( "/my_location", { latitude: position.coords.latitude, longitude: position.coords.longitude } );
 }
+
+jQuery(function() {
+  var completer;
+
+  completer = new GmapsCompleter({
+    inputField: '#q',
+    errorField: '#gmaps-error'
+  });
+
+  completer.autoCompleteInit({
+    country: "us"
+  });
+});

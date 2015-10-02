@@ -20,6 +20,7 @@ gem 'bootstrap-will_paginate'
 gem 'will_paginate'
 gem 'dotenv-rails', :groups => [:development, :test]
 
+
 # messaging
 gem "mailboxer"
 gem 'chosen-rails'
@@ -45,6 +46,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
 gem 'faker'
 gem "braintree"
 
+gem 'jquery-ui-rails'
+gem 'gmaps-autocomplete-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
