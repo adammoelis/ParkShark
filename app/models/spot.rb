@@ -16,8 +16,12 @@ class Spot < ActiveRecord::Base
     "#{self.city}, #{self.state}, #{self.zip_code}"
   end
 
+  def any_available?
+    self.listings.any?{|listing| listing.available}
+  end
+
   def class_type
-    if self.available
+    if self.any_available?
       "available"
     else
       "reserved"
