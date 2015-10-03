@@ -34,15 +34,15 @@ class Spot < ActiveRecord::Base
   end
 
   def lowest_price_listing
-    listings.min_by{|listing| listing.price}
+    available_listings.min_by{|listing| listing.price}
   end
 
   def highest_price_listing
-    listings.max_by{|listing| listing.price}
+    available_listings.max_by{|listing| listing.price}
   end
 
   def closest_time_listing
-    listings.min_by{|listing| listing.beginning_time}
+    available_listings.min_by{|listing| listing.beginning_time}
   end
 
   def distance_from_user(user_object)
@@ -56,8 +56,14 @@ class Spot < ActiveRecord::Base
   def show_price_range
     if highest_price_listing && lowest_price_listing && highest_price_listing != lowest_price_listing
       "$#{self.lowest_price_listing.price} - $#{self.highest_price_listing.price}"
-    else
+    elsif highest_price_listing == lowest_price_listing && highest_price_listing
       "$#{highest_price_listing.price}"
+    else
+
     end
+  end
+
+  def available_listings
+    self.listings.where(available: true)
   end
 end
