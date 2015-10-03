@@ -4,7 +4,7 @@
   <div class="form-group">
     <label for="avatar" class='col-sm-2 control-label'></label>
     <div class="col-sm-9">
-      <%= image_for @user, :medium %>
+      <%= image_for_user @user, :medium %>
     </div>
   </div>
 
@@ -34,6 +34,13 @@
     <%= f.label :birthday, class: 'col-sm-2 control-label'  %>
     <div class="col-sm-9">
       <%= f.date_select :birthday, order: [:month, :day, :year], start_year: 1920, end_year: 2000, class: 'form-control'  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :bio, class: 'col-sm-2 control-label'  %>
+    <div class="col-sm-9">
+      <%= f.text_area :bio, class: 'form-control', :placeholder => "Share something about yourself" %>
     </div>
   </div>
 

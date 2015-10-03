@@ -4,9 +4,9 @@
 			<div class="row">
 				<div class="col-md-6 col-sm-9 center-block">
 					<header>
-            <h1>Log in</h1>
+            <h1><%= yield :page_header %></h1>
 					</header>
-          <%= render 'form' %>
+          <%= yield :page_content %>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
     </div>

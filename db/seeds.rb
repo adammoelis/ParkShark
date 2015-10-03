@@ -16,16 +16,20 @@ end
     title: Faker::Name.title,
     address: Faker::Address.street_address,
     available: true,
-    price: Faker::Number.number(3),
     owner_id: Faker::Number.number(1),
     city: Faker::Address.city,
     state: Faker::Address.state,
     description: Faker::Lorem.paragraph(6),
-    zip_code: Faker::Address.zip_code,
-    beginning_time: Faker::Date.between(2.days.ago, Date.today),
-    ending_time: Faker::Date.forward(23)
+    zip_code: Faker::Address.zip_code
   )
 end
+
+# 10.times do
+#   Picture.create(
+#     picture_file_name: Faker::Avatar.image,
+#     spot_id: 1
+#   )
+# end
 
 10.times do
   Car.create(

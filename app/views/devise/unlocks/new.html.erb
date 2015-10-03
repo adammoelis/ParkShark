@@ -1,1 +1,6 @@
-<%= render_page_template 'Resend unlock instructions' %>
+<% content_for :page_title do %>Unlock Instructions<% end %>
+<% content_for :page_header do %>Resend unlock instructions?<% end %>
+<% content_for :page_content do %>
+  <%= render 'form' %>
+<% end %>
+<%= render 'layouts/page_layout' %>

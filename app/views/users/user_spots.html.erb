@@ -1,3 +1,7 @@
-<%= render 'spots/spots_index_header' %>
+<% content_for :page_title do %>My Spots<% end %>
+<% content_for :page_header do %>Your Spots<% end %>
+	<% content_for :page_subheader do %>View/edit your parking spot offerings below<% end %>
+<% content_for :page_content do %>
 	<%= render @spots %>
-<%= render 'spots/spots_index_footer' %>
+<% end %>
+<%= render 'layouts/spots_layout' %>

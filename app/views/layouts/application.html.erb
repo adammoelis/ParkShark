@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-
-  <!-- Meta -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>ParkShark</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
-<body>
-  <%= render 'layouts/header' %>
-    <%= yield %>
-  <%= render 'layouts/footer' %>
-</body>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>ParkShark | <%= yield :page_title %></title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+    <%= render 'layouts/header' %>
+      <%= yield %>
+    <%= render 'layouts/footer' %>
+  </body>
 </html>
