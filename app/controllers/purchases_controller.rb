@@ -28,7 +28,6 @@ class PurchasesController < ApplicationController
 
   def braintree_transaction(payment_nonce)
     service_fee = (@listing.price * 0.1)
-    binding.pry
     Braintree::Transaction.sale(
       :merchant_account_id => @owner.braintree_merchant_id,
       :amount => @listing.price,

@@ -26,13 +26,11 @@ class HomeController < ApplicationController
 
   def set_location
     if current_user
-      current_user.latitude = params[:latitude]
-      current_user.longitude = params[:longitude]
-      current_user.save
+      current_user.set_location(params[:latitude], params[:longitude])
     else
       session[:latitude] = params[:latitude]
       session[:longitude] = params[:longitude]
     end
-    
+
   end
 end

@@ -34,4 +34,10 @@ class User < ActiveRecord::Base
   def mailboxer_email(object)
     email
   end
+
+  def set_location(latitude,longitude)
+    self.latitude = latitude
+    self.longitude = longitude
+    self.save
+  end
 end

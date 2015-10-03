@@ -27,7 +27,7 @@ class SpotsController < ApplicationController
       redirect_to spot_path(@spot)
     else
       flash[:error] = 'Sorry, something went wrong when listing your spot.'
-      redirect_to user_spots_path(current_user)
+      render 'new'
     end
   end
 
@@ -63,7 +63,7 @@ class SpotsController < ApplicationController
   end
 
   def post_params
-    params.require(:spot).permit(:title, :address, :city, :state, :pictures, :description, :date, :available, :zip_code, :price, :beginning_time, :ending_time)
+    params.require(:spot).permit(:title, :address, :city, :state, :pictures, :description, :date, :available, :zip_code)
   end
 
   def find_spot

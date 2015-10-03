@@ -1,0 +1,6 @@
+<div class="col-md-4 col-sm-9 center-block">
+  <%= form_tag(nearby_spots_path, method: "get") do %>
+    <%= text_field_tag(:q, nil, placeholder: "Los Angeles, CA or 90001", :required => true) %>
+    <%= submit_tag("Find Parking!", class: "btn btn-large" ) %>
+  <% end %>
+</div>

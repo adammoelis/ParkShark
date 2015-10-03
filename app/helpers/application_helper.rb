@@ -34,4 +34,21 @@ module ApplicationHelper
     HTML
     page.html_safe
   end
+
+  def distance_between(object1, object2)
+    Geocoder::Calculations.distance_between([object1.latitude, object1.longitude], [object2.latitude, object2.longitude])
+  end
+
+  def distance_between_me_and(object)
+    Geocoder::Calculations.distance_between([session[:latitude], session[:longitude]], [object.latitude, object.longitude])
+  end
+
+  def current_location
+    if current_user
+      [current_user.latitude, current_user.longitude]
+    else
+      [session[:latitude], session[:longitude]]
+    end
+  end
+
 end
