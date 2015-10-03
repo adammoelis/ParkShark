@@ -1,9 +1,9 @@
-<div class="col-md-3 col-sm-9 center-block text-center">
+<div class="col-md-1 col-sm-9 center-block text-center">
   <%= form_tag(nearby_spots_path, method: "get") do %>
     <%= label_tag(:sort_type, "Sort By:") %>
-    <%= select_tag "sort_type", options_for_select([ "Price", "Closest Time", "Closest Spot" ]) %>
-    <%= submit_tag("Sort") %>
+    <%= select_tag "sort_type", options_for_select([ "Select","Price", "Closest Time", "Closest Spot" ]), :onchange => ("this.form.submit();") %>
     <%= hidden_field_tag "q", "#{params[:q]}" if params[:q] %>
     <%= hidden_field_tag "radius", "#{params[:radius]}" if params[:radius] %>
+    <%= submit_tag("Sort", :style => "display: none;") %>
   <% end %>
 </div>

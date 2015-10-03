@@ -16,7 +16,7 @@ class SearchController < ApplicationController
   private
 
   def spots_with_listings(spots_array)
-    @spots.select{|spot| spot.listings.size > 0}
+    @spots.select{|spot| spot.available_listings.size > 0}
   end
 
   def current_location
