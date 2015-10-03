@@ -1,4 +1,3 @@
-
 10.times do
   User.create(
     name: Faker::Name.name,
@@ -16,11 +15,14 @@ end
     title: Faker::Name.title,
     address: Faker::Address.street_address,
     available: true,
-    owner_id: Faker::Number.number(1),
     city: Faker::Address.city,
     state: Faker::Address.state,
     description: Faker::Lorem.paragraph(6),
-    zip_code: Faker::Address.zip_code
+    zip_code: Faker::Address.zip_code,
+    date: Faker::Date.between(2.days.ago, Date.today),
+    owner_id: User.all.sample.id,
+    latitude: Faker::Address.latitude,
+    longitude: Faker::Address.longitude,
   )
 end
 
@@ -47,6 +49,25 @@ end
     rating: Faker::Number.number(1),
     body:Faker::Lorem.paragraph,
     spot_id: Spot.all.sample.id,
-    visitor_id: User.all.sample.id
+    visitor_id: User.all.sample.id,
+    owner_id: User.all.sample.id
+  )
+end
+
+10.times do
+  Listing.create(
+    beginning_time:Faker::Date.between(2.days.ago, Date.today),
+    ending_time: Faker::Date.forward(23),
+    available: true,
+    spot_id: Spot.all.sample.id,
+    price: Faker::Commerce.price
+  )
+end
+
+10.times do
+  Location.create(
+    latitude: Faker::Address.latitude,
+    longitude: Faker::Address.longitude,
+    address: Faker::Address.street_address
   )
 end
