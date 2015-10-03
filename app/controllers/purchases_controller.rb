@@ -20,15 +20,15 @@ class PurchasesController < ApplicationController
 
   private
 
-  def pay_owner
-    token = get_client_token
-    # transfer money to owner
-    result = Braintree::Transaction.sale(
-      :customer_id => "the_customer_id",
-      :amount => "10.00"
-    )
-    # notify owner of bought listing
-  end
+  # def pay_owner
+  #   token = get_client_token
+  #   # send money to owner (submerchant) from ParkShark (merchant)
+  #   owner_result = Braintree::Transaction.sale(
+  #     :customer_id => @owner.brain_tree_id,
+  #     :amount => @listing.price
+  #   )
+  #   # notify owner of bought listing
+  # end
 
   def find_current_relations
     @owner = User.find(params[:owner_id])
@@ -38,11 +38,15 @@ class PurchasesController < ApplicationController
   end
 
   def braintree_transaction(payment_nonce)
+    service_fee = (@listing.price * 0.1)
+    binding.pry
     Braintree::Transaction.sale(
+      :merchant_account_id => @owner.braintree_merchant_id,
       :amount => @listing.price,
       :payment_method_nonce => payment_nonce,
+      # using sprintf to format service fee correctly for Braintree
+      :service_fee_amount => sprintf('%.2f', service_fee),
       :options => {
-        :verify_card => true,
         :submit_for_settlement => true
       },
       :customer => {
@@ -61,7 +65,7 @@ class PurchasesController < ApplicationController
         :region => params[:state],
         :postal_code => params[:zip_code],
         :country_code_alpha2 => "US"
-      }
+      },
     )
   end
 

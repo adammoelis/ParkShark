@@ -56,7 +56,7 @@ class SpotsController < ApplicationController
   private
 
   def valid_payment_option?
-    unless current_user.brain_tree_id
+    unless current_user.braintree_merchant_id
       flash[:notice] = "Please submit your payment informaton so you can receive payments!"
       redirect_to edit_user_path(current_user.id)
     end
