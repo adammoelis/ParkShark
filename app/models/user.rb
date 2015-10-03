@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
+  # used to create sub-merchant for owners selling parking spots
+  # allows ability to send params over that are not stored in a database column
+  attr_accessor :street_address, :city, :state, :zip_code, :account_number, :routing_number
 
   def age(birthday)
     now = Time.now.utc.to_date
