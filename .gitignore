@@ -16,5 +16,5 @@
 .env
 Procfile
 
-/system/users
-/system/spots
+# ignore all images uploaded to site
+public/system/
