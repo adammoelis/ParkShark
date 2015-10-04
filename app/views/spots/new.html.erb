@@ -1,1 +1,6 @@
-<%= render_page_template 'List your parking spot' %>
+<% content_for :page_title do %>List your parking spot<% end %>
+<% content_for :page_header do %>List your parking spot<% end %>
+<% content_for :page_content do %>
+  <%= render 'form' %>
+<% end %>
+<%= render 'layouts/page_layout' %>

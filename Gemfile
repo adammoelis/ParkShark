@@ -20,6 +20,7 @@ gem 'bootstrap-will_paginate'
 gem 'will_paginate'
 gem 'dotenv-rails', :groups => [:development, :test]
 
+gem 'font-awesome-rails'
 
 # messaging
 gem "mailboxer"

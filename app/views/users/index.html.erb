@@ -1,47 +1,39 @@
-<!-- ============================================================= MAIN ============================================================= -->
+<% content_for :page_title do %>Connect with ParkSharkers<% end %>
 
-  <main>
+<main>
+  <section id="portfolio">
+    <div class="container inner">
+      <div class="row">
+        <div class="col-md-8 col-sm-9 center-block text-center">
+          <header>
+            <h1>Park Sharkers</h1>
+            <p>Get in touch with your fellow Sharks below!</p>
+          </header>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
 
-    <!-- ============================================================= SECTION – PORTFOLIO ============================================================= -->
+    <div class="container inner-bottom">
+      <div class="row">
+        <div class="col-sm-12 portfolio">
 
-    <section id="portfolio">
-      <div class="container inner">
-        <div class="row">
-          <div class="col-md-8 col-sm-9 center-block text-center">
-            <header>
-              <h1>Park Sharkers</h1>
-              <p>Get in touch with your fellow Sharks below!</p>
-            </header>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container -->
+          <ul class="filter text-center">
+            <li><a href="#" data-filter="*" class="active">All</a></li>
+            <li><a href="#" data-filter=".identity">Highest Rated</a></li>
+            <li><a href="#" data-filter=".interactive">Lowest Rated</a></li>
+          </ul><!-- /.filter -->
 
-      <div class="container inner-bottom">
-        <div class="row">
-          <div class="col-sm-12 portfolio">
+          <ul class="items col-3 gap">
 
-            <ul class="filter text-center">
-              <li><a href="#" data-filter="*" class="active">All</a></li>
-              <li><a href="#" data-filter=".identity">Highest Rated</a></li>
-              <li><a href="#" data-filter=".interactive">Lowest Rated</a></li>
-            </ul><!-- /.filter -->
+            <%= render @users %>
 
-            <ul class="items col-3 gap">
+          </ul><!-- /.items -->
 
-              <%= render @users %>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
 
-            </ul><!-- /.items -->
+      <%= will_paginate %>
 
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-
-        <%= will_paginate %>
-
-      </div><!-- /.container -->
-    </section>
-
-    <!-- ============================================================= SECTION – PORTFOLIO : END ============================================================= -->
-
-  </main>
-
-  <!-- ============================================================= MAIN : END ============================================================= -->
+    </div><!-- /.container -->
+  </section>
+</main>

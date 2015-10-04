@@ -1,0 +1,45 @@
+<main>
+	<section id="portfolio-post">
+		<div class="container inner-top-sm">
+			<div class="row">
+
+				<div class="col-md-4 text-center">
+          <%= image_for_user @user, :medium, 'rounded' %>
+          <div>
+            <% if user_signed_in? && current_user? %>
+              	<%= link_to 'Edit Profile', edit_user_path, class: 'btn btn-default' %>
+							<% else %>
+								<%= link_to 'Send message', new_message_path(to: @user.id), class: 'btn btn-default' %>
+            <% end %>
+          </div>
+				</div><!-- /.col -->
+
+				<div class="col-md-8 inner-left-sm">
+					<header>
+						<h2><%= @user.name %></h2>
+						<p class="text-small"><%= @user.bio %></p>
+
+						<ul class="item-details inner-top-xs outer-top-xs border-top">
+              <li><%= @user.gender %></li>
+              <li><%= @user.age(@user.birthday) %> years old</li>
+              <li><%= number_to_phone(@user.phone, area_code: true) %></li>
+						</ul><!-- /.item-details -->
+					</header>
+				</div><!-- /.col -->
+
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+
+		<ul>
+		<% @user.reviews.each do |review| %>
+			<li>
+				<h3><%= review.rating %>/10  |  <%= review.visitor.name %></h3>
+				<h4><%= review.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</h4>
+				<p><%= review.body %></p>
+			</li>
+			<%= link_to "Go to spot", spot_path(review.spot.id), class: "btn btn-large" %><br>
+		<% end %>
+		</ul>
+
+	</section>
+</main>

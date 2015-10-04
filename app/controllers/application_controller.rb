@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :resource_name, :resource, :devise_mapping, :current_user?
   before_filter :configure_permitted_parameters, if: :devise_controller?
+
   def resource_name
     :user
   end

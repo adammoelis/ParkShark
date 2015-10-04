@@ -1,1 +1,6 @@
-<%= render_page_template 'Log in' %>
+<% content_for :page_title do %>Sign in<% end %>
+<% content_for :page_header do %>Sign in<% end %>
+<% content_for :page_content do %>
+  <%= render 'form' %>
+<% end %>
+<%= render 'layouts/page_layout' %>

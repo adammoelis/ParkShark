@@ -1,38 +1,22 @@
 module ApplicationHelper
-  def image_for(user, size = :thumb, title = user.name)
-    if user.avatar.exists?
-      image_tag user.avatar.url(size), title: title, class: 'img-rounded'
+  def image_for_user(user, size = :thumb, css = nil, title = user.name)
+    image_tag user.avatar.url(size), title: title, class: css
+  end
+
+  def image_for_spot(spot, size = :thumb, css = nil, title = spot.title)
+    if !spot.pictures.empty?
+      image_tag spot.pictures.first.picture.url(size), title: title, class: css
     else
-      image_tag user.avatar_file_name, title: title, class: 'img-rounded'
+      image_tag '/images/medium/nophotos.jpg', title: title, class: css
     end
   end
 
   def image_url_for(user, title = user.name)
-    if user.avatar.exists?
+    if user.avatar
       user.avatar.url(:thumb)
     else
       user.avatar_file_name
     end
-  end
-
-  def render_page_template(title, partial = 'form')
-    page = <<-HTML
-    <main>
-      <section>
-        <div class="container inner-top-sm inner-bottom-sm">
-          <div class="row">
-            <div class="col-md-6 col-sm-9 center-block">
-              <header>
-                <h1>#{title}</h1>
-              </header>
-              #{render partial}
-           </div><!-- /.col -->
-         </div><!-- /.row -->
-       </div>
-     </section>
-    </main>
-    HTML
-    page.html_safe
   end
 
   def distance_between(object1, object2)
@@ -60,4 +44,7 @@ module ApplicationHelper
     DateTime.parse("#{year}/#{month}/#{day} #{hour}:#{minute}")
   end
 
+  def mailbox_new_message_count
+    current_user.mailbox.receipts.where(is_read: false).count
+  end
 end

@@ -10,3 +10,35 @@
   text-align: center;
   img { width: 100%; }
 }
+
+.thumb-img {
+  width: 100px;
+  height: 100px
+}
+
+.item-info-height {
+  min-height: 90px;
+}
+
+.medium-img {
+  width: 300px;
+  height: 300px;
+}
+
+.rounded {
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.rounded-top {
+  border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+}
+
+.rounded-bottom {
+  border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+}

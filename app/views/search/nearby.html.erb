@@ -1,3 +1,13 @@
-<%= render 'spots/spots_index_header' %>
+<% content_for :page_title do %>Nearby Parking Spots<% end %>
+<% content_for :page_header do %>Nearby Parking Spots<% end %>
+	<% content_for :page_subheader do %>Browse nearby parking spots below or enter a new location<% end %>
+<% content_for :page_content do %>
 	<%= render @spots %>
-<%= render 'spots/spots_index_footer' %>
+<% end %>
+<% content_for :searching do %>
+	<%= render 'search/search_filters' %>
+<% end %>
+<% content_for :sorting do %>
+	<%= render 'spots/sort' %>
+<% end %>
+<%= render 'layouts/spots_layout' %>

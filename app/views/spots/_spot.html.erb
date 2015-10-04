@@ -2,25 +2,23 @@
   <figure>
 
     <div class="icon-overlay icn-link">
-      <% if spot.pictures.exists? %>
-        <a href=" <%= spot_path(spot) %>"><%= image_tag spot.pictures.first.picture.url(:medium) %></a>
-      <% else %>
-        <a href=" <%= spot_path(spot) %>"><%= image_tag "/images/medium/missing.jpg" %></a>
-      <% end %>
+      <a href=" <%= spot_path(spot) %>"><%= image_for_spot(spot, :medium, 'medium-img') %></a>
     </div><!-- /.icon-overlay -->
 
     <figcaption class="bordered no-top-border">
-      <div class="info">
+      <div class="info item-info-height">
 
-        <h4> <%= link_to "#{spot.title}", spot_path(spot) %></h4>
-        <p> <%= spot.city %>, <%= spot.state %></p>
-        <%= button_to 'Remove Spot', spot_path(spot), class: 'btn btn-small', method: :delete, data: { confirm: 'Are you sure?' } if current_user == spot.owner %>
-        <% if current_user %>
-          <%= "#{distance_between(current_user, spot).round(1)} miles away" if current_user %>
-        <% else %>
-          <%= "#{distance_between_me_and(spot).round(1)} miles away" if !current_user %>
-        <% end %>
-        <p><%= spot.show_price_range %></p>
+        <h4><%= link_to "#{spot.title}", spot_path(spot) %></h4>
+        <p><%= spot.city %>, <%= spot.state %></p>
+        <p>
+          <% if current_user %>
+            <%= "#{number_with_delimiter(distance_between(current_user, spot).round(0))} miles away" if current_user %>
+          <% else %>
+            <%= "#{number_with_delimiter(distance_between_me_and(spot).round(0))} miles away" if !current_user %>
+          <% end %>
+        </p>
+        <p><%= spot.show_price_range ? spot.show_price_range : '$ Negotiable' %></p>
+        <%= button_to 'Remove Spot', spot_path(spot), class: 'btn btn-small', method: :delete, data: { confirm: 'Are you sure?' } if current_user == spot.owner && request.env['PATH_INFO'] == 'my_spots' %>
 
       </div><!-- /.info -->
     </figcaption>

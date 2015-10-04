@@ -1,4 +1,4 @@
-<div class="col-md-1 col-sm-9 center-block text-center">
+<div class="col-md-6 col-sm-9 center-block text-left">
   <%= form_tag(nearby_spots_path, method: "get") do %>
     <%= select_tag "sort_type", options_for_select([ "Price", "Closest Time", "Closest Spot" ]), :onchange => ("this.form.submit();"), :include_blank => "Please select..." %>
     <%= hidden_field_tag "q", "#{params[:q]}" if params[:q] %>

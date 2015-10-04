@@ -1,1 +1,6 @@
-<%= render_page_template 'Resend confirmation instructions' %>
+<% content_for :page_title do %>Resend Password Instructions<% end %>
+<% content_for :page_header do %>Resend confirmation instructions?<% end %>
+<% content_for :page_content do %>
+  <%= render 'form' %>
+<% end %>
+<%= render 'layouts/page_layout' %>

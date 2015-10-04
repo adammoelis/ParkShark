@@ -1,3 +1,13 @@
-<%= render 'spots_index_header' %>
-	<%= render @spots %>
-<%= render 'spots_index_footer' %>
+	<% content_for :page_title do %>Your Car Needs A Home<% end %>
+	<% content_for :page_header do %>Your Car Needs A Home<% end %>
+		<% content_for :page_subheader do %>Browse available parking spots below!<% end %>
+	<% content_for :page_content do %>
+	  <%= render @spots %>
+	<% end %>
+	<% content_for :searching do %>
+		<%= render 'search/search_filters' %>
+	<% end %>
+	<% content_for :sorting do %>
+	  <%= render 'spots/sort' %>
+	<% end %>
+	<%= render 'layouts/spots_layout' %>

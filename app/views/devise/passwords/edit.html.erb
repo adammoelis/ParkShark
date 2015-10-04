@@ -1,1 +1,6 @@
-<%= render_page_template 'Change Password', partial = 'form' %>
+<% content_for :page_title do %>Change Password<% end %>
+<% content_for :page_header do %>Change your password<% end %>
+<% content_for :page_content do %>
+  <%= render 'form' %>
+<% end %>
+<%= render 'layouts/page_layout' %>

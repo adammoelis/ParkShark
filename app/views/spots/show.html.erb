@@ -1,3 +1,4 @@
+<% content_for :page_title do %><%= @spot.title %><% end %>
 
 <!-- ============================================================= MAIN ============================================================= -->
 
@@ -12,12 +13,20 @@
 				<div class="col-md-8">
 					<div id="owl-work" class="owl-carousel owl-inner-pagination owl-inner-nav owl-ui-md">
 
-						<% @spot.pictures.each do |picture| %>
+						<% if !@spot.pictures.empty? %>
+							<% @spot.pictures.each do |picture| %>
+								<div class="item">
+									<figure>
+										<%= image_tag picture.picture.url(:medium) %>
+									</figure>
+								</div><!-- /.item -->
+							<% end %>
+						<% else %>
 							<div class="item">
 								<figure>
-									<%= image_tag picture.picture.url(:medium) %>
-								</figure>
-							</div><!-- /.item -->
+									<%= image_tag '/images/medium/nophotos.jpg' %>
+							  </figure>
+							</div>
 						<% end %>
 
 					</div><!-- /.owl-carousel -->

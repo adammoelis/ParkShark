@@ -116,6 +116,8 @@ GEM
     faker (1.5.0)
       i18n (~> 0.5)
     ffi (1.9.10)
+    font-awesome-rails (4.4.0.0)
+      railties (>= 3.2, < 5.0)
     foreigner (1.7.4)
       activerecord (>= 3.0.0)
     foreman (0.78.0)
@@ -262,6 +264,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   faker
+  font-awesome-rails
   foreman
   geocoder
   gmaps-autocomplete-rails

@@ -1,14 +1,9 @@
-<main>
-  <section>
-    <div class="container inner-top-sm inner-bottom-sm">
-      <div class="row">
-        <div class="col-md-6 col-sm-9 center-block">
-        <%= render 'form' %>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div>
-  </section>
-</main>
+<% content_for :page_title do %>New Reservation<% end %>
+<% content_for :page_header do %>Make a Reservation<% end %>
+<% content_for :page_content do %>
+  <%= render partial: 'form' %>
+<% end %>
+<%= render 'layouts/page_layout' %>
 
 <script>
   braintree.setup("<%= j @token %>", 'dropin', {
