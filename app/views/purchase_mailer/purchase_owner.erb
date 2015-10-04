@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Congratulations, <%= @owner.name %>! <%= @spot.name %> was purchased by <%= @visitor.name %></h1>
+    <h1>Congratulations, <%= @owner.name %>! <%= link_to @spot.title, spot_url(@spot) %> was purchased by <%= @visitor.name %></h1>
     <p>
-      To contact your visitor, view their profile here.
+      To contact your visitor, view their profile <%= link_to 'here', user_url(@visitor) %>.
     </p>
     <p>Thanks for using ParkShark and have a great day!</p>
     <hr>

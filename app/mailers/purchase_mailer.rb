@@ -5,7 +5,7 @@ class PurchaseMailer < ApplicationMailer
      @visitor = visitor
      @spot = spot
      @url  = 'http://www.parkshark.herokuapp.com'
-     mail(to: @owner.email, subject: 'Congratulations! Your spot was purchased!')
+     mail(to: @owner.email, subject: "Congratulations, #{@owner.name}! Your spot was purchased!")
    end
 
 end
