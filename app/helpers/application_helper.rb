@@ -35,6 +35,15 @@ module ApplicationHelper
     end
   end
 
+  def parse_time(type_of_time)
+    year = params["listing"]["#{type_of_time}(1i)"]
+    month = params["listing"]["#{type_of_time}(2i)"]
+    day = params["listing"]["#{type_of_time}(3i)"]
+    hour = params["listing"]["#{type_of_time}(4i)"]
+    minute = params["listing"]["#{type_of_time}(5i)"]
+    DateTime.parse("#{year}/#{month}/#{day} #{hour}:#{minute}")
+  end
+
   def mailbox_new_message_count
     current_user.mailbox.receipts.where(is_read: false).count
   end

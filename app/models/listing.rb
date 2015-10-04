@@ -7,4 +7,12 @@ class Listing < ActiveRecord::Base
   def status
     self.available ? "Available" : "Occupied"
   end
+
+  def is_available_between(start_time, end_time)
+    if self.ending_time <= end_time && self.beginning_time <= start_time
+      true
+    else
+      false
+    end
+  end
 end
