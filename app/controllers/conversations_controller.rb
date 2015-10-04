@@ -7,34 +7,35 @@ class ConversationsController < ApplicationController
 
   def index
     if @box.eql? "inbox"
-      @conversations = @mailbox.inbox
+      @conversations = @mailbox.inbox.paginate(page: params[:page], per_page: 10)
     elsif @box.eql? "sent"
-      @conversations = @mailbox.sentbox
+      @conversations = @mailbox.sentbox.paginate(page: params[:page], per_page: 10)
     else
-      @conversations = @mailbox.trash
+      @conversations = @mailbox.trash.paginate(page: params[:page], per_page: 10)
     end
-
-    @conversations = @mailbox.inbox.paginate(page: params[:page], per_page: 10)
+    @new_message_count = count_new_messages
+    @no_message_text = no_message_text
   end
 
   def show
+    @conversation.mark_as_read(current_user) if @conversation.is_unread?(current_user)
   end
 
   def reply
     current_user.reply_to_conversation(@conversation, params[:body])
-    flash[:success] = 'Reply sent'
+    flash[:notice] = 'Reply sent'
     redirect_to conversation_path(@conversation)
   end
 
   def destroy
     @conversation.move_to_trash(current_user)
-    flash[:success] = 'The conversation was moved to trash.'
+    flash[:notice] = 'The conversation was moved to trash.'
     redirect_to conversations_path
   end
 
   def restore
     @conversation.untrash(current_user)
-    flash[:success] = 'The conversation was restored.'
+    flash[:notice] = 'The conversation was restored.'
     redirect_to conversations_path
   end
 
@@ -42,15 +43,15 @@ class ConversationsController < ApplicationController
     @mailbox.trash.each do |conversation|
       conversation.receipts_for(current_user).update_all(deleted: true)
     end
-    flash[:success] = 'Your trash was cleaned!'
+    flash[:notice] = 'Your trash was cleaned!'
     redirect_to conversations_path
   end
 
-  def mark_as_read
-    @conversation.mark_as_read(current_user)
-    flash[:success] = 'The conversation was marked as read.'
-    redirect_to conversations_path
-  end
+  # def mark_as_read
+  #   @conversation.mark_as_read(current_user)
+  #   flash[:success] = 'The conversation was marked as read.'
+  #   redirect_to conversations_path
+  # end
 
   private
 
@@ -67,5 +68,17 @@ class ConversationsController < ApplicationController
       params[:box] = 'inbox'
     end
     @box = params[:box]
+  end
+
+  def count_new_messages
+    @mailbox.receipts.where(is_read: false).count
+  end
+
+  def no_message_text
+    case @box
+      when 'inbox' then 'You do not have any messages...'
+      when 'sent' then 'You have not sent any messages...'
+      when 'trash' then 'Your trash is empty...'
+    end
   end
 end

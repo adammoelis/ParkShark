@@ -1,5 +1,5 @@
 <% conversation.participants.each do |participant| %>
   <% unless participant == current_user %>
-    <%= image_for participant %>
+    <a href="<%= user_path(participant) %>"><%= image_for_user participant, :thumb, 'img-chat rounded' %></a>
   <% end %>
 <% end %>
