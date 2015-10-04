@@ -1,10 +1,6 @@
 module ApplicationHelper
   def image_for_user(user, size = :thumb, css = nil, title = user.name)
-    if user.avatar
-      image_tag user.avatar.url(size), title: title, class: css
-    else
-      image_tag user.avatar_file_name, title: title, class: css
-    end
+    image_tag user.avatar.url(size), title: title, class: css
   end
 
   def image_for_spot(spot, size = :thumb, css = nil, title = spot.title)
@@ -39,4 +35,7 @@ module ApplicationHelper
     end
   end
 
+  def mailbox_new_message_count
+    current_user.mailbox.receipts.where(is_read: false).count
+  end
 end

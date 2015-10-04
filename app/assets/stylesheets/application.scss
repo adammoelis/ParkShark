@@ -29,16 +29,31 @@
 @import 'chosen';
 @import 'ImageSelect.css';
 
+body {
+  background: white;
+}
+
+.flash-error, .flash-success {
+  font-weight: bold;
+  background: #fafafa;
+  padding: 10px;
+  border-bottom: solid #ebebeb 1px;
+}
+.flash-error {
+  color: #fa6c65;
+}
+.flash-success {
+  color: #1abb9c;
+}
+
 .container-fluid {
   padding-left: 0px;
   padding-right: 0px;
 }
 
 .messages {
-  max-height: 400px;
+  max-height: 300px;
   overflow-y: auto;
-  margin-bottom: 1em;
-  margin-top: 1em;
 }
 
 .alert-notice {

@@ -1,30 +1,21 @@
 Rails.application.routes.draw do
+  root to: 'home#index'
+  devise_for :users, controllers: { sessions: "users/sessions" }
 
   resources :purchases
-  get 'conversations/index'
-
-  devise_for :users, controllers: { sessions: "users/sessions" }
 
   resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
-    end
-
-    member do
       post :restore
+      post :mark_as_read
     end
-
     collection do
       delete :empty_trash
-    end
-
-    member do
-      post :mark_as_read
     end
   end
   resources :messages, only: [:new, :create]
 
-  root to: 'home#index'
   get 'spots/:id/reserve', to: 'reservations#reserve_spot', as: 'reserve_spot'
   post 'purchases/checkout', to: 'purchases#checkout', as: 'checkout'
   post 'spots/:id/listings/:id/reserve', to: 'reservations#confirm_spot', as: 'confirm_spot'
@@ -34,9 +25,9 @@ Rails.application.routes.draw do
   get 'my_location', to: 'home#location', as:'my_location'
   post 'my_location', to: 'home#set_location', as:'set_location'
   get 'nearby-parking', to: 'search#nearby', as: 'nearby_spots'
+
   resources :reservations
   resources :transactions
-  resources :messages
   resources :reviews
   resources :cars
   resources :spots do

@@ -20,13 +20,13 @@
 
             <div class="col-sm-10">
               <ul class="list-group">
-                <% if @conversations %>
+                <% if !@conversations.empty? %>
                   <%= render partial: 'conversation', collection: @conversations %>
                 <% else %>
                   <%= @no_message_text %>
                 <% end %>
               </ul>
-              <% if @box == 'trash' %>
+              <% if @box == 'trash' && !@conversations.empty? %>
                 <p><%= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn btn-small', method: :delete,
                                data: {confirm: 'Are you sure?'} %></p>
               <% end %>

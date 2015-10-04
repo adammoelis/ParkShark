@@ -55,9 +55,9 @@ class Spot < ActiveRecord::Base
 
   def show_price_range
     if highest_price_listing && lowest_price_listing && highest_price_listing != lowest_price_listing
-      "$#{self.lowest_price_listing.price} - $#{self.highest_price_listing.price}"
+      "$#{self.lowest_price_listing.price.round(0)} - $#{self.highest_price_listing.price.round(0)}"
     elsif highest_price_listing == lowest_price_listing && highest_price_listing
-      "$#{highest_price_listing.price}"
+      "$#{highest_price_listing.price.round(0)}"
     else
 
     end
