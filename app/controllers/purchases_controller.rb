@@ -9,7 +9,11 @@ class PurchasesController < ApplicationController
       @listing.save
       @reservation = Reservation.new(owner: @spot.owner, visitor: current_user, spot: @spot)
       @reservation.save
-      flash[:notice] = "Congrats! You just purchased #{@spot.title} for $#{@spot.price}"
+      # notifies owner of purchased spot
+      PurchaseMailer.purchase_owner(@owner, @visitor, @spot).deliver_now
+      # sends email to visitor confirming their purchase
+      PurchaseMailer.purchase_visitor(@visitor, @owner, @spot).deliver_now
+      flash[:notice] = "Congrats! You just purchased #{@spot.title} for $#{@listing.price}"
       redirect_to spot_path(@spot)
     else
       flash[:notice] = "Sorry, there was a problem. #{result.message}"
