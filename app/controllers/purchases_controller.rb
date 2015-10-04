@@ -11,7 +11,8 @@ class PurchasesController < ApplicationController
       @reservation.save
       # notifies owner of purchased spot
       PurchaseMailer.purchase_owner(@owner, @visitor, @spot).deliver_now
-      # send itinerary to visitor?
+      # sends email to visitor confirming their purchase
+      PurchaseMailer.purchase_visitor(@visitor, @owner, @spot).deliver_now
       flash[:notice] = "Congrats! You just purchased #{@spot.title} for $#{@listing.price}"
       redirect_to spot_path(@spot)
     else
