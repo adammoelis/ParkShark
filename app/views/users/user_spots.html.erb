@@ -1,6 +1,10 @@
 <% content_for :page_title do %>My Spots<% end %>
 <% content_for :page_header do %>Your Spots<% end %>
+<% if !@spots.empty? %>
 	<% content_for :page_subheader do %>View/edit your parking spot offerings below<% end %>
+<% else %>
+	<% content_for :page_subheader do %>You have not listed any spots<% end %>
+<% end %>
 <% content_for :page_content do %>
 	<%= render @spots %>
 <% end %>
