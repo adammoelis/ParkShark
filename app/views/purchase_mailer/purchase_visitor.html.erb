@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Congratulations, <%= @visitor.name %>! You have purchased <%= link_to @spot.title, spot_url(@spot) %> from <%= @owner.name %></h1>
+    <p>
+      To contact the spot's owner, view their profile <%= link_to 'here', user_url(@owner) %>.
+    </p>
+    <p>Thanks for using ParkShark and have a great day!</p>
+    <hr>
+    <p>
+      Sincerely, <br>
+      ParkShark Team
+    </p>
+  </body>
+</html>

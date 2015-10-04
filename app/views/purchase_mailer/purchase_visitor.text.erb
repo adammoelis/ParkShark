@@ -1,0 +1,11 @@
+Congratulations, <%= @visitor.name %>! You have purchased <%= link_to @spot.title, spot_url(@spot) %> from <%= @owner.name %>
+==========================================================================
+
+To contact the spot's owner, view their profile <%= link_to 'here', user_url(@owner) %>.
+
+Thanks for using ParkShark and have a great day!
+
+================
+
+Sincerely,
+ParkShark Team
