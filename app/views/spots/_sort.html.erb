@@ -4,6 +4,9 @@
     <%= select_tag "sort_type", options_for_select([ "Select","Price", "Closest Time", "Closest Spot" ]), :onchange => ("this.form.submit();") %>
     <%= hidden_field_tag "q", "#{params[:q]}" if params[:q] %>
     <%= hidden_field_tag "radius", "#{params[:radius]}" if params[:radius] %>
+    <div style="display: none;"><%= datetime_select("listing", "beginning_time", default: parse_time('beginning_time')) if params[:listing] %></div>
+    <div style="display: none;"><%= datetime_select("listing", "ending_time", default: parse_time('ending_time')) if params[:listing] %></div>
+    <%= hidden_field_tag "price", "#{params[:price]}" if params[:price] %>
     <%= submit_tag("Sort", :style => "display: none;") %>
   <% end %>
 </div>

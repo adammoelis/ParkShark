@@ -15,9 +15,7 @@ class SearchController < ApplicationController
 
     if price_filter && start_time_filter && end_time_filter
       @spots = filter_price(@spots, price_filter, start_time_filter, end_time_filter)
-      binding.pry
     elsif start_time_filter && end_time_filter
-      binding.pry
       @spots = filter_time(@spots, start_time_filter, end_time_filter)
     end
 
@@ -43,7 +41,7 @@ class SearchController < ApplicationController
   def filter_price(spots_array, price_filter, start_time_filter, end_time_filter)
     spots_array.select do |spot|
       spot.available_listings.any? do |listing|
-        listing.price <= price_filter.to_i && listing.beginning_time >= start_time_filter && listing.ending_time <= end_time_filter
+        listing.price <= price_filter.to_i && listing.is_available_between(start_time_filter, end_time_filter)
       end
     end
   end
@@ -51,7 +49,7 @@ class SearchController < ApplicationController
   def filter_time(spots_array, start_time_filter, end_time_filter)
     spots_array.select do |spot|
       spot.available_listings.any? do |listing|
-        listing.beginning_time >= start_time_filter && listing.ending_time <= end_time_filter
+        listing.is_available_between(start_time_filter, end_time_filter)
       end
     end
   end

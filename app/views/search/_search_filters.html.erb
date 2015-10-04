@@ -18,7 +18,11 @@
   </div>
   <div class="form-group">
     <%= label_tag :price, "Maximum price" %>
-    <%= text_field_tag("price") %>
+    <% if params[:price] %>
+    <%= text_field_tag("price", params[:price]) %>
+    <% else %>
+      <%= text_field_tag("price") %>
+    <% end %>
   </div>
   <%= hidden_field_tag "q", "#{params[:q]}" if params[:q] %>
   <%= hidden_field_tag "radius", "#{params[:radius]}" if params[:radius] %>
