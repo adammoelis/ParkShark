@@ -1,6 +1,5 @@
 class SearchController < ApplicationController
   def nearby
-    binding.pry
     sort_type = params[:sort_type] if params[:sort_type]
     start_time_filter = parse_time(:beginning_time) if params[:listing]
     end_time_filter = parse_time(:ending_time) if params[:listing]
