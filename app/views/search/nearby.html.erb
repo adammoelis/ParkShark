@@ -5,6 +5,9 @@
 	<%= render @spots %>
 <% end %>
 <% content_for :searching do %>
+	<%= render 'spots/spots_search' %>
+<% end %>
+<% content_for :filtering do %>
 	<%= render 'search/search_filters' %>
 <% end %>
 <% content_for :sorting do %>
