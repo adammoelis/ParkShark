@@ -1,0 +1,7 @@
+<%= render "purchase_form" %>
+
+<script>
+  braintree.setup("<%= j @token %>", 'dropin', {
+    container: 'dropin'
+  });
+</script>

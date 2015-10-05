@@ -57,6 +57,7 @@
 								<ul class="dropdown-menu">
 									<li><%= link_to "My Spots", user_spots_path(current_user) %></li>
 									<li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+									<li><%= link_to 'Edit Payment Information', purchase_information_path(current_user) %></li>
 									<li><%= link_to "Change Password", edit_user_password_path %></li>
 									<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
 								</ul><!-- /.dropdown-menu -->
