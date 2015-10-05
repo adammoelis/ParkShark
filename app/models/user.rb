@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :messages, :foreign_key => 'recipient_id'
   has_many :purchases, :foreign_key => 'visitor_id'
   has_many :purchases, :foreign_key => 'owner_id'
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
   acts_as_messageable
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.jpg"
@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
   # used to create sub-merchant for owners selling parking spots
   # allows ability to send params over that are not stored in a database column
   attr_accessor :street_address, :city, :state, :zip_code, :account_number, :routing_number
+
+  def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.info.name
+    end
+  end
 
   def age(birthday)
     now = Time.now.utc.to_date

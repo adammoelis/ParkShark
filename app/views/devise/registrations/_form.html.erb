@@ -27,3 +27,5 @@
     <%= f.submit "Sign up", class: "btn btn-default" %>
   </div>
 <% end %>
+
+<%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>

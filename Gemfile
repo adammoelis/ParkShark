@@ -21,7 +21,7 @@ gem 'will_paginate'
 gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'font-awesome-rails'
-
+gem 'omniauth-twitter'
 # messaging
 gem "mailboxer"
 gem 'chosen-rails'
