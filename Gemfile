@@ -22,6 +22,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'font-awesome-rails'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
 # messaging
 gem "mailboxer"
 gem 'chosen-rails'
