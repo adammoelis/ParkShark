@@ -1,17 +1,13 @@
-<li>
-  <h2></h2>
-  <h3><%= listing.status %>: <%= listing.beginning_time.strftime("%m-%d-%y %H:%M") %>  -  <%= listing.ending_time.strftime("%m-%d-%y %H:%M") %></h3>
-  <h3><%= number_to_currency(listing.price) %></h3>
+<h4><%= listing.beginning_time.strftime("%A, %b #{listing.beginning_time.day.ordinalize} %Y") %>  through  <%= listing.ending_time.strftime("%A, %b #{listing.ending_time.day.ordinalize} %Y") %></h4>
+<h4><%= number_to_currency(listing.price, precision: 0) %></h4>
 
-  <% if !listing.available  %>
-    <%= render partial: 'listings/already_reserved_button', locals: {spot: @spot, listing: listing} %>
-    <% if current_user == listing.spot.owner %>
-      <p>Occupied by: <%= listing.reservation.visitor.email if listing.reservation%></p>
-    <% end %>
-  <% elsif current_user == listing.spot.owner %>
-    <%= render partial: 'listings/pending_button', locals: {spot: @spot, listing: listing} %>
-  <% else %>
-    <%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} %>
+<% if !listing.available  %>
+  <%= render partial: 'listings/already_reserved_button', locals: {spot: @spot, listing: listing} %>
+  <% if current_user == listing.spot.owner %>
+    <p>Occupied by: <%= listing.reservation.visitor.email if listing.reservation%></p>
   <% end %>
-  <h4>Posted: <%= listing.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(listing.created_at) %> ago)</h4>
-</li>
+<% elsif current_user == listing.spot.owner %>
+  <%= render partial: 'listings/pending_button', locals: {spot: @spot, listing: listing} %>
+<% else %>
+  <%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} %>
+<% end %>

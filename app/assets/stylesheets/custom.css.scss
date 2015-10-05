@@ -16,6 +16,11 @@
   height: 100px
 }
 
+.profile-img {
+  width: 250px;
+  height: 250px;
+}
+
 .item-info-height {
   min-height: 90px;
 }
@@ -41,4 +46,48 @@
   border-radius: 0 0 5px 5px;
   -moz-border-radius: 0 0 5px 5px;
   -webkit-border-radius: 0 0 5px 5px;
+}
+
+.card {
+  margin-bottom: 20px;
+  border: solid #ddd 1px;
+  overflow: hidden;
+}
+
+.head-card {
+  padding: 20px 0 20px 0;
+  background: #fafafa;
+}
+
+.card-title {
+  padding: 10px 20px;
+  background: #fafafa;
+  border-bottom: solid #ebebeb 1px;
+  margin-bottom: 0;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.toggle {
+  margin: 15px 20px 10px 20px;
+}
+
+.shadow {
+  -moz-box-shadow: 0 2px 0 0 #ccc;
+  -webkit-box-shadow: 0 2px 0 0 #ccc;
+  box-shadow: 0 2px 0 0 #ccc;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.no-padding {
+  padding: 0;
 }

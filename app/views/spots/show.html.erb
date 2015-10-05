@@ -8,99 +8,132 @@
 
 	<section id="portfolio-post">
 		<div class="container inner-top-md">
-			<div class="row">
+			<div class="col-md-10 center-block">
 
-				<div class="col-md-8">
-					<div id="owl-work" class="owl-carousel owl-inner-pagination owl-inner-nav owl-ui-md">
-
-						<% if !@spot.pictures.empty? %>
-							<% @spot.pictures.each do |picture| %>
-								<div class="item">
-									<figure>
-										<%= image_tag picture.picture.url(:medium) %>
-									</figure>
-								</div><!-- /.item -->
-							<% end %>
-						<% else %>
-							<div class="item">
-								<figure>
-									<%= image_tag '/images/medium/nophotos.jpg' %>
-							  </figure>
+				<div class="row">
+					<div class="card rounded head-card">
+						<div class="card-block">
+							<div class="col-md-4 text-center">
+				        <div id="owl-work" class="owl-carousel owl-inner-pagination owl-inner-nav owl-ui-md">
+									<% if !@spot.pictures.empty? %>
+										<% @spot.pictures.each do |picture| %>
+											<div class="item">
+												<figure>
+													<%= image_tag picture.picture.url(:medium), class: 'rounded' %>
+												</figure>
+											</div><!-- /.item -->
+										<% end %>
+									<% else %>
+										<div class="item">
+											<figure>
+												<%= image_tag '/images/medium/nophotos.jpg', class: 'rounded' %>
+										  </figure>
+										</div>
+									<% end %>
+								</div><!-- /.owl-carousel -->
+								<% if current_user && current_user.id == @spot.owner.id %>
+									<%= link_to "Edit this spot", edit_spot_path(@spot), class: "btn btn-small" %>
+									<%= link_to "Create a New Listing", new_spot_listing_path(@spot), class: "btn btn-small" %>
+								<% end %>
 							</div>
-						<% end %>
 
-					</div><!-- /.owl-carousel -->
-				</div><!-- /.col -->
+							<div class="col-md-8 card-text">
+								<h2><%= @spot.title %></h2>
+								<p>
+									<h4><%= image_for_user(@spot.owner, :thumb, 'img-super-small') %> Posted by <%= link_to "#{@spot.owner.name}", user_path(@spot.owner) %></h4>
+									<%= @spot.city %>, <%= @spot.state %><br>
+									Zip Code: <%= @spot.zip_code %><br>
+								</p>
+								<p class="text-small"><%= @spot.description %></p>
+							</div>
+						</div>
+					</div><!-- /.card -->
+				</div><!-- /.row -->
 
-				<div class="col-md-4 inner-left-sm">
-					<header>
-						<h2><%= @spot.title %></h2>
-						<p class="text-small"><%= @spot.description %></p>
+				<div class="row">
+					<div class="card rounded">
+						<div class="card-block">
+							<div class="toggle pull-right"><i class="fa fa-toggle-on"></i></div>
+							<h2 class="card-title">Map</h2>
+						</div>
 
-						<ul class="item-details inner-top-xs outer-top-xs border-top">
-							<li class="categories"> <%= @spot.city %>, <%= @spot.state %></li>
-							<li class="url"><a href="http://demo.fuviz.com/reen">Zip Code: <%= @spot.zip_code %></a></li>
-							<iframe id="map" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_KEY'] %>&q=<%= @spot.full_address %>&maptype=satellite" allowfullscreen></iframe>
-						</ul><!-- /.item-details -->
+						<div class="card-block card-body no-padding">
+							<iframe id="map" width="100%" height="600px" class="center-block" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_KEY'] %>&q=<%= @spot.full_address %>&maptype=satellite" allowfullscreen></iframe>
+						</div>
+					</div><!-- /.card -->
+				</div>
 
-						<% if current_user && current_user.id == @spot.owner.id %>
-							<%= link_to "Edit this spot", edit_spot_path(@spot), class: "btn btn-large" %>
-							<%= link_to "Create a New Listing", new_spot_listing_path(@spot), class: "btn btn-large" %>
-						<% end %>
-					</header>
-				</div><!-- /.col -->
+				<div class="row">
+					<div class="card rounded">
+						<div class="card-block">
+							<div class="toggle pull-right"><i class="fa fa-toggle-on"></i></div>
+							<h2 class="card-title">Available</h2>
+						</div>
 
-			</div><!-- /.row -->
-		</div><!-- /.container -->
+						<div class="card-block card-body">
+							<div class="col-md-9 center-block">
+								<% @spot.listings.where(available: 'true').each do |listing| %>
+									<%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
+								<% end %>
+							</div>
+						</div>
+					</div><!-- /.card -->
+				</div>
 
-	</section>
+				<!-- <div class="row">
+					<div class="card rounded">
+						<div class="card-block">
+							<div class="toggle pull-right"><i class="fa fa-toggle-on"></i></div>
+							<h2 class="card-title">Occupied Listings</h2>
+						</div>
 
-	<!-- ============================================================= SECTION – PORTFOLIO POST : END ============================================================= -->
-	<!-- ============================================================= Listings SECTION ============================================================= -->
-<section class="container">
-	<div class="col-md-4">
-		<ul>
-			<h2>Occupied Listings</h2>
-		<% @spot.listings.where(available: ['false', nil]).each do |listing| %>
-			<%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
-		<% end %>
-		</ul>
-	</div>
+						<div class="card-block card-body">
+							<div class="col-md-9 center-block">
+								<% @spot.listings.where(available: ['false', nil]).each do |listing| %>
+									<%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div> -->
 
-	<div class="col-md-4">
-		<ul>
-			<h2>Available Listings</h2>
-		<% @spot.listings.where(available: 'true').each do |listing| %>
-			<%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
-		<% end %>
-		</ul>
-	</div>
-		<!-- ============================================================= REVIEWS SECTION ============================================================= -->
+				<div class="row">
+					<div class="card rounded">
+						<div class="card-block">
+							<div class="toggle pull-right"><i class="fa fa-toggle-on"></i></div>
+							<h2 class="card-title">User Reviews</h2>
+						</div>
 
-	<div class="col-md-4">
-		<ul>
-			<h2>Review</h2>
-			<% @spot.reviews.each do |review| %>
-				<%= render partial: 'review', locals: {review: review} %>
-			<% end %>
-		</ul>
+						<div class="card-block card-body">
+							<div class="col-md-9 center-block">
+								<% @spot.reviews.each do |review| %>
+									<%= render partial: 'review', locals: {review: review} %>
+								<% end %>
+							</div>
+						</div>
+					</div><!-- /.card -->
+				</div>
 
-		<% if user_signed_in? && current_user %>
-			<%= render partial: 'review_form' %>
-		<% end %>
-	</div>
-</section>
-	<!-- ============================================================= REVIEWS SECTION : END ============================================================= -->
+				<% if user_signed_in? && current_user %>
+					<div class="row">
+						<div class="card rounded">
+							<div class="card-block">
+								<div class="toggle pull-right"><i class="fa fa-toggle-on"></i></div>
+								<h2 class="card-title">Write a Review</h2>
+							</div>
 
+							<div class="card-block card-body">
+								<div class="col-md-9 center-block">
+									<%= render partial: 'review_form' %>
+								</div>
+							</div>
+						</div><!-- /.card -->
+					</div>
+				<% end %>
 
+				<!-- ============================================================= BEGIN OTHER NEARBY PLACES ============================================================= -->
 
-
-	<!-- ============================================================= SECTION – MORE WORKS ============================================================= -->
-
-	<section id="more-works">
-		<div class="container inner-top-sm inner-bottom">
-			<div class="row">
-				<div class="col-sm-12">
+				<div class="row">
 					<div id="accordion" class="panel-group blank">
 						<div class="panel panel-default">
 
@@ -118,10 +151,10 @@
 
 										<ul class="filter text-center">
 											<li><a href="#" data-filter="*" class="active">All</a></li>
-											<li><a href="#" data-filter=".identity">Identity</a></li>
-											<li><a href="#" data-filter=".interactive">Interactive</a></li>
-											<li><a href="#" data-filter=".print">Print</a></li>
-											<li><a href="#" data-filter=".photography">Photography</a></li>
+											<li><a href="#" data-filter=".identity">Driveway</a></li>
+											<li><a href="#" data-filter=".interactive">Garage</a></li>
+											<li><a href="#" data-filter=".print">Parking Lot</a></li>
+											<li><a href="#" data-filter=".photography">Other</a></li>
 										</ul><!-- /.filter -->
 
 										<ul class="items col-4">
@@ -358,13 +391,21 @@
 
 						</div><!-- /.panel -->
 					</div><!-- /.accordion -->
-				</div><!-- /.col -->
-			</div><!-- /.row -->
+				</div><!-- /.row -->
+
+				<!-- ============================================================= END OTHER NEARBY PLACES ============================================================= -->
+
+			</div><!-- /.center-block -->
 		</div><!-- /.container -->
 	</section>
-
-	<!-- ============================================================= SECTION – MORE WORKS : END ============================================================= -->
-
 </main>
 
-<!-- ============================================================= MAIN : END ============================================================= -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("div.toggle").click(function(){
+      $(this).parent().parent().find('.card-body').slideToggle(100, function(){
+        $(this).parent().find('i').toggleClass('fa-toggle-off').toggleClass('fa-toggle-on');
+      });
+    });
+  });
+</script>

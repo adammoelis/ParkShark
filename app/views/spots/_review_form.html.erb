@@ -1,9 +1,9 @@
 <%= form_for Review.new do |f| %>
   <%= f.label :rating, 'Rating' %>
-  <%= f.text_field :rating %>
+  <%= f.number_field :rating, class: 'form-control', :placeholder => "5/5" %>
   <%= f.label :body, 'Content' %>
-  <%= f.text_field :body %>
+  <%= f.text_area :body, class: 'form-control', :placeholder => "Let others know about your experience..." %>
   <%= hidden_field_tag 'review[spot_id]', @spot.id  %>
   <%= hidden_field_tag 'review[visitor_id]', current_user.id %>
-  <%= f.submit %>
+  <%= f.submit nil, class: 'btn btn-default' %>
 <% end %>

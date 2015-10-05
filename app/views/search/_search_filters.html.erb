@@ -20,7 +20,7 @@
       <% if params[:price] %>
       <%= text_field_tag("price", params[:price]) %>
       <% else %>
-        <%= text_field_tag("price", nil, placeholder: "Max Price") %>
+        <%= text_field_tag("price", nil, placeholder: "Max Price", class: 'form-control') %>
       <% end %>
     </div>
     <%= hidden_field_tag "q", "#{params[:q]}" if params[:q] %>
