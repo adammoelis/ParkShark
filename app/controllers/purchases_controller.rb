@@ -1,4 +1,11 @@
 class PurchasesController < ApplicationController
+  before_action :find_user, only: [:show, :update, :edit]
+
+  def edit
+  end
+
+  def update
+  end
 
   def checkout
     find_current_relations
@@ -65,5 +72,7 @@ class PurchasesController < ApplicationController
     Braintree::ClientToken.generate
   end
 
-
+  def find_user
+    @user = User.find(params[:id])
+  end
 end
