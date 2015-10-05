@@ -4,7 +4,7 @@
 			<div class="col-md-10 center-block">
 
 				<div class="row">
-					<div class="card rounded shadow profile-head-card">
+					<div class="card rounded head-card">
 						<div class="card-block">
 							<div class="col-md-4 text-center">
 				        <%= image_for_user @user, :medium, 'rounded' %>
@@ -18,11 +18,15 @@
 							<div class="col-md-8 card-text">
 									<h2><%= @user.name %></h2>
 									<p>
-										<%= @user.gender %><br>
-										<% if @user.birthday %>
-											<%= @user.age(@user.birthday) %> years old<br> 
+										<% if @user.gender %>
+											<%= @user.gender %><br>
 										<% end %>
-										<%= number_to_phone(@user.phone, area_code: true) %>
+										<% if @user.birthday %>
+											<%= @user.age(@user.birthday) %> years old<br>
+										<% end %>
+										<% if @user.phone %>
+											<%= number_to_phone(@user.phone, area_code: true) %>
+										<% end %>
 									</p>
 									<p><%= @user.bio %></p>
 							</div>
@@ -31,65 +35,49 @@
 				</div><!-- /.row -->
 
 				<div class="row">
-					<div class="card rounded shadow">
+					<div class="card rounded">
 						<div class="card-block">
 							<div class="toggle pull-right"><i class="fa fa-toggle-on"></i></div>
 							<h2 class="card-title">Reviews</h2>
 						</div>
 
 						<div class="card-block card-body">
-							<ul>
 							<% @user.reviews.each do |review| %>
-								<li>
-									<h3><%= review.rating %>/5  |  <%= review.visitor.name %></h3>
-									<h4><%= review.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</h4>
-									<p><%= review.body %></p>
-								</li>
-								<%= link_to "Go to spot", spot_path(review.spot.id), class: "btn btn-large" %><br>
+								<h3><%= image_for_user(review.visitor, :thumb, 'img-super-small') %><%= link_to "#{review.visitor.name}", user_path(review.visitor) %></h3>
+								<h4><%= review.rating %>/5 stars</h4>
+								<p><%= review.body %></p>
+								<p class="text-small"><%= review.created_at.strftime("%B #{review.created_at.day.ordinalize}, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</p>
+								<%= link_to "Go to spot", spot_path(review.spot.id), class: "btn btn-small" %><br>
 							<% end %>
-							</ul>
 						</div>
 					</div><!-- /.card -->
 				</div>
 
 				<div class="row">
-					<div class="card rounded shadow">
+					<div class="card rounded">
 						<div class="card-block">
 							<div class="toggle pull-right"><i class="fa fa-toggle-on"></i></div>
 							<h2 class="card-title">Available Listings</h2>
 						</div>
 
 						<div class="card-block card-body">
-							<ul>
 							<% @user.listings.each do |listing| %>
-								<li>
-									<h4><%= listing.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(listing.created_at) %> ago)</h4>
-									<p><%= listing.body %></p>
-								</li>
-								<%= link_to "Go to spot", spot_path(listing.spot.id), class: "btn btn-large" %><br>
+								<h4><%= listing.created_at.strftime("%B #{listing.created_at.day.ordinalize}, %Y") %> (<%= time_ago_in_words(listing.created_at) %> ago)</h4>
+								<%= link_to "Go to spot", spot_path(listing.spot.id), class: "btn btn-small" %><br>
 							<% end %>
-							</ul>
 						</div>
 					</div><!-- /.card -->
 				</div>
 
 				<div class="row">
-					<div class="card rounded shadow">
+					<div class="card rounded">
 						<div class="card-block">
 							<div class="toggle pull-right"><i class="fa fa-toggle-on"></i></div>
-							<h2 class="card-title">Cars</h2>
+							<h2 class="card-title">Vehicles</h2>
 						</div>
 
-						<div class="card-block card-body">
-							<ul>
-							<% @user.listings.each do |listing| %>
-								<li>
-									<h4><%= listing.created_at.strftime("%B %d, %Y") %> (<%= time_ago_in_words(listing.created_at) %> ago)</h4>
-									<p><%= listing.body %></p>
-								</li>
-								<%= link_to "Go to spot", spot_path(listing.spot.id), class: "btn btn-large" %><br>
-							<% end %>
-							</ul>
+						<div class="card-block card-body text-center">
+							<p><%= @user.name %> has not listed any vehicles</p>
 						</div>
 					</div><!-- /.card -->
 				</div>

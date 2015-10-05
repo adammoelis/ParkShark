@@ -54,7 +54,7 @@
   overflow: hidden;
 }
 
-.profile-head-card {
+.head-card {
   padding: 20px 0 20px 0;
   background: #fafafa;
 }
@@ -63,6 +63,11 @@
   padding: 10px 20px;
   background: #fafafa;
   border-bottom: solid #ebebeb 1px;
+  margin-bottom: 0;
+}
+
+.card-body {
+  padding: 20px;
 }
 
 .toggle {
@@ -77,4 +82,12 @@
 
 .inline {
   display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.no-padding {
+  padding: 0;
 }
