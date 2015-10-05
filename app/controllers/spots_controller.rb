@@ -1,6 +1,6 @@
 class SpotsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :update, :edit, :delete]
-  # before_action :valid_payment_option?, only: [:new]
+  before_action :valid_payment_option?, only: [:new]
   before_action :find_spot, only: [:show]
 
   def index
