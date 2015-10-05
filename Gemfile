@@ -19,6 +19,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap-will_paginate'
 gem 'will_paginate'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'bootstrap-social-rails'
 
 gem 'font-awesome-rails'
 gem 'omniauth-twitter'
