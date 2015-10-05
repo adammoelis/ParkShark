@@ -13,6 +13,7 @@
  *= require font-awesome
  *= require_tree .
  *= require jquery-ui
+ *= require bootstrap-social
  *= require_self
  */
 
@@ -68,4 +69,16 @@
   border-radius: 3px !important;
   -webkit-border-radius: 3px !important;
   -moz-border-radius: 3px !important;
+}
+
+#fb-sign-in {
+  background-color: rgb(59,89,152);
+}
+
+#goog-sign-in {
+  background-color: rgb(221,75,57);
+}
+
+#or-message {
+  text-align: center;
 }

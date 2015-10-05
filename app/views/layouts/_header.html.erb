@@ -62,7 +62,15 @@
 								</ul><!-- /.dropdown-menu -->
 							</li><!-- /.dropdown -->
 
-							<li><a href="<%= user_path(current_user) %>" style="display: inline;"><%= image_for_user(current_user, :thumb, 'round-image-50') %></a><li>
+							<li>
+								<a href="<%= user_path(current_user) %>" style="display: inline;">
+									<% if current_user.avatar_content_type %>
+										<%= image_tag current_user.avatar.url(size), title: current_user.name, class: "round-image-50" %>
+									<% else %>
+										<%= image_tag current_user.avatar_file_name, title: current_user.name, class: "round-image-50" %>
+									<% end %>
+								</a>
+							</li>
 						<% else %>
 							<li><%= link_to "Log in", new_session_path(resource_name) %></li>
 							<li><%= link_to "Sign up", new_registration_path(resource_name) %></li>

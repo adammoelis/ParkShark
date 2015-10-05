@@ -8,21 +8,25 @@
     <%= f.label :email %>
     <%= f.email_field :email, class: 'form-control', placeholder: 'yourname@example.com' %>
   </div>
+  <% if f.object.password_required? %>
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'password' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'password' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'confirm password' %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'confirm password' %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Sign up", class: "btn btn-default" %>
   </div>
 <% end %>
+<p id="or-message">OR</p>
+<%= render 'devise/registrations/facebook_sign_in' %>
+<%= render 'devise/registrations/google_sign_in' %>
