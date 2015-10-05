@@ -52,6 +52,10 @@
   overflow-y: auto;
 }
 
+#error_explanation {
+  list-style-type: none;
+}
+
 .alert-notice {
   @extend .alert-success;
 }
