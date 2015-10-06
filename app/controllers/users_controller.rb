@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def update_purchase_information
+    binding.pry
     create_braintree_sub_merchant
   end
 
