@@ -2,7 +2,7 @@
   <div class="form-group">
     <%= f.label :beginning_time, 'Start Time', class: 'col-sm-2 control-label' %>
     <div class="col-sm-6">
-      <input type="text" data-provide='datepicker', name='listing[beginning_time]'>
+      <input type="text" data-provide='datepicker', name='listing[beginning_time]', required="required">
     </div>
     <%= f.select :beginning_time_of_day, options_for_select(Listing.time_of_day_options) %>
   </div>
@@ -19,7 +19,7 @@
   <div class="form-group">
     <%= f.label :price, 'Price ($)', class: 'col-sm-2 control-label' %>
     <div class="col-sm-6">
-        <%= f.text_field :price, :placeholder => '$20' %>
+        <%= f.text_field :price, :required => true, :placeholder => '$20' %>
     </div>
   </div>
 
