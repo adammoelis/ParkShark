@@ -4,14 +4,16 @@
     <div class="col-sm-6">
       <input type="text" data-provide='datepicker', name='listing[beginning_time]'>
     </div>
+    <%= f.select :beginning_time_of_day, options_for_select(Listing.time_of_day_options) %>
   </div>
 
-  <a id="add-a-day">Click to end on a different day</a> 
+  <a id="add-a-day">Multi-day?</a>
   <div id="ending-time-form" class="form-group", display="none">
     <%= f.label :ending_time, 'End Time', class: 'col-sm-2 control-label' %>
     <div class="col-sm-6">
       <input type="text" data-provide='datepicker', name='listing[ending_time]'>
     </div>
+    <%= f.select :ending_time_of_day, options_for_select(Listing.time_of_day_options) %>
   </div>
 
   <div class="form-group">

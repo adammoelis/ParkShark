@@ -4,6 +4,10 @@ class Listing < ActiveRecord::Base
   has_one :owner, :class_name => 'User', :through => :spot
   has_one :reservation
 
+  def self.time_of_day_options
+    ["Morning (7am-11am)", "Afternoon (11am- 2pm)", "Late Afternoon(2pm-5pm)", ""]
+  end
+
   def status
     self.available ? "Available" : "Occupied"
   end

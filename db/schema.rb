@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005150538) do
+ActiveRecord::Schema.define(version: 20151006162231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +34,11 @@ ActiveRecord::Schema.define(version: 20151005150538) do
     t.datetime "ending_time"
     t.boolean  "available"
     t.integer  "spot_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.float    "price"
+    t.string   "beginning_time_of_day"
+    t.string   "ending_time_of_day"
   end
 
   add_index "listings", ["spot_id"], name: "index_listings_on_spot_id", using: :btree
