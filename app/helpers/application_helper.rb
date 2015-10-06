@@ -52,6 +52,14 @@ module ApplicationHelper
     DateTime.parse("#{year}/#{month}/#{day} #{hour}:#{minute}")
   end
 
+  def parse_time_format(time)
+    array_of_time = time.split("/")
+    month = array_of_time[0]
+    day = array_of_time[1]
+    year = array_of_time[2]
+    DateTime.parse("#{year}/#{month}/#{day}")
+  end
+
   def mailbox_new_message_count
     current_user.mailbox.receipts.where(is_read: false).count
   end
