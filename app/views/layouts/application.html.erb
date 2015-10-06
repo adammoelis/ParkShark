@@ -39,6 +39,9 @@
 
       <%= yield %>
 
+      <!-- hidden window for displaying modal popups -->
+      <div id="modal-window" class="modal fade col-md-6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"></div>
+
     <%= render 'layouts/footer' %>
   </body>
 </html>

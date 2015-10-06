@@ -46,7 +46,7 @@
       <%= text_field_tag "zip_code" %>
     </div>
     <div id="dropin"></div>
+    <%= link_to "Cancel", spot_path(@spot), class: 'btn btn-default' %>
     <%= submit_tag "Purchase #{@spot.title} for #{number_to_currency(@listing.price)}", class: "button mt1" %>
   <%end%>
 </div>
-<%= link_to "Cancel", spot_path(@spot), class: 'btn btn-default' %>

@@ -4,5 +4,4 @@
   <p><%= review.body %></p>
   <p class="text-small"><%= review.created_at.strftime("%B #{review.created_at.day.ordinalize}, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</p>
   <%= render partial: 'reviews/delete_button', locals: {review: review} if review.visitor == current_user %>
-
 </div>
