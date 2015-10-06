@@ -1,20 +1,28 @@
 <%= form_for [@spot, @listing], :url => spot_listings_path(@spot, @listing), html: { class: 'form-horizontal', multipart: true } do |f| %>
   <div class="form-group">
-    <%= f.label :beginning_time, 'Start Time', class: 'col-sm-2 control-label' %>
+    <%= f.label :beginning_time, 'Date', class: 'col-sm-2 control-label' %>
     <div class="col-sm-6">
-      <input type="text" data-provide='datepicker', name='listing[beginning_time]', required="required">
+      <input type="text" data-provide='datepicker', name='listing[beginning_time]', required="required", placeholder="<%= Time.now.strftime("%m-%d-%Y") %>">
     </div>
     <%= f.select :beginning_time_of_day, options_for_select(Listing.time_of_day_options) %>
   </div>
-
-  <a id="add-a-day">Multi-day?</a>
+  <div class="form-group">
+    <label class="col-sm-2 control-label"></label>
+    <%= render 'layouts/add_a_date' %>
+  </div>
   <div id="ending-time-form" class="form-group", display="none">
-    <%= f.label :ending_time, 'End Time', class: 'col-sm-2 control-label' %>
+    <%= f.label :ending_time, 'Date', class: 'col-sm-2 control-label' %>
     <div class="col-sm-6">
-      <input type="text" data-provide='datepicker', name='listing[ending_time]'>
+      <input type="text" data-provide='datepicker', name='listing[ending_time]', placeholder="<%= Time.now.strftime("%m-%d-%Y") %>">
     </div>
     <%= f.select :ending_time_of_day, options_for_select(Listing.time_of_day_options) %>
+    <div class="form-group">
+      <label class="col-sm-2 control-label"></label>
+      <%= render 'layouts/hide_a_date' %>
+    </div>
   </div>
+
+
 
   <div class="form-group">
     <%= f.label :price, 'Price ($)', class: 'col-sm-2 control-label' %>

@@ -47,6 +47,10 @@ $(function() {
       $('#ending-time-form').show()
       $('#add-a-day').hide()
     })
+    $('#hide-a-day').click(function(){
+      $('#ending-time-form').hide()
+      $('#add-a-day').show()
+    })
 });
 
 function getLocation() {
