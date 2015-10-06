@@ -7,11 +7,14 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new(beginning_time: parse_time_format(params['listing']['beginning_time']), price: params[:listing][:price], spot: @spot, available: true)
+    @listing = Listing.new(description: params["listing"]["description"], beginning_time_of_day: params["listing"]["beginning_time_of_day"], beginning_time: parse_time_format(params['listing']['beginning_time']), price: params[:listing][:price], spot: @spot, available: true)
     if params['listing']['ending_time'] != ""
       @listing.ending_time = parse_time_format(params['listing']['ending_time'])
+      @listing.ending_time_of_day = params['listing']['ending_time_of_day']
+
     else
       @listing.ending_time = parse_time_format(params['listing']['beginning_time'])
+      @listing.ending_time_of_day = params['listing']['beginning_time_of_day']
     end
     binding.pry
     if @listing.save
