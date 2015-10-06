@@ -1,6 +1,6 @@
-<%= form_for Review.new do |f| %>
+<%= form_for Review.new, remote: true do |f| %>
   <%= f.label :rating, 'Rating' %>
-  <%= f.number_field :rating, class: 'form-control', :placeholder => "5/5" %>
+  <%= f.select :rating, options_for_select((1..5).step(0.5)) %> <br>
   <%= f.label :body, 'Content' %>
   <%= f.text_area :body, class: 'form-control', :placeholder => "Let others know about your experience..." %>
   <%= hidden_field_tag 'review[spot_id]', @spot.id  %>

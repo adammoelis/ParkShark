@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
-  before_action :find_spot, only: [:create, :new]
+  before_action :find_spot, only: [:create, :new, :destroy]
+  before_action :find_listing, only: [:destroy]
 
   def new
     @listing = Listing.new
@@ -19,6 +20,10 @@ class ListingsController < ApplicationController
     end
   end
 
+  def destroy
+    @listing.destroy
+  end
+
   private
 
   def parse_time(type_of_time)
@@ -32,5 +37,9 @@ class ListingsController < ApplicationController
 
   def find_spot
     @spot = Spot.find(params[:spot_id])
+  end
+
+  def find_listing
+    @listing = Listing.find(params[:id])
   end
 end
