@@ -9,9 +9,9 @@
 							<div class="col-md-4 text-center">
 				        <%= image_for_user @user, :medium, 'rounded' %>
 								<% if user_signed_in? && current_user? %>
-										<%= link_to 'Edit Profile', edit_user_path, class: 'btn btn-small' %>
-									<% else %>
-										<%= link_to 'Send message', new_message_path(to: @user.id), class: 'btn btn-small' %>
+									<%= link_to 'Edit Profile', edit_user_path, class: 'btn btn-small' %>
+								<% else %>
+									<%= link_to 'Send message', new_message_path(to: @user.id), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window', class: 'btn btn-small'} %>
 								<% end %>
 							</div>
 
