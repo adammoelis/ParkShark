@@ -1,11 +1,12 @@
 <div id="listing-<%= listing.id %>">
   <% if listing.beginning_time != listing.ending_time %>
-    <h4><%= listing.beginning_time.strftime("%A, %b #{listing.beginning_time.day.ordinalize} %Y") %>, <%= listing.beginning_time_of_day %>  through  <%= listing.ending_time.strftime("%A, %b #{listing.ending_time.day.ordinalize} %Y") %>, <%= listing.ending_time_of_day %></h4>
+    <h4>When: <%= listing.beginning_time.strftime("%A, %b #{listing.beginning_time.day.ordinalize} %Y") %>, <%= listing.beginning_time_of_day %>  through  <%= listing.ending_time.strftime("%A, %b #{listing.ending_time.day.ordinalize} %Y") %>, <%= listing.ending_time_of_day %></h4>
   <% else %>
-    <h4><%= listing.beginning_time.strftime("%A, %b #{listing.beginning_time.day.ordinalize} %Y") %>, <%= listing.beginning_time_of_day %> </h4>
+    <h4>When: <%= listing.beginning_time.strftime("%A, %b #{listing.beginning_time.day.ordinalize} %Y") %>, <%= listing.beginning_time_of_day %> </h4>
   <% end %>
-  <h4><%= number_to_currency(listing.price, precision: 0) %></h4>
-  <h4><%= listing.description %></h4>
+  <h4>Price: <%= number_to_currency(listing.price, precision: 0) %></h4>
+  <h4>Details: <%= listing.description %></h4>
+  <h4>MESSAGE BUTTON TO MESSAGE OR EMAIL USER FOR MORE INFO</h4>
 
   <% if !listing.available  %>
     <%= render partial: 'listings/already_reserved_button', locals: {spot: @spot, listing: listing} %>

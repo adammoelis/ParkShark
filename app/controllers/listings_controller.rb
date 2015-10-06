@@ -16,7 +16,6 @@ class ListingsController < ApplicationController
       @listing.ending_time = parse_time_format(params['listing']['beginning_time'])
       @listing.ending_time_of_day = params['listing']['beginning_time_of_day']
     end
-    binding.pry
     if @listing.save
       redirect_to spot_path(@spot)
     else
