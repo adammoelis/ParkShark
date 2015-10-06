@@ -30,7 +30,16 @@ class UsersController < ApplicationController
   end
 
   def update_purchase_information
-    create_braintree_sub_merchant
+    result = User.create_braintree_sub_merchant(params, current_user)
+    if result.success?
+      current_user.braintree_merchant_id = result.merchant_account.id
+      current_user.save
+      flash[:notice] = 'Your profile was updated successfully!'
+      redirect_to new_spot_path
+    else
+      flash[:notice] = result.message
+      redirect_to purchase_information_path(current_user.id)
+    end
   end
 
   def user_spots
@@ -58,46 +67,6 @@ class UsersController < ApplicationController
 
   def get_client_token
     Braintree::ClientToken.generate
-  end
-
-  def create_braintree_sub_merchant
-    split_name = current_user.name.split(" ")
-    formatted_birthday = current_user.birthday.inspect.split(" ")
-    phone = params[:user][:phone]
-    phone.gsub!(/[^0-9A-Za-z]/, '')
-    result = Braintree::MerchantAccount.create(
-      :individual => {
-        :first_name => Braintree::Test::MerchantAccount::Approve,
-        :last_name => split_name[1],
-        :email => current_user.email,
-        :date_of_birth => "1981-11-19",
-        :ssn => "456-45-4567",
-        :address => {
-          :street_address => params[:user][:street_address],
-          :locality => params[:user][:city],
-          :region => params[:user][:state],
-          :postal_code => params[:user][:zip_code]
-        }
-      },
-      :funding => {
-        :destination => Braintree::MerchantAccount::FundingDestination::Bank,
-        :email => current_user.email,
-        :mobile_phone => phone,
-        :account_number => params[:user][:account_number],
-        :routing_number => params[:user][:routing_number]
-      },
-      :tos_accepted => true,
-      :master_merchant_account_id => "student"
-    )
-    if result.success?
-      current_user.braintree_merchant_id = result.merchant_account.id
-      current_user.save
-      flash[:notice] = 'Your profile was updated successfully!'
-      redirect_to new_spot_path
-    else
-      flash[:notice] = result.message
-      redirect_to purchase_information_path(current_user.id)
-    end
   end
 
   def get_client_token
