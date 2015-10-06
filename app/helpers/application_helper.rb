@@ -2,6 +2,8 @@ module ApplicationHelper
   def image_for_user(user, size = :thumb, css = "", title = user.name)
     if user.avatar_content_type
       image_tag user.avatar.url(size), title: title, class: css
+    elsif !user.avatar_file_name
+      image_tag user.avatar.url(size), title: title, class: css
     else
       if size == :thumb
         image_tag user.avatar_file_name, title: title, class: css + " thumb-img"

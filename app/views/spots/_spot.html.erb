@@ -18,7 +18,7 @@
           <% end %>
         </p>
         <p><%= spot.show_price_range ? spot.show_price_range : '$ Negotiable' %></p>
-        <%= button_to 'Remove Spot', spot_path(spot), class: 'btn btn-small', method: :delete, data: { confirm: 'Are you sure?' } if current_user == spot.owner && request.env['PATH_INFO'] == 'my_spots' %>
+        <%= button_to 'Remove Spot', spot_path(spot), class: 'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } if current_user == spot.owner && request.env['PATH_INFO'] == 'my_spots' %>
 
       </div><!-- /.info -->
     </figcaption>
