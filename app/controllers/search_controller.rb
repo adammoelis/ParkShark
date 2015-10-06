@@ -7,7 +7,6 @@ class SearchController < ApplicationController
     elsif start_time_filter
       end_time_filter = start_time_filter
     end
-    binding.pry
     price_filter = params[:price] if params[:price] && params[:price].size > 0
     if params[:q] && params[:radius]
       @spots = Spot.near(params[:q], params[:radius])
