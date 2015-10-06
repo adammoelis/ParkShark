@@ -42,13 +42,18 @@
 
 $(function() {
     getLocation()
+    $('#advanced-search').hide()
     $('#ending-time-form').hide()
+    $('#hide-a-day').hide()
+    addAdvancedSearch()
     $('#add-a-day').click(function(){
       $('#ending-time-form').show()
       $('#add-a-day').hide()
+      $('#hide-a-day').show()
     })
     $('#hide-a-day').click(function(){
       $('#ending-time-form').hide()
+      $('#hide-a-day').hide()
       $('#add-a-day').show()
     })
 });
@@ -78,3 +83,19 @@ jQuery(function() {
     region: "us"
   });
 });
+
+function hideAdvancedSearch() {
+  $('#hide-advanced-search').click(function(){
+    $('#advanced-search').hide()
+    $('#hide-advanced-search').replaceWith('<button id="add-advanced-search" class="btn btn-default">Click to search</button>')
+    addAdvancedSearch()
+  })
+}
+
+function addAdvancedSearch(){
+  $('#add-advanced-search').click(function(){
+    $('#advanced-search').show()
+    $('#add-advanced-search').replaceWith('<button id="hide-advanced-search" class="btn btn-default">Hide Search</button>')
+    hideAdvancedSearch()
+  })
+}
