@@ -1,4 +1,4 @@
-10.times do
+30.times do
   User.create(
     name: Faker::Name.name,
     avatar: Faker::Avatar.image,
@@ -10,7 +10,7 @@
   )
 end
 
-10.times do
+30.times do
   spot = Spot.new.tap do |s|
     s.title = Faker::Name.title
     s.address = Faker::Address.street_address
@@ -31,7 +31,7 @@ end
   )
 end
 
-10.times do
+30.times do
   Car.create(
     make: Faker::Company.name,
     model: Faker::Company.name,
@@ -42,7 +42,7 @@ end
   )
 end
 
-10.times do
+30.times do
   Review.create(
     rating: Faker::Number.number(1),
     body:Faker::Lorem.paragraph,
@@ -52,7 +52,7 @@ end
   )
 end
 
-10.times do
+30.times do
   Listing.create(
     beginning_time:Faker::Date.between(2.days.ago, Date.today),
     ending_time: Faker::Date.forward(23),
@@ -62,7 +62,7 @@ end
   )
 end
 
-10.times do
+30.times do
   Location.create(
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
