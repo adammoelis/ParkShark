@@ -34,4 +34,15 @@ class Purchase < ActiveRecord::Base
     )
   end
 
+  def self.successful_transaction(listing, reservation, spot, owner, visitor)
+    listing.available = false
+    listing.save
+    reservation = Reservation.new(owner: spot.owner, visitor: visitor, spot: spot)
+    reservation.save
+    # notifies owner of purchased spot
+    PurchaseMailer.purchase_owner(owner, visitor, spot).deliver_now
+    # sends email to visitor confirming their purchase
+    PurchaseMailer.purchase_visitor(visitor, owner, spot).deliver_now
+  end
+
 end
