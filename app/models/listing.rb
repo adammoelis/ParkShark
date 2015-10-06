@@ -21,7 +21,9 @@ class Listing < ActiveRecord::Base
   end
 
   def is_available_between(start_time, end_time)
-    if self.ending_time <= end_time && self.beginning_time <= start_time
+    if end_time == start_time
+      self.beginning_time == start_time
+    elsif self.ending_time <= end_time && self.beginning_time <= start_time
       true
     else
       false

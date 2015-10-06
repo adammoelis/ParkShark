@@ -1,8 +1,13 @@
 class SearchController < ApplicationController
   def nearby
     sort_type = params[:sort_type] if params[:sort_type]
-    start_time_filter = parse_time(:beginning_time) if params[:listing]
-    end_time_filter = parse_time(:ending_time) if params[:listing]
+    start_time_filter = parse_time_format(params['listing']['beginning_time']) if params[:listing]
+    if params['listing'] && params['listing']['ending_time'] != ""
+      end_time_filter = parse_time_format(params['listing']['ending_time'])
+    elsif start_time_filter
+      end_time_filter = start_time_filter
+    end
+    binding.pry
     price_filter = params[:price] if params[:price] && params[:price].size > 0
     if params[:q] && params[:radius]
       @spots = Spot.near(params[:q], params[:radius])
@@ -73,6 +78,7 @@ class SearchController < ApplicationController
   end
 
   def parse_time_format(time)
+    binding.pry
     array_of_time = time.split("/")
     month = array_of_time[0]
     day = array_of_time[1]
