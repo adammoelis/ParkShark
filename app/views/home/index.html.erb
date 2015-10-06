@@ -4,14 +4,65 @@
 
 <!-- ============================================================= MAIN ============================================================= -->
 
+<!-- ============================================================= SECTION – HERO ============================================================= -->
+
+<section id="hero">
+	<div id="owl-main" class="owl-carousel height-lg owl-inner-nav owl-ui-lg">
+
+		<div class="item" style="background-image: url(<%= image_path 'road.jpg' %>);">
+			<div class="container">
+				<div class="caption vertical-center text-center">
+					<h1 class="fadeInDown-1 light-color">Welcome to ParkShark</h1>
+					<p class="fadeInDown-2 light-color">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<div class="fadeInDown-3">
+						<%= render 'layouts/find_me' %>
+					</div><!-- /.fadeIn -->
+
+				</div><!-- /.caption -->
+			</div><!-- /.container -->
+		</div><!-- /.item -->
+
+		<div class="item" style="background-image: url(<%= image_path 'new_york2.jpg' %>);">
+			<div class="container">
+				<div class="caption vertical-center text-right">
+
+					<h1 class="fadeInLeft-1 light-color">Find Spots <br>Around the World</h1>
+					<p class="fadeInLeft-2 light-color">Lorem ipsum dolor sit amet <br>, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<div class="fadeInLeft-3">
+						<a href="#" class="btn btn-large">Search Locations</a>
+					</div><!-- /.fadeIn -->
+
+				</div><!-- /.caption -->
+			</div><!-- /.container -->
+		</div><!-- /.item -->
+
+		<div class="item" style="background-image: url(<%= image_path 'new_york.jpg' %>);">
+			<div class="container">
+				<div class="caption vertical-center text-left">
+
+					<h1 class="fadeInRight-1 dark-bg light-color"><span>List <br>Your Spots</span></h1>
+					<p class="fadeInRight-2 light-color">Lorem ipsum dolor sit amet, consectetur adipisicing elit,<br>Ut enim ad minim veniam, quis nostrud exercitation.</p>
+					<div class="fadeInRight-3">
+						<%= link_to "List your parking spot", new_spot_path, class: "btn btn-large" %>
+					</div><!-- /.fadeIn -->
+
+				</div><!-- /.caption -->
+			</div><!-- /.container -->
+		</div><!-- /.item -->
+
+	</div><!-- /.owl-carousel -->
+</section>
+
+<!-- ============================================================= SECTION – HERO : END ============================================================= -->
+
 	<section id="who-we-are">
 		<div class="container inner-top-sm inner-bottom-sm">
 
 			<div class="row">
 				<div class="col-md-8 col-sm-9 center-block text-center">
 					<header>
-						<h1>Welcome to ParkShark</h1>
-						<p>Quickly find an affordable place to park your car.</p>
+						<h1>Affordable. Fast. Easy.</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</header>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -55,6 +106,181 @@
 			</div><!-- /.row -->
 		</div><!-- /.container -->
 	</section>
+
+	<!-- ============================================================= SECTION – LATEST WORKS ============================================================= -->
+
+	<section id="latest-works" class="light-bg">
+		<div class="container inner">
+
+			<div class="row">
+				<div class="col-md-8 col-sm-9 center-block text-center">
+					<header>
+						<h1>Check out our latest works</h1>
+						<p>Magnis modipsae que voloratati andigen daepeditem quiate re porem aut labor.</p>
+					</header>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+
+			<div class="row">
+
+				<div class="col-sm-6 inner-top-sm">
+					<figure>
+
+						<div class="icon-overlay icn-link">
+							<a href="portfolio-post.html"><img src="<%= image_path 'work02.jpg' %>" alt=""></a>
+						</div><!-- /.icon-overlay -->
+
+						<figcaption class="bordered no-top-border">
+							<div class="info">
+								<h3><a href="portfolio-post.html">Grand Motel gets an identity brushup</a></h3>
+								<p>Identity</p>
+							</div><!-- /.info -->
+						</figcaption>
+
+					</figure>
+				</div><!-- /.col -->
+
+				<div class="col-sm-6 inner-top-sm">
+					<figure>
+
+						<div class="icon-overlay icn-link">
+							<a href="portfolio-post.html"><img src="<%= image_path 'work08.jpg' %>" alt=""></a>
+						</div><!-- /.icon-overlay -->
+
+						<figcaption class="bordered no-top-border">
+							<div class="info">
+								<h3><a href="portfolio-post.html">Fresh branding for a creative startup</a></h3>
+								<p>Identity</p>
+							</div><!-- /.info -->
+						</figcaption>
+
+					</figure>
+				</div><!-- /.col -->
+
+			</div><!-- /.row -->
+
+			<div class="row inner-top-sm">
+				<div id="owl-latest-works" class="owl-carousel owl-item-gap">
+
+					<div class="item">
+						<a href="portfolio-post.html">
+							<figure>
+								<figcaption class="text-overlay">
+									<div class="info">
+										<h4>Vintage Bicycles</h4>
+										<p>Interactive</p>
+									</div><!-- /.info -->
+								</figcaption>
+								<img src="<%= image_path 'work03.jpg' %>" alt="">
+							</figure>
+						</a>
+					</div><!-- /.item -->
+
+					<div class="item">
+						<a href="portfolio-post.html">
+							<figure>
+								<figcaption class="text-overlay">
+									<div class="info">
+										<h4>Simpli Nota</h4>
+										<p>Identity</p>
+									</div><!-- /.info -->
+								</figcaption>
+								<img src="<%= image_path 'work03.jpg' %>" alt="">
+							</figure>
+						</a>
+					</div><!-- /.item -->
+
+					<div class="item">
+						<a href="portfolio-post.html">
+							<figure>
+								<figcaption class="text-overlay">
+									<div class="info">
+										<h4>Vinyl Records</h4>
+										<p>Identity</p>
+									</div><!-- /.info -->
+								</figcaption>
+								<img src="<%= image_path 'work07.jpg' %>" alt="">
+							</figure>
+						</a>
+					</div><!-- /.item -->
+
+					<div class="item">
+						<a href="portfolio-post.html">
+							<figure>
+								<figcaption class="text-overlay">
+									<div class="info">
+										<h4>Astor & Yancy</h4>
+										<p>Identity</p>
+									</div><!-- /.info -->
+								</figcaption>
+								<img src="<%= image_path 'work09.jpg' %>" alt="">
+							</figure>
+						</a>
+					</div><!-- /.item -->
+
+					<div class="item">
+						<a href="portfolio-post.html">
+							<figure>
+								<figcaption class="text-overlay">
+									<div class="info">
+										<h4>Signwall</h4>
+										<p>Identity</p>
+									</div><!-- /.info -->
+								</figcaption>
+								<img src="<%= image_path 'work16.jpg' %>" alt="">
+							</figure>
+						</a>
+					</div><!-- /.item -->
+
+					<div class="item">
+						<a href="portfolio-post.html">
+							<figure>
+								<figcaption class="text-overlay">
+									<div class="info">
+										<h4>Tri Fold Brochure</h4>
+										<p>Print</p>
+									</div><!-- /.info -->
+								</figcaption>
+								<img src="<%= image_path 'work10.jpg' %>" alt="">
+							</figure>
+						</a>
+					</div><!-- /.item -->
+
+					<div class="item">
+						<a href="portfolio-post.html">
+							<figure>
+								<figcaption class="text-overlay">
+									<div class="info">
+										<h4>Embroidered</h4>
+										<p>Identity</p>
+									</div><!-- /.info -->
+								</figcaption>
+								<img src="<%= image_path 'work05.jpg' %>" alt="">
+							</figure>
+						</a>
+					</div><!-- /.item -->
+
+					<div class="item">
+						<a href="portfolio-post.html">
+							<figure>
+								<figcaption class="text-overlay">
+									<div class="info">
+										<h4>El Corcho</h4>
+										<p>Identity</p>
+									</div><!-- /.info -->
+								</figcaption>
+								<img src="<%= image_path 'work12.jpg' %>" alt="">
+							</figure>
+						</a>
+					</div><!-- /.item -->
+
+				</div><!-- /.owl-carousel -->
+			</div><!-- /.row -->
+
+		</div><!-- /.container -->
+	</section>
+
+	<!-- ============================================================= SECTION – LATEST WORKS : END ============================================================= -->
 
 	<!-- ============================================================= MAIN : END ============================================================= -->
 
