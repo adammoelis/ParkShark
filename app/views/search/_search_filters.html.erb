@@ -1,31 +1,41 @@
-<div class="col-md-5 col-sm-9 center-block text-center">
+<%= render 'layouts/add_advanced_search' %>
+<div id="advanced-search" class="col-md-8 col-sm-9 center-block text-center">
   <%= form_tag(nearby_spots_path, method: "get") do %>
+    <%= render 'layouts/add_a_date' %>
+    <%= render 'layouts/hide_a_date' %>
     <div class="form-group">
-      <%= label_tag :beginning_time, "Start Time" %>
-      <% if params[:listing] && params[:listing]["beginning_time(1i)"] %>
-        <%= datetime_select("listing", "beginning_time", default: parse_time('beginning_time')) %>
-      <% else %>
-        <input type="text" data-provide='datepicker', name='listing[beginning_time]', placeholder="Start Date", required="required">
-      <% end %>
+      <%= label_tag :beginning_time, "Start Date", class: 'col-sm-2 control-label' %>
+      <div class="col-sm-6">
+        <% if params[:listing] && params["listing"]["beginning_time"] %>
+          <input type="text" data-provide='datepicker', name='listing[beginning_time]', placeholder="Start Date", value="<%= params['listing']['beginning_time'] %>" required="required">
+        <% else %>
+          <input type="text" data-provide='datepicker', name='listing[beginning_time]', placeholder="Start Date", required="required">
+        <% end %>
+      </div>
+      <%= select_tag "listing[beginning_time_of_day]", options_for_select(Listing.time_of_day_options) %>
     </div>
 
-    <a id="add-a-day">Multi-day?</a>
-    
     <div id="ending-time-form" class="form-group">
-      <%= label_tag :ending_time, "End Time" %>
-      <% if params[:listing] && params[:listing]["beginning_time(1i)"] %>
-        <%= datetime_select("listing", "ending_time", default: parse_time('ending_time')) %>
-      <% else %>
-        <input type="text" data-provide='datepicker', placeholder="End Date (optional)", name='listing[ending_time]'>
-      <% end %>
+      <%= label_tag :ending_time, "End Date", class: 'col-sm-2 control-label' %>
+      <div class="col-sm-6">
+        <% if params[:listing] && params[:listing]["ending_time"] %>
+          <input type="text" data-provide='datepicker', placeholder="End Date (optional)", name='listing[ending_time]', value="<%= params['listing']['ending_time'] %>">
+        <% else %>
+          <input type="text" data-provide='datepicker', placeholder="End Date (optional)", name='listing[ending_time]'>
+        <% end %>
+      </div>
+      <%= select_tag "listing[ending_time_of_day]", options_for_select(Listing.time_of_day_options) %> <br>
     </div>
 
     <div class="form-group">
-      <% if params[:price] %>
-      <%= text_field_tag("price", params[:price]) %>
-      <% else %>
-        <%= text_field_tag("price", nil, placeholder: "Max Price", class: 'form-control') %>
-      <% end %>
+      <%= label_tag :price, "Max Price", class: 'col-sm-2 control-label' %>
+      <div class="col-sm-6">
+        <% if params[:price] && params[:price] != "" %>
+        <%= text_field_tag("price", params[:price]) %>
+        <% else %>
+          <%= text_field_tag("price", nil, placeholder: "Max Price", class: 'form-control') %>
+        <% end %>
+      </div>
     </div>
     <%= hidden_field_tag "q", "#{params[:q]}" if params[:q] %>
     <%= hidden_field_tag "radius", "#{params[:radius]}" if params[:radius] %>

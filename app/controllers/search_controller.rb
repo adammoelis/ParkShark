@@ -77,7 +77,6 @@ class SearchController < ApplicationController
   end
 
   def parse_time_format(time)
-    binding.pry
     array_of_time = time.split("/")
     month = array_of_time[0]
     day = array_of_time[1]
