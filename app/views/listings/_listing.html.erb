@@ -1,6 +1,12 @@
 <div id="listing-<%= listing.id %>">
-  <h4><%= listing.beginning_time.strftime("%A, %b #{listing.beginning_time.day.ordinalize} %Y") %>  through  <%= listing.ending_time.strftime("%A, %b #{listing.ending_time.day.ordinalize} %Y") %></h4>
-  <h4><%= number_to_currency(listing.price, precision: 0) %></h4>
+  <% if listing.beginning_time != listing.ending_time %>
+    <h4>When: <%= listing.beginning_time.strftime("%A, %b #{listing.beginning_time.day.ordinalize} %Y") %>, <%= listing.beginning_time_of_day %>  through  <%= listing.ending_time.strftime("%A, %b #{listing.ending_time.day.ordinalize} %Y") %>, <%= listing.ending_time_of_day %></h4>
+  <% else %>
+    <h4>When: <%= listing.beginning_time.strftime("%A, %b #{listing.beginning_time.day.ordinalize} %Y") %>, <%= listing.beginning_time_of_day %> </h4>
+  <% end %>
+  <h4>Price: <%= number_to_currency(listing.price, precision: 0) %></h4>
+  <h4>Details: <%= listing.description %></h4>
+  <h4>MESSAGE BUTTON TO MESSAGE OR EMAIL USER FOR MORE INFO</h4>
 
   <% if !listing.available  %>
     <%= render partial: 'listings/already_reserved_button', locals: {spot: @spot, listing: listing} %>
@@ -8,7 +14,6 @@
       <p>Occupied by: <%= listing.reservation.visitor.email if listing.reservation%></p>
     <% end %>
   <% elsif current_user == listing.spot.owner %>
-    <%= render partial: 'listings/pending_button', locals: {spot: @spot, listing: listing} %>
     <%= render partial: 'listings/delete_listing_button', locals: {spot: @spot, listing: listing} %>
   <% else %>
     <%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} %>
