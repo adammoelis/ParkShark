@@ -2,21 +2,31 @@
   <div class="form-group">
     <%= f.label :beginning_time, 'Start Time', class: 'col-sm-2 control-label' %>
     <div class="col-sm-6">
-      <%= f.datetime_select :beginning_time, class: 'form-control', name: 'listing[beginning_time]'%>
+      <input type="text" data-provide='datepicker', name='listing[beginning_time]', required="required">
     </div>
+    <%= f.select :beginning_time_of_day, options_for_select(Listing.time_of_day_options) %>
   </div>
 
-  <div class="form-group">
+  <a id="add-a-day">Multi-day?</a>
+  <div id="ending-time-form" class="form-group", display="none">
     <%= f.label :ending_time, 'End Time', class: 'col-sm-2 control-label' %>
     <div class="col-sm-6">
-      <%= f.datetime_select :ending_time, class: 'form-control', name: 'listing[ending_time]'%>
+      <input type="text" data-provide='datepicker', name='listing[ending_time]'>
     </div>
+    <%= f.select :ending_time_of_day, options_for_select(Listing.time_of_day_options) %>
   </div>
 
   <div class="form-group">
     <%= f.label :price, 'Price ($)', class: 'col-sm-2 control-label' %>
     <div class="col-sm-6">
-        <%= f.text_field :price, :placeholder => '$20' %>
+        <%= f.text_field :price, :required => true, :placeholder => '$20' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, 'Details', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-6">
+        <%= f.text_field :description, :placeholder => 'Enter details' %>
     </div>
   </div>
 

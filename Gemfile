@@ -28,6 +28,7 @@ gem "omniauth-google-oauth2"
 # messaging
 gem "mailboxer"
 gem 'chosen-rails'
+gem 'bootstrap-datepicker-rails'
 
 # enable image uploads
 gem "paperclip", "~> 4.3"

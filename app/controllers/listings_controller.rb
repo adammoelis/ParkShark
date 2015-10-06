@@ -7,12 +7,15 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new
-    @listing.beginning_time = parse_time('beginning_time')
-    @listing.ending_time = parse_time('ending_time')
-    @listing.price = params[:listing][:price]
-    @listing.spot = @spot
-    @listing.available = true
+    @listing = Listing.new(description: params["listing"]["description"], beginning_time_of_day: params["listing"]["beginning_time_of_day"], beginning_time: parse_time_format(params['listing']['beginning_time']), price: params[:listing][:price], spot: @spot, available: true)
+    if params['listing']['ending_time'] != ""
+      @listing.ending_time = parse_time_format(params['listing']['ending_time'])
+      @listing.ending_time_of_day = params['listing']['ending_time_of_day']
+
+    else
+      @listing.ending_time = parse_time_format(params['listing']['beginning_time'])
+      @listing.ending_time_of_day = params['listing']['beginning_time_of_day']
+    end
     if @listing.save
       redirect_to spot_path(@spot)
     else
@@ -26,13 +29,12 @@ class ListingsController < ApplicationController
 
   private
 
-  def parse_time(type_of_time)
-    year = params["listing"]["#{type_of_time}(1i)"]
-    month = params["listing"]["#{type_of_time}(2i)"]
-    day = params["listing"]["#{type_of_time}(3i)"]
-    hour = params["listing"]["#{type_of_time}(4i)"]
-    minute = params["listing"]["#{type_of_time}(5i)"]
-    DateTime.parse("#{year}/#{month}/#{day} #{hour}:#{minute}")
+  def parse_time_format(time)
+    array_of_time = time.split("/")
+    month = array_of_time[0]
+    day = array_of_time[1]
+    year = array_of_time[2]
+    DateTime.parse("#{year}/#{month}/#{day}")
   end
 
   def find_spot

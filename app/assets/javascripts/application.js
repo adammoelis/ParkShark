@@ -37,11 +37,16 @@
 //= require messages
 //= require ImageSelect.jquery.js
 //= require gmaps-auto-complete
+//= require bootstrap-datepicker
 //= require_tree .
 
 $(function() {
-    $('.datetimepicker1').datetimepicker();
     getLocation()
+    $('#ending-time-form').hide()
+    $('#add-a-day').click(function(){
+      $('#ending-time-form').show()
+      $('#add-a-day').hide()
+    })
 });
 
 function getLocation() {
