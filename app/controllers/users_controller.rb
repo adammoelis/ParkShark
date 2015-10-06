@@ -13,8 +13,10 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:notice] = 'Your profile was updated successfully!'
+      redirect_to user_path(@user)
     else
       flash[:error] = 'Sorry, something went wrong when updating your profile.'
+      render 'users/edit'
     end
   end
 
