@@ -1,9 +1,8 @@
 class ReviewsController < ApplicationController
 
   def create
-    review = Review.new(review_params)
-    if review.save
-      redirect_to spot_path(params[:review][:spot_id])
+    @review = Review.new(review_params)
+    if @review.save
     else
     end
   end

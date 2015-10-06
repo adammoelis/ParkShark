@@ -1,4 +1,6 @@
-<h4><%= image_for_user(review.visitor, :thumb, 'img-super-small') %><%= link_to "#{review.visitor.name}", user_path(review.visitor) %></h4>
-<h4><%= review.rating %>/5 stars</h4>
-<p><%= review.body %></p>
-<p class="text-small"><%= review.created_at.strftime("%B #{review.created_at.day.ordinalize}, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</p>
+<div id="review-<%= review.id %>">
+  <h4><%= image_for_user(review.visitor, :thumb, 'img-super-small') %><%= link_to "#{review.visitor.name}", user_path(review.visitor) %></h4>
+  <h4><%= review.rating %>/5 stars</h4>
+  <p><%= review.body %></p>
+  <p class="text-small"><%= review.created_at.strftime("%B #{review.created_at.day.ordinalize}, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</p>
+</div>

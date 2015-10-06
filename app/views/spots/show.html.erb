@@ -105,8 +105,8 @@
 						</div>
 
 						<div class="card-block card-body">
-							<div class="col-md-9 center-block">
-								<% @spot.reviews.each do |review| %>
+							<div class="col-md-9 center-block reviews">
+								<% @spot.reviews.order('created_at DESC').each do |review| %>
 									<%= render partial: 'review', locals: {review: review} %>
 								<% end %>
 							</div>
@@ -114,7 +114,7 @@
 					</div><!-- /.card -->
 				</div>
 
-				<% if user_signed_in? && current_user %>
+				<% if user_signed_in? && current_user != @spot.owner %>
 					<div class="row">
 						<div class="card rounded">
 							<div class="card-block">
