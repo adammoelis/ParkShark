@@ -1,4 +1,9 @@
-<%= render "purchase_form" %>
+<% content_for :page_title do %>Purchase Information<% end %>
+<% content_for :page_header do %>Edit Purchase Information<% end %>
+<% content_for :page_content do %>
+  <%= render 'purchase_form' %>
+<% end %>
+<%= render 'layouts/page_layout' %>
 
 <script>
   braintree.setup("<%= j @token %>", 'dropin', {
