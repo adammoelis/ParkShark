@@ -3,6 +3,10 @@ class MessagesController < ApplicationController
 
   def new
     @chosen_recipient = User.find_by(id: params[:to].to_i) if params[:to]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
