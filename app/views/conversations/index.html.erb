@@ -27,7 +27,7 @@
                 <% end %>
               </ul>
               <% if @box == 'trash' && !@conversations.empty? %>
-                <p><%= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn btn-small', method: :delete,
+                <p><%= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn btn-default', method: :delete,
                                data: {confirm: 'Are you sure?'} %></p>
               <% end %>
 
