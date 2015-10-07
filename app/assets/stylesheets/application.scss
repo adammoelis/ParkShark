@@ -86,12 +86,32 @@
   text-align: center;
 }
 
+.modal {
+  margin: 0 auto;
+}
+
+.modal h2 {
+  color: #fff;
+}
+
 .modal-body {
   padding: 20px;
 }
 
-.modal {
-  margin: 100px auto 0 auto;
+.modal-content {
+  background: #fafafa;
+}
+
+.modal-header, .modal-footer {
+  background: #34495e;
+}
+
+.modal-header {
+  border-bottom: solid #000 1px;
+}
+
+.modal-footer {
+  border-top: solid #000 1px;
 }
 
 input[type='submit'] {

@@ -1,5 +1,5 @@
-<% content_for :modal_header do %>Send a Message<% end %>
-<% content_for :modal_body do %>
+<% content_for :modal_header do %>Log In<% end %>
+<% content_for :modal_content do %>
   <%= render 'form' %>
 <% end %>
 $("#modal-window").html("<%= j render 'layouts/modal_layout' %>");
