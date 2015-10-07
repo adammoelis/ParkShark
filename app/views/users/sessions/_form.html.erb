@@ -6,12 +6,12 @@
 
     <div class="field">
       <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+      <%= f.email_field :email, autofocus: true, class: 'form-control', required: true %>
     </div>
 
     <div class="field">
       <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control', required: true %>
     </div>
     <%= link_to "Forgot your password?", new_password_path(resource_name) %>
 
