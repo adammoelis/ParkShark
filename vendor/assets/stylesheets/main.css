@@ -2602,6 +2602,7 @@ blockquote:before {
 .items.col-3 {
     margin-left: -8px;
     margin-bottom: -8px;
+    overflow: visible !important;
 }
 .items.col-3 li {
     width: 318px;
@@ -4626,6 +4627,7 @@ input:focus:-ms-input-placeholder {
 	.items.col-3 {
 	    margin-left: -9px;
 	    margin-bottom: -9px;
+      overflow: visible !important;
 	}
 	.items.col-3 li {
 	    width: 384px;
@@ -5286,6 +5288,7 @@ input:focus:-ms-input-placeholder {
 	.items.col-3 {
 	    margin-left: -9px;
 	    margin-bottom: -9px;
+      overflow: visible !important;
 	}
 	.items.col-3 li {
 	    width: 234px;
