@@ -1,4 +1,4 @@
-.round-image-50 {
+.header-user-image {
   background-color: white;
   border: 1px solid #d9d9d9;
   border-radius: 25px;
@@ -9,6 +9,8 @@
   overflow: hidden;
   text-align: center;
   img { width: 100%; }
+  position: relative;
+  top: 2.5px;
 }
 
 .thumb-img {
