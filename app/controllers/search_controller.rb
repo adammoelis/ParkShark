@@ -17,14 +17,7 @@ class SearchController < ApplicationController
     else
       @spots = Spot.near(current_location, Spot.default_search_distance)
     end
-    binding.pry
     @spots = Search.for(@spots, start_time_filter, end_time_filter, price_filter, beginning_time_of_day_filter, ending_time_of_day_filter)
-    # if price_filter && start_time_filter && end_time_filter
-    #   @spots = filter_price(@spots, price_filter, start_time_filter, end_time_filter)
-    # elsif start_time_filter && end_time_filter
-    #   @spots = filter_time(@spots, start_time_filter, end_time_filter)
-    # end
-
     @spots = sort(@spots, sort_type) if sort_type
     @title = 'Nearby Parking Spots'
     @subtitle = 'The nearest parking spots are below!'
@@ -33,7 +26,7 @@ class SearchController < ApplicationController
   private
 
   def spots_with_listings(spots_array)
-    @spots.select{|spot| spot.available_listings.size > 0}
+      spots_array.select{|spot| spot.available_listings.size > 0}
   end
 
   def current_location

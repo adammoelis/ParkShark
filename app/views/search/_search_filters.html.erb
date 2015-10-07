@@ -17,7 +17,6 @@
       <% else %>
         <%= select_tag "listing[beginning_time_of_day]", options_for_select(Listing.time_of_day_options) %>
       <% end %>
-
     </div>
 
     <div id="ending-time-form" class="form-group">
@@ -29,7 +28,11 @@
           <input type="text" data-provide='datepicker', placeholder="End Date (optional)", name='listing[ending_time]'>
         <% end %>
       </div>
-      <%= select_tag "listing[ending_time_of_day]", options_for_select(Listing.time_of_day_options) %> <br>
+      <% if params[:listing] && params["listing"]["beginning_time"] %>
+        <%= select_tag "listing[ending_time_of_day]", options_for_select(Listing.time_of_day_options, :selected => params['listing']['ending_time_of_day']) %>
+      <% else %>
+        <%= select_tag "listing[ending_time_of_day]", options_for_select(Listing.time_of_day_options) %>
+      <% end %>
     </div>
 
     <div class="form-group">
