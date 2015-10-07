@@ -5,9 +5,11 @@
       <div class="col-sm-6 inner-top-sm">
         <figure>
 
-          <div class="icon-overlay icn-link">
-            <a href="portfolio-post.html"><img src="<%= spot.pictures.first.picture.url(:large) %>" alt=""></a>
-          </div><!-- /.icon-overlay -->
+          <% if spot.pictures.first %>
+            <div class="icon-overlay icn-link">
+              <a href="portfolio-post.html"><img src="<%= spot.pictures.first.picture.url(:large) %>" alt=""></a>
+            </div><!-- /.icon-overlay -->
+          <% end %>
 
           <figcaption class="bordered no-top-border">
             <div class="info">

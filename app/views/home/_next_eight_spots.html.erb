@@ -12,7 +12,9 @@
                   <p> <%= spot.city %>, <%= spot.state %></p>
                 </div><!-- /.info -->
               </figcaption>
+              <% if spot.pictures.first %>
               <img src="<%= spot.pictures.first.picture.url(:medium) %>" alt="">
+              <% end %>
             </figure>
           </a>
         </div><!-- /.item -->
