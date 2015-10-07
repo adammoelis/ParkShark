@@ -1,5 +1,5 @@
-<div class="modal-body">
-  <%= form_tag messages_path, method: :post, remote: true do %>
+<%= form_tag messages_path, method: :post, remote: true do %>
+  <div class="modal-body">
     <div class="form-group">
       <%= label_tag 'message[subject]', 'Subject' %>
       <%= text_field_tag 'message[subject]', nil, cols: 3, class: 'form-control', required: true %>
@@ -11,15 +11,15 @@
     </div>
 
     <div class="form-group">
-      <%= label_tag 'recipients', 'Recipient' %><br>
+      <%= label_tag 'recipient', 'Recipient' %><br>
+      <%= hidden_field_tag 'message[recipient]', @chosen_recipient.id %>
       <%= image_for_user(@chosen_recipient, :thumb, 'img-super-small') %>
       <%= @chosen_recipient.name %>
-      <%= hidden_field_tag 'recipient', value: @chosen_recipient, class: 'form-control' %>
     </div>
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
     <%= submit_tag 'Send Message', class: 'btn btn-default' %>
   </div>
 <% end %>

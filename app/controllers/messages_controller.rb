@@ -11,11 +11,12 @@ class MessagesController < ApplicationController
   end
 
   def create
-    recipients = User.where(id: params['recipients'])
+    recipients = User.where(id: params[:message][:recipient])
     conversation = current_user.send_message(recipients, params[:message][:body], params[:message][:subject]).conversation
-    flash[:notice] = "Your message has been sent!"
+    flash[:modal_success] = "Your message has been sent!"
 
     respond_to do |format|
+      format.html
       format.js
     end
   end
