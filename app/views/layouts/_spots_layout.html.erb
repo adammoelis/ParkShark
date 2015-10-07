@@ -22,10 +22,10 @@
         <div class="col-sm-12 portfolio">
           <ul class="filter text-center">
             <li><a href="#" data-filter="*" class="active">All</a></li>
-            <li><a href="#" data-filter=".reserved">Reserved</a></li>
-            <li><a href="#" data-filter=".available">Available</a></li>
-            <li><a href="#" data-filter=".photography">Sports</a></li>
-            <li><a href="#" data-filter=".print">Other</a></li>
+            <li><a href="#" data-filter=".<%= Spot.types_of_spots[0] %>"><%= Spot.types_of_spots[0] %></a></li>
+            <li><a href="#" data-filter=".<%= Spot.types_of_spots[1] %>"><%= Spot.types_of_spots[1] %></a></li>
+            <li><a href="#" data-filter=".<%= Spot.types_of_spots[2] %>"><%= Spot.types_of_spots[2] %></a></li>
+            <li><a href="#" data-filter=".<%= Spot.types_of_spots[3] %>"><%= Spot.types_of_spots[3] %></a></li>
           </ul><!-- /.filter -->
           <ul class="items col-3 gap">
 
