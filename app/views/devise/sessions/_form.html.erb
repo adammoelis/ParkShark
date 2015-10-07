@@ -1,7 +1,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="modal-body">
-    <%= render 'devise/registrations/facebook_sign_in' %>
-    <%= render 'devise/registrations/google_sign_in' %>
+    <%= render 'devise/registrations/facebook_sign_in_button' %>
+    <%= render 'devise/registrations/google_sign_in_button' %>
     <%= link_to "Forgot your password?", new_password_path(resource_name) %>
     <p id="or-message">OR</p>
 
@@ -23,7 +23,7 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Log in", class: "btn btn-default", style: "width:100%;" %>
+      <%= f.submit "Sign in", class: "btn btn-default", style: "width:100%;" %>
     </div>
   </div>
 

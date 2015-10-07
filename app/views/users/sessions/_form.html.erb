@@ -1,8 +1,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="modal-body">
-    <%= render 'devise/registrations/facebook_sign_in' %>
-    <%= render 'devise/registrations/google_sign_in' %>
-    <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+    <%= render 'facebook_sign_in_button' %>
+    <%= render 'google_sign_in_button' %>
     <p id="or-message">OR</p>
 
     <div class="field">
@@ -14,6 +13,7 @@
       <%= f.label :password %>
       <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
     </div>
+    <%= link_to "Forgot your password?", new_password_path(resource_name) %>
 
     <% if devise_mapping.rememberable? %>
       <div class="field">
@@ -23,7 +23,7 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Log in", class: "btn btn-default", style: "width:100%;" %>
+      <%= f.submit "Sign in with email", class: "btn btn-default", style: "width:100%;" %>
     </div>
   </div>
 

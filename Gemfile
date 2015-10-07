@@ -32,6 +32,8 @@ gem 'bootstrap-datepicker-rails'
 
 # enable image uploads
 gem "paperclip", "~> 4.3"
+# used to get rid of omniauth errors when saving images using URI.parse(image_url)
+gem 'open_uri_redirections'
 gem 'geocoder'
 gem 'maskedinput-rails'
 # Use jquery as the JavaScript library

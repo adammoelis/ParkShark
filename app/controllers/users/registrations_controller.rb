@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Welcome! You have signed up successfully." }
+      format.html { redirect_to root_path, notice: "Welcome! You have joined successfully." }
       format.js
     end
   end
