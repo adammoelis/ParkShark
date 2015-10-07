@@ -42,6 +42,13 @@
   </div>
 
   <div class="form-group">
+      <%= f.label :type_of_spot, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-9">
+      <%= f.select :type_of_spot, options_for_select(Spot.types_of_spots) %>
+    </div>
+  </div>
+
+  <div class="form-group">
       <%= f.label :description, class: 'col-sm-2 control-label'  %>
       <div class="col-sm-9">
           <%= f.text_area :description, class: 'form-control', :placeholder => "Share some things about your spot" %>
