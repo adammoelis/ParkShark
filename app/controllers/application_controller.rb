@@ -36,4 +36,12 @@ class ApplicationController < ActionController::Base
   def current_user?
     current_user.id == @user.id
   end
+
+  def current_location
+    if current_user
+      [current_user.latitude, current_user.longitude]
+    else
+      [session[:latitude], session[:longitude]]
+    end
+  end
 end
