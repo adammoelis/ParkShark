@@ -1,6 +1,6 @@
 <%= form_for @spot, html: { class: 'form-horizontal', multipart: true } do |f| %>
   <div class="form-group">
-      <%= f.label :pictures, class: 'col-sm-2 control-label'  %>
+        <%= f.label :pictures, class: 'col-sm-2 control-label'  %>
       <div class="col-sm-9">
           <%= f.file_field :pictures, type: :file, multiple: true, name: "pictures[]" %>
       </div>
@@ -8,7 +8,7 @@
 
   <div class="form-group">
       <%= f.label :title, class: 'col-sm-2 control-label' %>
-      <div class="col-sm-9">
+        <div class="col-sm-9">
       <%= f.text_field :title, :placeholder => 'Title of listing' %>
     </div>
   </div>
@@ -16,8 +16,8 @@
   <div class="form-group">
       <%= f.label :address, class: 'col-sm-2 control-label' %>
       <div class="col-sm-9">
-      <%= f.text_field :address, :placeholder => '123 Parking LN - This won\'t be public' %>
-    </div>
+        <%= f.text_field :address, :placeholder => '123 Parking LN - This won\'t be public' %>
+      </div>
   </div>
 
   <div class="form-group">
