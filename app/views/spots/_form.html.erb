@@ -30,8 +30,8 @@
   <div class="form-group">
       <%= f.label :state, class: 'col-sm-2 control-label' %>
       <div class="col-sm-9">
-      <%= select_tag 'spot[state]', options_for_select(us_states) %>
-    </div>
+        <%= f.select :state, options_for_select(us_states) %>
+      </div>
   </div>
 
   <div class="form-group">

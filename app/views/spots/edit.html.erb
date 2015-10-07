@@ -1,2 +1,6 @@
-<h1>Edit Spot</h1>
-<%= render 'form' %>
+<% content_for :page_title do %>Edit your parking spot<% end %>
+<% content_for :page_header do %>Edit your parking spot<% end %>
+<% content_for :page_content do %>
+  <%= render 'form' %>
+<% end %>
+<%= render 'layouts/page_layout' %>
