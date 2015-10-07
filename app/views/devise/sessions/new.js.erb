@@ -1,0 +1,6 @@
+alert('What');
+<% content_for :modal_header do %>Log In<% end %>
+<% content_for :modal_content do %>
+  <%= render 'form' %>
+<% end %>
+$("#modal-window").html("<%= j render 'layouts/modal_layout' %>");

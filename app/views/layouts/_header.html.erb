@@ -65,8 +65,8 @@
 								</ul><!-- /.dropdown-menu -->
 							</li><!-- /.dropdown -->
 						<% else %>
-							<li><%= link_to "Log in", new_session_path(resource_name) %></li>
-							<li><%= link_to "Sign up", new_registration_path(resource_name) %></li>
+							<li><%= link_to "Log in", new_session_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window'} %></li>
+							<li><%= link_to "Sign up", new_registration_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window'} %></li>
 						<% end %>
 					</ul>
 

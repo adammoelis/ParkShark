@@ -43,6 +43,7 @@
 									<h4><%= image_for_user(@spot.owner, :thumb, 'img-super-small') %> Posted by <%= link_to "#{@spot.owner.name}", user_path(@spot.owner) %></h4>
 									<%= @spot.city %>, <%= @spot.state %><br>
 									Zip Code: <%= @spot.zip_code %><br>
+									Type: <%= @spot.type_of_spot %>
 								</p>
 								<p class="text-small"><%= @spot.description %></p>
 							</div>
@@ -58,7 +59,7 @@
 						</div>
 
 						<div class="card-block card-body no-padding">
-							<iframe id="map" width="100%" height="600px" class="center-block" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_KEY'] %>&q=<%= @spot.full_address %>&maptype=satellite" allowfullscreen></iframe>
+							<iframe id="map" width="100%" height="600px" class="center-block" frameborder="0" style="border:0" src='https://www.google.com/maps/embed/v1/view?key=<%= ENV['GOOGLE_KEY'] %>&center=<%= "#{@spot.latitude}, #{@spot.longitude}" %>&zoom=18&maptype=roadmap' allowfullscreen></iframe>
 						</div>
 					</div><!-- /.card -->
 				</div>

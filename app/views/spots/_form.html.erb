@@ -16,7 +16,7 @@
   <div class="form-group">
       <%= f.label :address, class: 'col-sm-2 control-label' %>
       <div class="col-sm-9">
-      <%= f.text_field :address, :placeholder => '123 Parking LN' %>
+      <%= f.text_field :address, :placeholder => '123 Parking LN - This won\'t be public' %>
     </div>
   </div>
 
@@ -38,6 +38,13 @@
       <%= f.label :zip_code, class: 'col-sm-2 control-label' %>
       <div class="col-sm-9">
       <%= f.text_field :zip_code, :placeholder => '10001' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :type_of_spot, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-9">
+      <%= f.select :type_of_spot, options_for_select(Spot.types_of_spots) %>
     </div>
   </div>
 

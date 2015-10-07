@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
-  devise_for :users, controllers: { sessions: "users/sessions", omniauth_callbacks: "omniauth_callbacks" }
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: 'users/registrations', omniauth_callbacks: "omniauth_callbacks" }
 
   resources :purchases
 
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get 'nearby-parking', to: 'search#nearby', as: 'nearby_spots'
   get 'users/purchase_information/:id', to: 'users#purchase_information', as: 'purchase_information'
   patch 'users/update_purchase_information/:id', to: 'users#update_purchase_information', as: 'update_purchase_information'
-  
+
   resources :reservations
   resources :transactions
   resources :reviews

@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActiveRecord::RecordNotFound do
-    flash[:warning] = 'Resource not found.'
+    flash[:error] = 'Resource not found.'
     redirect_back_or root_path
   end
 
@@ -35,5 +35,13 @@ class ApplicationController < ActionController::Base
 
   def current_user?
     current_user.id == @user.id
+  end
+
+  def current_location
+    if current_user
+      [current_user.latitude, current_user.longitude]
+    else
+      [session[:latitude], session[:longitude]]
+    end
   end
 end

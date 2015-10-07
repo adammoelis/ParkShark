@@ -1,117 +1,24 @@
-<div class="row inner-top-sm">
-  <div id="owl-latest-works" class="owl-carousel owl-item-gap">
+<% if @last_8_spots %>
+  <div class="row inner-top-sm">
+    <div id="owl-latest-works" class="owl-carousel owl-item-gap">
 
-    <div class="item">
-      <a href="portfolio-post.html">
-        <figure>
-          <figcaption class="text-overlay">
-            <div class="info">
-              <h4> <%= @spots[2].title %></h4>
-              <p> <%= @spots[2].city %>, <%= @spots[2].state %></p>
-            </div><!-- /.info -->
-          </figcaption>
-          <img src="<%= @spots[2].pictures.first.picture.url(:medium) %>" alt="">
-        </figure>
-      </a>
-    </div><!-- /.item -->
-
-    <div class="item">
-      <a href="portfolio-post.html">
-        <figure>
-          <figcaption class="text-overlay">
-            <div class="info">
-              <h4> <%= @spots[3].title %></h4>
-              <p> <%= @spots[3].city %>, <%= @spots[3].state %></p>
-            </div><!-- /.info -->
-          </figcaption>
-          <img src="<%= @spots[3].pictures.first.picture.url(:medium) %>" alt="">
-        </figure>
-      </a>
-    </div><!-- /.item -->
-
-    <div class="item">
-      <a href="portfolio-post.html">
-        <figure>
-          <figcaption class="text-overlay">
-            <div class="info">
-              <h4> <%= @spots[4].title %></h4>
-              <p> <%= @spots[4].city %>, <%= @spots[4].state %></p>
-            </div><!-- /.info -->
-          </figcaption>
-          <img src="<%= @spots[4].pictures.first.picture.url(:medium) %>" alt="">
-        </figure>
-      </a>
-    </div><!-- /.item -->
-
-    <div class="item">
-      <a href="portfolio-post.html">
-        <figure>
-          <figcaption class="text-overlay">
-            <div class="info">
-              <h4> <%= @spots[5].title %></h4>
-              <p> <%= @spots[5].city %>, <%= @spots[5].state %></p>
-            </div><!-- /.info -->
-          </figcaption>
-          <img src="<%= @spots[5].pictures.first.picture.url(:medium) %>" alt="">
-        </figure>
-      </a>
-    </div><!-- /.item -->
-
-    <div class="item">
-      <a href="portfolio-post.html">
-        <figure>
-          <figcaption class="text-overlay">
-            <div class="info">
-              <h4> <%= @spots[6].title %></h4>
-              <p> <%= @spots[6].city %>, <%= @spots[6].state %></p>
-            </div><!-- /.info -->
-          </figcaption>
-          <img src="<%= @spots[6].pictures.first.picture.url(:medium) %>" alt="">
-        </figure>
-      </a>
-    </div><!-- /.item -->
-
-    <div class="item">
-      <a href="portfolio-post.html">
-        <figure>
-          <figcaption class="text-overlay">
-            <div class="info">
-              <h4> <%= @spots[7].title %></h4>
-              <p> <%= @spots[7].city %>, <%= @spots[7].state %></p>
-            </div><!-- /.info -->
-          </figcaption>
-          <img src="<%= @spots[7].pictures.first.picture.url(:medium) %>" alt="">
-        </figure>
-      </a>
-    </div><!-- /.item -->
-
-    <div class="item">
-      <a href="portfolio-post.html">
-        <figure>
-          <figcaption class="text-overlay">
-            <div class="info">
-              <h4> <%= @spots[8].title %></h4>
-              <p> <%= @spots[8].city %>, <%= @spots[8].state %></p>
-            </div><!-- /.info -->
-          </figcaption>
-          <img src="<%= @spots[8].pictures.first.picture.url(:medium) %>" alt="">
-        </figure>
-      </a>
-    </div><!-- /.item -->
-
-    <div class="item">
-      <a href="portfolio-post.html">
-        <figure>
-          <figcaption class="text-overlay">
-            <div class="info">
-              <h4> <%= @spots[9].title %></h4>
-              <p> <%= @spots[9].city %>, <%= @spots[9].state %></p>
-            </div><!-- /.info -->
-          </figcaption>
-          <img src="<%= @spots[9].pictures.first.picture.url(:medium) %>" alt="">
-        </figure>
-      </a>
-    </div><!-- /.item -->
-
-  </div><!-- /.owl-carousel -->
-</div><!-- /.row -->
+      <% @last_8_spots.each do |spot| %>
+        <div class="item">
+          <a href="portfolio-post.html">
+            <figure>
+              <figcaption class="text-overlay">
+                <div class="info">
+                  <h4> <%= spot.title %></h4>
+                  <p> <%= spot.city %>, <%= spot.state %></p>
+                </div><!-- /.info -->
+              </figcaption>
+              <% if spot.pictures.first %>
+              <img src="<%= spot.pictures.first.picture.url(:medium) %>" alt="">
+              <% end %>
+            </figure>
+          </a>
+        </div><!-- /.item -->
+        <% end %>
+    </div><!-- /.owl-carousel -->
+  </div><!-- /.row -->
+<% end %>

@@ -1,6 +1,12 @@
 <div id="review-<%= review.id %>">
   <h4><%= image_for_user(review.visitor, :thumb, 'img-super-small') %><%= link_to "#{review.visitor.name}", user_path(review.visitor) %></h4>
-  <h4><%= review.rating %>/5 stars</h4>
+  <h4><% review.rating.times do %>
+          <i class="icon-star"></i>
+       <% end %>
+      <% review.blank_stars.times do %>
+        <i class="icon-star-empty"></i>
+       <% end %>
+  </h4>
   <p><%= review.body %></p>
   <p class="text-small"><%= review.created_at.strftime("%B #{review.created_at.day.ordinalize}, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</p>
   <%= render partial: 'reviews/delete_button', locals: {review: review} if review.visitor == current_user %>

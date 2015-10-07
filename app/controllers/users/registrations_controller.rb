@@ -1,11 +1,18 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+  # before_filter :configure_sign_up_params, only: [:create]
+  # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    build_resource({})
+    set_minimum_password_length
+    yield resource if block_given?
+
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "Welcome! You have signed up successfully." }
+      format.js
+    end
+  end
 
   # POST /resource
   # def create
