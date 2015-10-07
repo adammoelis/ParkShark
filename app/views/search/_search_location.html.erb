@@ -1,6 +1,6 @@
 <%= form_tag(nearby_spots_path, method: "get") do %>
   <%= text_field_tag(:q, nil, placeholder: "Los Angeles, CA or 90001", :required => true, class: 'form-control') %>
   <%= label_tag(:radius, "Radius in miles") %>
-  <%= select_tag(:radius, options_for_select(0..100), class: 'form-control') %>
+  <%= select_tag(:radius, options_for_select(0..100, selected: 5), class: 'form-control') %>
   <%= submit_tag("Find Parking", class: "btn btn-large" ) %>
 <% end %>
