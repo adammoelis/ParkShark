@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.name = auth.info.name
       user.avatar_file_name = auth.info.image
+      user.avatar_file_name = user.avatar_file_name.gsub("sz=50","sz=300") if auth.provider == "google_oauth2"
       user.email = auth.extra.raw_info.email if auth.extra.raw_info.email
       user.email = auth.info.email if auth.info.email
     end
