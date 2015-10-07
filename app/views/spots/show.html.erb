@@ -58,7 +58,7 @@
 						</div>
 
 						<div class="card-block card-body no-padding">
-							<iframe id="map" width="100%" height="600px" class="center-block" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_KEY'] %>&q=<%= @spot.full_address %>&maptype=satellite" allowfullscreen></iframe>
+							<iframe id="map" width="100%" height="600px" class="center-block" frameborder="0" style="border:0" src='https://www.google.com/maps/embed/v1/view?key=<%= ENV['GOOGLE_KEY'] %>&center=<%= "#{@spot.latitude}, #{@spot.longitude}" %>&zoom=18&maptype=roadmap' allowfullscreen></iframe>
 						</div>
 					</div><!-- /.card -->
 				</div>
