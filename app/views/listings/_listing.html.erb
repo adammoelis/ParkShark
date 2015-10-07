@@ -17,5 +17,6 @@
     <%= render partial: 'listings/delete_listing_button', locals: {spot: @spot, listing: listing} %>
   <% else %>
     <%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} %>
+    <%= render partial: 'messages/message_button', locals: {user: @spot.owner} %>
   <% end %>
 </div>
