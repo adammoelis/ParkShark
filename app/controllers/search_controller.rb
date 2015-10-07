@@ -2,8 +2,10 @@ class SearchController < ApplicationController
   def nearby
     sort_type = params[:sort_type] if params[:sort_type]
     start_time_filter = parse_time_format(params['listing']['beginning_time']) if params[:listing]
+    beginning_time_of_day_filter = params['listing']['beginning_time_of_day'] if params[:listing]
     if params['listing'] && params['listing']['ending_time'] != ""
       end_time_filter = parse_time_format(params['listing']['ending_time'])
+      ending_time_of_day_filter = params['listing']['ending_time_of_day']
     elsif start_time_filter
       end_time_filter = start_time_filter
     end
@@ -15,12 +17,13 @@ class SearchController < ApplicationController
     else
       @spots = Spot.near(current_location, Spot.default_search_distance)
     end
-
-    if price_filter && start_time_filter && end_time_filter
-      @spots = filter_price(@spots, price_filter, start_time_filter, end_time_filter)
-    elsif start_time_filter && end_time_filter
-      @spots = filter_time(@spots, start_time_filter, end_time_filter)
-    end
+    binding.pry
+    @spots = Search.for(@spots, start_time_filter, end_time_filter, price_filter, beginning_time_of_day_filter, ending_time_of_day_filter)
+    # if price_filter && start_time_filter && end_time_filter
+    #   @spots = filter_price(@spots, price_filter, start_time_filter, end_time_filter)
+    # elsif start_time_filter && end_time_filter
+    #   @spots = filter_time(@spots, start_time_filter, end_time_filter)
+    # end
 
     @spots = sort(@spots, sort_type) if sort_type
     @title = 'Nearby Parking Spots'

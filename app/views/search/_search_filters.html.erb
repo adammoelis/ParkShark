@@ -12,7 +12,12 @@
           <input type="text" data-provide='datepicker', name='listing[beginning_time]', placeholder="Start Date", required="required">
         <% end %>
       </div>
-      <%= select_tag "listing[beginning_time_of_day]", options_for_select(Listing.time_of_day_options) %>
+      <% if params[:listing] && params["listing"]["beginning_time"] %>
+        <%= select_tag "listing[beginning_time_of_day]", options_for_select(Listing.time_of_day_options, :selected => params['listing']['beginning_time_of_day']) %>
+      <% else %>
+        <%= select_tag "listing[beginning_time_of_day]", options_for_select(Listing.time_of_day_options) %>
+      <% end %>
+
     </div>
 
     <div id="ending-time-form" class="form-group">

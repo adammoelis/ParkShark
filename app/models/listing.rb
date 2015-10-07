@@ -29,4 +29,20 @@ class Listing < ActiveRecord::Base
       false
     end
   end
+
+  def is_available_on(start_time)
+    if self.beginning_time == start_time
+      true
+    else
+      false
+    end
+  end
+
+  def is_available_at_time_of_day(time_of_day)
+    if self.beginning_time_of_day == time_of_day
+      true
+    else
+      false
+    end
+  end
 end
