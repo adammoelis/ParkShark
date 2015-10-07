@@ -4,7 +4,7 @@ class SpotsController < ApplicationController
   before_action :find_spot, only: [:show]
 
   def index
-    @spots = Spot.all.page(params[:page])
+    @spots = Spot.order("title").page(params[:page]).per_page(12)
   end
 
   def new

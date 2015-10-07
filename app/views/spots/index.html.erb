@@ -2,7 +2,7 @@
 	<% content_for :page_header do %>Your Car Needs A Home<% end %>
 	<% content_for :page_subheader do %>Browse available parking spots below!<% end %>
 	<% content_for :page_content do %>
-	  <%= will_paginate @spots %>
+	  <%= render @spots %>
 	<% end %>
 	<% content_for :searching do %>
 		<%= render 'spots/spots_search' %>
