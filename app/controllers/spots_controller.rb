@@ -34,6 +34,9 @@ class SpotsController < ApplicationController
 
   def edit
     @spot = Spot.find(params[:id])
+    if current_user != @spot.owner
+      redirect_to root_path
+    end
   end
 
   def update
