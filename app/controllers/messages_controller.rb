@@ -12,8 +12,11 @@ class MessagesController < ApplicationController
 
   def create
     recipients = User.where(id: params[:message][:recipient])
-    conversation = current_user.send_message(recipients, params[:message][:body], params[:message][:subject]).conversation
-    flash[:modal_success] = "Your message has been sent!"
+    if conversation = current_user.send_message(recipients, params[:message][:body], params[:message][:subject]).conversation
+      flash[:modal_success] = "Your message has been sent!"
+    else
+      flash[:modal_error] = "Sorry, there was a problem while sending your message."
+    end
 
     respond_to do |format|
       format.html

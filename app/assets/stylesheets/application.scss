@@ -39,7 +39,7 @@
   background: #fafafa;
   border-bottom: solid #ebebeb 1px;
 }
-.flash-error {
+.flash-error, .modal-flash-error {
   color: #fa6c65;
 }
 .flash-success, .modal-flash-success {
@@ -127,4 +127,8 @@ input[type='submit'] {
 
 .bold {
   font-weight: bold;
+}
+
+.gauge-loader {
+  margin-top: 10px;
 }

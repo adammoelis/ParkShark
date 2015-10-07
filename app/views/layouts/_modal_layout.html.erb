@@ -9,6 +9,7 @@
  </div><!-- /.modal-dialog -->
 
 <script type="text/javascript">
+  // scroll effect
   $('.modal-body').scroll(function() {
      var scroll = $('.modal-body').scrollTop();
      if (scroll > 0) {
@@ -16,5 +17,10 @@
      } else {
        $('.modal-header').removeClass('modal-shadow');
      }
+  });
+
+  // loading bar
+  $('form').submit(function() {
+    $('.modal-footer').prepend('<div class="gauge-loader pull-left"></div>');
   });
 </script>
