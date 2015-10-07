@@ -30,7 +30,8 @@
   <div class="form-group">
       <%= f.label :state, class: 'col-sm-2 control-label' %>
       <div class="col-sm-9">
-        <%= f.select :state, options_for_select(us_states) %>
+        <%= f.select :state, options_for_select(us_states) if !@spot.state%>
+        <%= f.select :state, options_for_select(us_states, selected: @spot.state)  if @spot.state%>
       </div>
   </div>
 
@@ -56,11 +57,9 @@
   </div>
 
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-9">
-      <div class="pull-right">
+    <div class="col-sm-offset-2 col-sm-9">    
         <%= link_to "Back", :back, class: 'btn btn-default' %>
         <%= f.submit class: 'btn btn-default', id: 'create-spot' %>
-      </div>
     </div>
   </div>
 <% end %>
