@@ -9,7 +9,7 @@ class PurchasesController < ApplicationController
       flash[:notice] = "Congrats! You just purchased #{@spot.title} for $#{@listing.price}"
       redirect_to spot_path(@spot)
     else
-      flash[:notice] = "Sorry, there was a problem. #{result.message}"
+      flash[:error] = "Sorry, there was a problem. #{result.message}"
       render 'reservations/new'
     end
   end

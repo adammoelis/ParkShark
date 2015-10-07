@@ -10,7 +10,12 @@ class SearchController < ApplicationController
       end_time_filter = start_time_filter
     end
     price_filter = params[:price] if params[:price] && params[:price].size > 0
-    @spots = Search.search_near(params[:q], params[:radius], current_location)
+    if current_location
+      @spots = Search.search_near(params[:q], params[:radius], current_location)
+    else
+      flash[:notice] = "Please enable location finding in your browser to see nearby spots"
+      @spots = Spot.all
+    end
     if @spots.length == 0
       flash[:error] = "Sorry, there are no spots that meet your requested information."
     else
