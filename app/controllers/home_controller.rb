@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @spots = Spot.last(10)
   end
 
   def about

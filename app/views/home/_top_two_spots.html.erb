@@ -1,0 +1,37 @@
+<div class="row">
+
+  <div class="col-sm-6 inner-top-sm">
+    <figure>
+
+      <div class="icon-overlay icn-link">
+        <a href="portfolio-post.html"><img src="<%= @spots[0].pictures.first.picture.url(:large) %>" alt=""></a>
+      </div><!-- /.icon-overlay -->
+
+      <figcaption class="bordered no-top-border">
+        <div class="info">
+          <h3><a href=" <%= spot_path(@spots[0]) %>"> <%= @spots[0].title %></a></h3>
+          <p> <%= @spots[0].city %>, <%= @spots[0].state %></p>
+        </div><!-- /.info -->
+      </figcaption>
+
+    </figure>
+  </div><!-- /.col -->
+
+  <div class="col-sm-6 inner-top-sm">
+    <figure>
+
+      <div class="icon-overlay icn-link">
+        <a href="portfolio-post.html"><img src="<%= @spots[1].pictures.first.picture.url(:large) %>" alt=""></a>
+      </div><!-- /.icon-overlay -->
+
+      <figcaption class="bordered no-top-border">
+        <div class="info">
+          <h3><a href=" <%= spot_path(@spots[1]) %>"> <%= @spots[1].title %></a></h3>
+          <p> <%= @spots[1].city %>, <%= @spots[1].state %></p>
+        </div><!-- /.info -->
+      </figcaption>
+
+    </figure>
+  </div><!-- /.col -->
+
+</div><!-- /.row -->
