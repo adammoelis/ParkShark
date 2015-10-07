@@ -35,5 +35,10 @@
 				</div><!-- /.col -->
 			</div><!-- /.row -->
 		</div><!-- /.container -->
+    <% if @spots.length != 0 %>
+      <div class="pagination_box">
+        <%= will_paginate @spots %>
+      </div>
+    <% end %>
 	</section>
 </main>

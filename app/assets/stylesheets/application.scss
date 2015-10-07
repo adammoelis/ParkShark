@@ -125,6 +125,17 @@ input[type='submit'] {
   width: auto;
 }
 
+.pagination_box {
+  width: 500px;
+  height: 82px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #eee;
+}
+
 .bold {
   font-weight: bold;
 }

@@ -11,8 +11,12 @@ class SearchController < ApplicationController
     end
     price_filter = params[:price] if params[:price] && params[:price].size > 0
     @spots = Search.search_near(params[:q], params[:radius], current_location)
-    @spots = Search.for(@spots, start_time_filter, end_time_filter, price_filter, beginning_time_of_day_filter, ending_time_of_day_filter)
-    @spots = Search.sort(@spots, sort_type, current_location) if sort_type
+    if @spots.length == 0
+      flash[:error] = "Sorry, there are no spots that meet your requested information."
+    else
+      @spots = Search.for(@spots, start_time_filter, end_time_filter, price_filter, beginning_time_of_day_filter, ending_time_of_day_filter).paginate(:page => params[:page], :per_page => 15)
+      @spots = Search.sort(@spots, sort_type, current_location).paginate(:page => params[:page], :per_page => 15) if sort_type
+    end
   end
 
   private
