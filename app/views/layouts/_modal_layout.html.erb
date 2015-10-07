@@ -7,3 +7,14 @@
      <%= yield :modal_body %>
    </div><!-- /.modal-content -->
  </div><!-- /.modal-dialog -->
+
+<script type="text/javascript">
+  $('.modal-body').scroll(function() {
+     var scroll = $('.modal-body').scrollTop();
+     if (scroll > 0) {
+       $('.modal-header').addClass('modal-shadow');
+     } else {
+       $('.modal-header').removeClass('modal-shadow');
+     }
+  });
+</script>
