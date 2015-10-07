@@ -49,7 +49,9 @@
     <%= hidden_field_tag "radius", "#{params[:radius]}" if params[:radius] %>
     <%= hidden_field_tag "sort_type", "#{params[:sort_type]}" if params[:sort_type] %>
     <div class="form-group">
-      <%= submit_tag("Find Parking", class: "btn btn-large" ) %>
+      <div class="col-sm-9">
+        <%= submit_tag("Find Parking", class: "btn btn-large btn-block btn-primary" ) %>
+      </div>
     </div>
   <% end %>
 </div>
