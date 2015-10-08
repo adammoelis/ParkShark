@@ -58,17 +58,18 @@ end
   )
 end
 
-50.times do
+200.times do
+  spot = Spot.all.sample.id
   Review.create(
     rating: [0, 1, 2, 3, 4, 5].sample,
     body:Faker::Lorem.paragraph,
-    spot_id: Spot.all.sample.id,
+    spot_id: spot.id,
     visitor_id: User.all.sample.id,
-    owner_id: User.all.sample.id
+    owner_id: spot.owner.id
   )
 end
 
-50.times do
+200.times do
   Listing.create(
     beginning_time:Faker::Date.between(2.days.ago, Date.today),
     ending_time: Faker::Date.forward(23),
