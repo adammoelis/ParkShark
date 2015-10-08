@@ -59,7 +59,7 @@ end
 end
 
 200.times do
-  spot = Spot.all.sample.id
+  spot = Spot.all.sample
   Review.create(
     rating: [0, 1, 2, 3, 4, 5].sample,
     body:Faker::Lorem.paragraph,
