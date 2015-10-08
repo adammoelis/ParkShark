@@ -7,7 +7,7 @@
 
           <% if spot.pictures.first %>
             <div class="icon-overlay icn-link">
-              <a href="portfolio-post.html"><img src="<%= spot.pictures.first.picture.url(:large) %>" alt=""></a>
+              <a href="<%= spot_path(spot) %>"><img src="<%= spot.pictures.first.picture.url(:large) %>" alt=""></a>
             </div><!-- /.icon-overlay -->
           <% end %>
 
