@@ -40,7 +40,7 @@
 							<div class="col-md-8 card-text">
 								<h2><%= @spot.title %></h2>
 								<p>
-									<h4><%= image_for_user(@spot.owner, :thumb, 'img-super-small') %> Posted by <%= link_to "#{@spot.owner.name}", user_path(@spot.owner) %></h4>
+									<h4><%= image_for_user(@spot.owner, :thumb, 'img-super-small rounded') %> Posted by <%= link_to "#{@spot.owner.name}", user_path(@spot.owner) %></h4>
 									<%= @spot.city %>, <%= @spot.state %><br>
 									Zip Code: <%= @spot.zip_code %><br>
 								</p>

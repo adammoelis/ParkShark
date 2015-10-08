@@ -13,7 +13,7 @@
     <div class="form-group">
       <%= label_tag 'recipient', 'Recipient' %><br>
       <%= hidden_field_tag 'message[recipient]', @chosen_recipient.id %>
-      <%= image_for_user(@chosen_recipient, :thumb, 'img-super-small') %>
+      <%= image_for_user(@chosen_recipient, :thumb, 'img-super-small rounded') %>
       <%= @chosen_recipient.name %>
     </div>
   </div>

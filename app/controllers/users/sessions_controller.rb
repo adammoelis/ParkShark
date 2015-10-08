@@ -8,7 +8,7 @@ class Users::SessionsController < Devise::SessionsController
     yield resource if block_given?
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Signed in successfully." }
+      format.html
       format.js
     end
   end

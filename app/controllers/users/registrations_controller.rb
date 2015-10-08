@@ -9,7 +9,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Welcome! You have joined successfully." }
+      flash[:error] = 'Sorry, that email is already in use'
+      format.html { redirect_to root_path }
       format.js
     end
   end
