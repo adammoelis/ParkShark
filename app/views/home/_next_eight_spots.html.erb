@@ -4,7 +4,7 @@
 
       <% @last_8_spots.each do |spot| %>
         <div class="item">
-          <a href="portfolio-post.html">
+          <a href="<%= spot_path(spot) %>">
             <figure>
               <figcaption class="text-overlay">
                 <div class="info">
