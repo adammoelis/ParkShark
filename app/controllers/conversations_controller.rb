@@ -23,7 +23,6 @@ class ConversationsController < ApplicationController
 
   def reply
     current_user.reply_to_conversation(@conversation, params[:body])
-    @receipt = @conversation.receipts_for(current_user).last
 
     respond_to do |format|
       format.html

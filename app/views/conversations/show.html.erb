@@ -45,11 +45,27 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('form').on('submit', function(e) {
+      // append reply immediately instead of waiting for ajax to process
       var message = $('textarea').val();
-      $('.messages').prepend("<%= j render 'fake_reply' %>");
-      $('.media-body').first().append(message);
+      $('.messages').append("<%= j render 'fake_reply' %>");
+      $('.media-body').last().append(message);
       e.stopPropagation;
-      $('textarea').val().hide();
+
+      // scroll to bottom of conversation on update
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight}, 1000);
+    });
+
+    // scroll to bottom of conversation on page_load
+    $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight}, 0);
+
+    // add shadow on scroll
+    $('.messages').scroll(function() {
+       var scroll = $('.messages').scrollTop();
+       if (scroll > 0) {
+         $('.conversation-header').addClass('modal-shadow');
+       } else {
+         $('.conversation-header').removeClass('modal-shadow');
+       }
     });
   });
 </script>
