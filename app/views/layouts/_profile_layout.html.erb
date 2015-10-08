@@ -7,7 +7,7 @@
 					<div class="card rounded head-card">
 						<div class="card-block">
 							<div class="col-md-4 text-center">
-				        <%= image_for_user @user, :medium, 'rounded' %>
+				        <%= image_for_user @user, :medium, 'medium-img rounded' %>
 								<% if user_signed_in? && current_user? %>
 									<%= link_to 'Edit Profile', edit_user_path, class: 'btn btn-default' %>
 								<% else %>
@@ -43,7 +43,7 @@
 
 						<div class="card-block card-body">
 							<% @user.reviews.each do |review| %>
-								<h3><%= image_for_user(review.visitor, :thumb, 'img-super-small') %><%= link_to "#{review.visitor.name}", user_path(review.visitor) %></h3>
+								<h3><%= image_for_user(review.visitor, :thumb, 'img-super-small rounded') %><%= link_to "#{review.visitor.name}", user_path(review.visitor) %></h3>
 								<h4><%= review.rating %>/5 stars</h4>
 								<p><%= review.body %></p>
 								<p class="text-small"><%= review.created_at.strftime("%B #{review.created_at.day.ordinalize}, %Y") %> (<%= time_ago_in_words(review.created_at) %> ago)</p>
@@ -68,20 +68,6 @@
 						</div>
 					</div><!-- /.card -->
 				</div>
-
-				<div class="row">
-					<div class="card rounded">
-						<div class="card-block">
-							<div class="toggle pull-right"><i class="fa fa-toggle-on"></i></div>
-							<h2 class="card-title">Vehicles</h2>
-						</div>
-
-						<div class="card-block card-body text-center">
-							<p><%= @user.name %> has not listed any vehicles</p>
-						</div>
-					</div><!-- /.card -->
-				</div>
-
 
 			</div><!-- /.center-block -->
 		</div> <!-- /.container -->

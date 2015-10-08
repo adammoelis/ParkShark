@@ -1,17 +1,17 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <div class="modal-body">
-    <%= render 'devise/registrations/facebook_sign_in' %>
-    <%= render 'devise/registrations/google_sign_in' %>
+    <%= render 'facebook_join_button' %>
+    <%= render 'google_join_button' %>
     <p id="or-message">OR</p>
 
     <div class="field">
       <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your first and last name' %>
+      <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your first and last name', required: true %>
     </div>
 
     <div class="field">
       <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control', placeholder: 'yourname@example.com' %>
+      <%= f.email_field :email, class: 'form-control', placeholder: 'yourname@example.com', required: true %>
     </div>
     <% if f.object.password_required? %>
       <div class="field">
@@ -19,17 +19,17 @@
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'password' %>
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'password', required: true %>
       </div>
 
       <div class="field">
         <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'confirm password' %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'confirm password', required: true %>
       </div>
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Sign up", class: "btn btn-default", style: "width:100%;" %>
+      <%= f.submit "Join with email", class: "btn btn-default", style: "width:100%;" %>
     </div>
   </div>
 

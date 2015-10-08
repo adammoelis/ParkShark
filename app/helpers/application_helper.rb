@@ -1,31 +1,13 @@
 module ApplicationHelper
-  def image_for_user(user, size = :thumb, css = "", title = user.name)
-    if user.avatar_content_type
-      image_tag user.avatar.url(size), title: title, class: css
-    elsif !user.avatar_file_name
-      image_tag user.avatar.url(size), title: title, class: css
-    else
-      if size == :thumb
-        image_tag user.avatar_file_name, title: title, class: css + " thumb-img"
-      else
-        image_tag user.avatar_file_name, title: title, class: css + " medium-img"
-      end
-    end
+  def image_for_user(user, size = :medium, css = nil, title = user.name)
+    image_tag user.avatar.url(size), title: title, class: css
   end
 
-  def image_for_spot(spot, size = :thumb, css = nil, title = spot.title)
-    if !spot.pictures.empty?
-      image_tag spot.pictures.first.picture.url(size), title: title, class: css
-    else
+  def image_for_spot(spot, size = :medium, css = nil, title = spot.title)
+    if spot.pictures.empty?
       image_tag '/images/medium/nophotos.jpg', title: title, class: css
-    end
-  end
-
-  def image_url_for(user, title = user.name)
-    if user.avatar
-      user.avatar.url(:thumb)
     else
-      user.avatar_file_name
+      image_tag spot.pictures.first.picture.url(size), title: title, class: css
     end
   end
 

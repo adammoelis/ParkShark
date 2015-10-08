@@ -23,12 +23,12 @@ class User < ActiveRecord::Base
   attr_accessor :street_address, :city, :state, :zip_code, :account_number, :routing_number
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid, name: auth.info.name, avatar_file_name: auth.info.image, email: auth.extra.raw_info.email).first_or_create do |user|
+    where(provider: auth.provider, uid: auth.uid, name: auth.info.name, email: auth.extra.raw_info.email).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
-      user.avatar_file_name = auth.info.image
-      user.avatar_file_name = user.avatar_file_name.gsub("sz=50","sz=300") if auth.provider == "google_oauth2"
+      user.avatar = URI.parse(auth.info.image.gsub('http', 'https')) if auth.provider == 'facebook'
+      user.avatar = URI.parse(auth.info.image.gsub("sz=50","sz=300")) if auth.provider == "google_oauth2"
       user.email = auth.extra.raw_info.email if auth.extra.raw_info.email
       user.email = auth.info.email if auth.info.email
     end

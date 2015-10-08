@@ -35,6 +35,7 @@ class SpotsController < ApplicationController
   def edit
     @spot = Spot.find(params[:id])
     if current_user != @spot.owner
+      flash[:error] = "You don't own that spot"
       redirect_to root_path
     end
   end

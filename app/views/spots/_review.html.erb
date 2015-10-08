@@ -1,5 +1,5 @@
 <div id="review-<%= review.id %>">
-  <h4><%= image_for_user(review.visitor, :thumb, 'img-super-small') %><%= link_to "#{review.visitor.name}", user_path(review.visitor) %></h4>
+  <h4><%= image_for_user(review.visitor, :thumb, 'img-super-small rounded') %><%= link_to "#{review.visitor.name}", user_path(review.visitor) %></h4>
   <h4><% review.rating.times do %>
           <i class="icon-star"></i>
        <% end %>

@@ -1,5 +1,9 @@
 <div class="modal-body text-center">
-  <div class="modal-flash-success"><%= flash[:modal_success] %></div>
+  <% if flash[:modal_success] %>
+    <div class="modal-flash-success"><%= flash[:modal_success] %></div>
+  <% elsif flash[:modal_error] %>
+    <div class="modal-flash-error"><%= flash[:modal_error] %></div>
+  <% end %>
 </div>
 
 <div class="modal-footer">

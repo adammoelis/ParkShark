@@ -72,5 +72,4 @@ class UsersController < ApplicationController
   def get_client_token
     Braintree::ClientToken.generate
   end
-
 end

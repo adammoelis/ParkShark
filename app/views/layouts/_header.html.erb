@@ -61,12 +61,12 @@
 									<li><%= link_to "My Spots", user_spots_path(current_user) %></li>
 									<li><%= link_to 'Edit Payment Info', purchase_information_path(current_user) %></li>
 									<li><%= link_to "Change Password", edit_user_registration_path %></li>
-									<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+									<li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
 								</ul><!-- /.dropdown-menu -->
 							</li><!-- /.dropdown -->
 						<% else %>
-							<li><%= link_to "Log in", new_session_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window'} %></li>
-							<li><%= link_to "Sign up", new_registration_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window'} %></li>
+							<li><%= link_to "Sign in", new_session_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window'} %></li>
+							<li><%= link_to "Join", new_registration_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window'} %></li>
 						<% end %>
 					</ul>
 
