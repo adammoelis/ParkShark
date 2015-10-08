@@ -14,22 +14,33 @@
   margin-bottom: 10px;
 }
 
-.panel-heading-shadow {
-  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
-  -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+.convo-heading-shadow {
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.3);
 }
 
-.panel-heading {
-  padding: 10px 10px 0 10px !important;
-  background: #34495e !important;
-  border-bottom: solid #2a3a4b 1px !important;
+.convo-heading {
+  padding: 10px 20px 0 20px;
+  background: #34495e;
+  border: solid #34495e 1px;
 }
-
-.panel-heading h2 {
+.convo-heading h3 {
   color: #fff;
 }
 
-.panel-body {
-  padding: 0 20px 10px 20px !important;
+.convo-body {
+  padding: 0;
+}
+
+.messages-container {
+  padding: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.thin-textarea {
+  resize: none;
+  min-height: 0;
+  font-size: 1em;
 }

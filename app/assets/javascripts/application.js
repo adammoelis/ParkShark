@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require chosen-jquery
+//= require jquery.autosize
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.easing.1.3.min

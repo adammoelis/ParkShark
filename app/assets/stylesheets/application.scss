@@ -51,11 +51,6 @@
   padding-right: 0px;
 }
 
-.messages {
-  max-height: 300px;
-  overflow-y: auto;
-}
-
 #error_explanation {
   list-style-type: none;
 }
@@ -138,6 +133,14 @@ input[type='submit'] {
 
 .bold {
   font-weight: bold;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+
+.no-padding-bottom {
+  padding-bottom: 0;
 }
 
 .gauge-loader {

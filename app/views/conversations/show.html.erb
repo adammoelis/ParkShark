@@ -4,11 +4,11 @@
   <section>
     <div class="container inner-top-sm inner-bottom-sm">
       <div class="row">
-        <div class="col-md-6 col-sm-9 center-block">
+        <div class="col-md-9 col-sm-9 center-block">
           <div class="panel panel-default">
-            <div class="panel-heading"><h2><%= @conversation.subject %></h2></div>
-            <div class="panel-body">
-              <div class="messages">
+            <div class="convo-heading rounded-top"><h3><%= @conversation.subject %></h3></div>
+            <div class="convo-body">
+              <div class="messages-container">
                 <% @conversation.receipts_for(current_user).each do |receipt| %>
                   <div class="media">
                     <% message = receipt.message %>
@@ -25,17 +25,17 @@
                 <% end %>
               </div>
             </div>
-          </div>
+            <%= form_tag reply_conversation_path(@conversation), method: :post, remote: true do %>
+              <div class="form-group no-margin-bottom no-padding-bottom">
+                <%= text_area_tag 'body', nil, {class: 'rounded-bottom no-margin-bottom no-padding-bottom thin-textarea', rows: 1, placeholder: 'Type something...', required: true} %>
+              </div>
 
-          <%= form_tag reply_conversation_path(@conversation), method: :post, remote: true do %>
-            <div class="form-group">
-              <%= text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Type something...', required: true %>
-            </div>
-            <div class="form-group pull-right">
-              <%= link_to "Back", :back, class: 'btn btn-default' %>
-              <%= submit_tag "Send Message", class: 'btn btn-primary' %>
-            </div>
-          <% end %>
+              <div class="form-group no-margin-bottom pull-right">
+                <%= link_to "Back", :back, class: 'btn btn-default' %>
+                <%= submit_tag "Send Message", class: 'btn btn-primary' %>
+              </div>
+            <% end %>
+          </div>
 
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -48,25 +48,30 @@
     $('form').on('submit', function(e) {
       // append reply immediately instead of waiting for ajax to process
       var message = $('textarea').val();
-      $('.messages').append("<%= j render 'fake_reply' %>");
+
+      // add reply to view before ajax process complete (much faster than waiting)
+      $('.messages-container').append("<%= j render 'fake_reply' %>");
       $('.media-body').last().append(message);
       e.stopPropagation;
 
       // scroll to bottom of conversation on update
-      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight}, 1000);
+      $('.messages-container').animate({ scrollTop: $('.messages-container')[0].scrollHeight}, 1000);
     });
 
     // scroll to bottom of conversation on page_load
-    $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight}, 0);
+    $('.messages-container').animate({ scrollTop: $('.messages-container')[0].scrollHeight}, 0);
 
     // add shadow on scroll
-    $('.messages').scroll(function() {
-       var scroll = $('.messages').scrollTop();
+    $('.messages-container').scroll(function() {
+       var scroll = $('.messages-container').scrollTop();
        if (scroll > 0) {
-         $('.panel-heading').addClass('panel-heading-shadow');
+         $('.convo-heading').addClass('convo-heading-shadow');
        } else {
-         $('.panel-heading').removeClass('panel-heading-shadow');
+         $('.convo-heading').removeClass('convo-heading-shadow');
        }
     });
+
+    // auto adjust the height of textarea as user types
+    $('textarea').autosize();
   });
 </script>
