@@ -26,6 +26,10 @@ class ReservationsController < ApplicationController
     @visitor = current_user
     @listing = Listing.find(params[:listing_id])
     @token = get_client_token
+    unless @listing.available
+      flash[:error] = "That spot is no longer available"
+      redirect_to spot_path(@spot)
+    end
   end
 
   private

@@ -1,6 +1,6 @@
 <%= form_for @spot, html: { class: 'form-horizontal', multipart: true } do |f| %>
   <div class="form-group">
-      <%= f.label :pictures, class: 'col-sm-2 control-label'  %>
+        <%= f.label :pictures, class: 'col-sm-2 control-label'  %>
       <div class="col-sm-9">
           <%= f.file_field :pictures, type: :file, multiple: true, name: "pictures[]" %>
       </div>
@@ -8,7 +8,7 @@
 
   <div class="form-group">
       <%= f.label :title, class: 'col-sm-2 control-label' %>
-      <div class="col-sm-9">
+        <div class="col-sm-9">
       <%= f.text_field :title, :placeholder => 'Title of listing' %>
     </div>
   </div>
@@ -16,8 +16,8 @@
   <div class="form-group">
       <%= f.label :address, class: 'col-sm-2 control-label' %>
       <div class="col-sm-9">
-      <%= f.text_field :address, :placeholder => '123 Parking LN' %>
-    </div>
+        <%= f.text_field :address, :placeholder => '123 Parking LN - This won\'t be public' %>
+      </div>
   </div>
 
   <div class="form-group">
@@ -30,14 +30,22 @@
   <div class="form-group">
       <%= f.label :state, class: 'col-sm-2 control-label' %>
       <div class="col-sm-9">
-      <%= select_tag 'spot[state]', options_for_select(us_states) %>
-    </div>
+        <%= f.select :state, options_for_select(us_states) if !@spot.state%>
+        <%= f.select :state, options_for_select(us_states, selected: @spot.state)  if @spot.state%>
+      </div>
   </div>
 
   <div class="form-group">
       <%= f.label :zip_code, class: 'col-sm-2 control-label' %>
       <div class="col-sm-9">
       <%= f.text_field :zip_code, :placeholder => '10001' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :type_of_spot, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-9">
+      <%= f.select :type_of_spot, options_for_select(Spot.types_of_spots) %>
     </div>
   </div>
 
@@ -49,11 +57,9 @@
   </div>
 
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-9">
-      <div class="pull-right">
+    <div class="col-sm-offset-2 col-sm-9">    
         <%= link_to "Back", :back, class: 'btn btn-default' %>
         <%= f.submit class: 'btn btn-default', id: 'create-spot' %>
-      </div>
     </div>
   </div>
 <% end %>

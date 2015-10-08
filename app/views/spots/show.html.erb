@@ -43,6 +43,7 @@
 									<h4><%= image_for_user(@spot.owner, :thumb, 'img-super-small rounded') %> Posted by <%= link_to "#{@spot.owner.name}", user_path(@spot.owner) %></h4>
 									<%= @spot.city %>, <%= @spot.state %><br>
 									Zip Code: <%= @spot.zip_code %><br>
+									Type: <%= @spot.type_of_spot %>
 								</p>
 								<p class="text-small"><%= @spot.description %></p>
 							</div>
@@ -58,7 +59,7 @@
 						</div>
 
 						<div class="card-block card-body no-padding">
-							<iframe id="map" width="100%" height="600px" class="center-block" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['GOOGLE_KEY'] %>&q=<%= @spot.full_address %>&maptype=satellite" allowfullscreen></iframe>
+							<iframe id="map" width="100%" height="600px" class="center-block" frameborder="0" style="border:0" src='https://www.google.com/maps/embed/v1/view?key=<%= ENV['GOOGLE_KEY'] %>&center=<%= "#{@spot.latitude}, #{@spot.longitude}" %>&zoom=18&maptype=roadmap' allowfullscreen></iframe>
 						</div>
 					</div><!-- /.card -->
 				</div>
@@ -150,238 +151,33 @@
 									<div class="portfolio">
 
 										<ul class="filter text-center">
-											<li><a href="#" data-filter="*" class="active">All</a></li>
-											<li><a href="#" data-filter=".identity">Driveway</a></li>
-											<li><a href="#" data-filter=".interactive">Garage</a></li>
-											<li><a href="#" data-filter=".print">Parking Lot</a></li>
-											<li><a href="#" data-filter=".photography">Other</a></li>
-										</ul><!-- /.filter -->
+					            <li><a href="#" data-filter="*" class="active">All</a></li>
+					            <li><a href="#" data-filter=".<%= Spot.types_of_spots[0] %>"><%= Spot.types_of_spots[0] %></a></li>
+					            <li><a href="#" data-filter=".<%= Spot.types_of_spots[1] %>"><%= Spot.types_of_spots[1] %></a></li>
+					            <li><a href="#" data-filter=".<%= Spot.types_of_spots[2] %>"><%= Spot.types_of_spots[2] %></a></li>
+					            <li><a href="#" data-filter=".<%= Spot.types_of_spots[3] %>"><%= Spot.types_of_spots[3] %></a></li>
+					          </ul><!-- /.filter -->
 
 										<ul class="items col-4">
-
-											<li class="item thumb interactive">
-												<a href="portfolio-post.html">
+											<% Spot.near([@spot.latitude, @spot.longitude], Spot.default_search_distance).each do |spot| %>
+											<li class="item thumb <%= spot.type_of_spot %>">
+												<%= link_to spot.title, spot_path(spot) %>
 													<figure>
 														<figcaption class="text-overlay">
 															<div class="info">
-																<h4>Appscreen Dashboard</h4>
-																<p>Interactive</p>
+																<h4><%= spot.title %></h4>
+																<p><% spot.type_of_spot %></p>
 															</div><!-- /.info -->
 														</figcaption>
-														<img src="assets/images/art/work01.jpg" alt="">
+														<% if spot.pictures.size >0 %>
+														<img src="<%= spot.pictures.first.picture.url(:thumb) %>" alt="">
+														<% end %>
 													</figure>
 												</a>
 											</li><!-- /.item -->
+											<% end %>
 
-											<li class="item thumb identity">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Grand Motel</h4>
-																<p>Identity</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work02.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
 
-											<li class="item thumb identity">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Signwall</h4>
-																<p>Identity</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work16.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb print">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Modern CD Case</h4>
-																<p>Print</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work18.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb identity">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Astor & Yancy</h4>
-																<p>Identity</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work09.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb photography">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Daydreaming</h4>
-																<p>Photography</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/photograph02.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb identity">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Brand Stationery</h4>
-																<p>Identity</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work08a.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb print">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Tri Fold Brochure</h4>
-																<p>Print</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work10.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb interactive">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Vintage Bicycles</h4>
-																<p>Interactive</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work03.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb print">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Electric Dance Book Cover</h4>
-																<p>Print</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work20.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb identity">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Embroidered</h4>
-																<p>Identity</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work05.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb identity print">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Brand Stationery</h4>
-																<p>Identity/Print</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work21.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb identity">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Handmade Wood Gifts</h4>
-																<p>Identity</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work17.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb identity">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Designer Brand</h4>
-																<p>Identity</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work19.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb print">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Vinyl Records</h4>
-																<p>Print</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work07.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
-
-											<li class="item thumb interactive">
-												<a href="portfolio-post.html">
-													<figure>
-														<figcaption class="text-overlay">
-															<div class="info">
-																<h4>Elena Website</h4>
-																<p>Interactive</p>
-															</div><!-- /.info -->
-														</figcaption>
-														<img src="assets/images/art/work22.jpg" alt="">
-													</figure>
-												</a>
-											</li><!-- /.item -->
 
 										</ul><!-- /.items -->
 

@@ -13,6 +13,10 @@ class Spot < ActiveRecord::Base
     10
   end
 
+  def self.types_of_spots
+    ["Garage", "Driveway", "Street", "Lot"]
+  end
+
   def full_address
     "#{self.address}, #{self.city}, #{self.state}, #{self.zip_code}"
   end
@@ -26,11 +30,7 @@ class Spot < ActiveRecord::Base
   end
 
   def class_type
-    if self.any_available?
-      "available"
-    else
-      "reserved"
-    end
+    self.type_of_spot
   end
 
   def lowest_price_listing

@@ -4,7 +4,7 @@ class SpotsController < ApplicationController
   before_action :find_spot, only: [:show]
 
   def index
-    @spots = Spot.all
+    @spots = Spot.all.page(params[:page]).per_page(15)
   end
 
   def new
@@ -34,6 +34,10 @@ class SpotsController < ApplicationController
 
   def edit
     @spot = Spot.find(params[:id])
+    if current_user != @spot.owner
+      flash[:error] = "You don't own that spot"
+      redirect_to root_path
+    end
   end
 
   def update
@@ -61,7 +65,7 @@ class SpotsController < ApplicationController
   end
 
   def post_params
-    params.require(:spot).permit(:title, :address, :city, :state, :pictures, :description, :date, :available, :zip_code)
+    params.require(:spot).permit(:title, :address, :city, :state, :pictures, :description, :date, :available, :zip_code, :type_of_spot)
   end
 
   def find_spot

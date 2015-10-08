@@ -1,6 +1,20 @@
 class HomeController < ApplicationController
   def index
-    @spots = Spot.last(10)
+    if current_location
+      @spots = Search.search_near(current_location, 10, nil)
+      if @spots.size >= 2
+        @top_2_spots = @spots.first(2)
+      else
+        @top_2_spots = Spot.last(2)
+      end
+      if @spots.size < 10
+        @last_8_spots = Spot.last(8)
+      else
+        @last_8_spots = @spots.last(10)
+      end
+    else
+      @spots = Spot.last(10)
+    end
   end
 
   def about
