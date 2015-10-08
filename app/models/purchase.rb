@@ -40,9 +40,9 @@ class Purchase < ActiveRecord::Base
     reservation = Reservation.new(owner: spot.owner, visitor: visitor, spot: spot)
     reservation.save
     # notifies owner of purchased spot
-    PurchaseMailer.purchase_owner(owner, visitor, spot).deliver_now
+    PurchaseMailer.purchase_owner(owner, visitor, spot, listing).deliver_now
     # sends email to visitor confirming their purchase
-    PurchaseMailer.purchase_visitor(visitor, owner, spot).deliver_now
+    PurchaseMailer.purchase_visitor(visitor, owner, spot, listing).deliver_now
   end
 
 end
