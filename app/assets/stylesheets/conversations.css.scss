@@ -13,3 +13,23 @@
 .inbox-conversation-wrap {
   margin-bottom: 10px;
 }
+
+.panel-heading-shadow {
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+}
+
+.panel-heading {
+  padding: 10px 10px 0 10px !important;
+  background: #34495e !important;
+  border-bottom: solid #2a3a4b 1px !important;
+}
+
+.panel-heading h2 {
+  color: #fff;
+}
+
+.panel-body {
+  padding: 0 20px 10px 20px !important;
+}

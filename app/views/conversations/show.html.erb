@@ -6,6 +6,7 @@
       <div class="row">
         <div class="col-md-6 col-sm-9 center-block">
           <div class="panel panel-default">
+            <div class="panel-heading"><h2><%= @conversation.subject %></h2></div>
             <div class="panel-body">
               <div class="messages">
                 <% @conversation.receipts_for(current_user).each do |receipt| %>
@@ -62,9 +63,9 @@
     $('.messages').scroll(function() {
        var scroll = $('.messages').scrollTop();
        if (scroll > 0) {
-         $('.conversation-header').addClass('modal-shadow');
+         $('.panel-heading').addClass('panel-heading-shadow');
        } else {
-         $('.conversation-header').removeClass('modal-shadow');
+         $('.panel-heading').removeClass('panel-heading-shadow');
        }
     });
   });
