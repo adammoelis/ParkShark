@@ -50,7 +50,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
 gem 'faker'
 gem "braintree"
-gem 'rails_12factor', group: production
+gem 'rails_12factor', group: :production
 gem 'jquery-ui-rails'
 gem 'gmaps-autocomplete-rails'
 # Use Unicorn as the app server
