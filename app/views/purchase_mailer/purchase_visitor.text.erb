@@ -1,7 +1,13 @@
 Congratulations, <%= @visitor.name %>! You have purchased <%= link_to @spot.title, spot_url(@spot) %> from <%= @owner.name %>
 ==========================================================================
+<% if @listing.beginning_time != @listing.ending_time %>
+  This spot is available for you from <%= @listing.beginning_time.strftime("%A, %b #{@listing.beginning_time.day.ordinalize} %Y") %>, <%= @listing.beginning_time_of_day %>, to <%= @listing.ending_time.strftime("%A, %b #{@listing.beginning_time.day.ordinalize} %Y") %>, <%= @listing.ending_time_of_day %>
+<% else %>
+  This spot is available for you from <%= @listing.beginning_time.strftime("%A, %b #{@listing.beginning_time.day.ordinalize} %Y") %>, <%= @listing.beginning_time_of_day %>
+<% end %>
 
-To contact the spot's owner, view their profile <%= link_to 'here', user_url(@owner) %>.
+To contact the spot's owner, view their profile <%= link_to 'here', user_url(@owner) %> , or email the owner at <%= mail_to @owner.email %>.
+
 
 Thanks for using ParkShark and have a great day!
 

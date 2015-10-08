@@ -6,7 +6,6 @@
   <% end %>
   <h4>Price: <%= number_to_currency(listing.price, precision: 0) %></h4>
   <h4>Details: <%= listing.description %></h4>
-  <h4>MESSAGE BUTTON TO MESSAGE OR EMAIL USER FOR MORE INFO</h4>
 
   <% if !listing.available  %>
     <%= render partial: 'listings/already_reserved_button', locals: {spot: @spot, listing: listing} %>
@@ -16,7 +15,12 @@
   <% elsif current_user == listing.spot.owner %>
     <%= render partial: 'listings/delete_listing_button', locals: {spot: @spot, listing: listing} %>
   <% else %>
-    <%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} %>
-    <%= render partial: 'messages/message_button', locals: {user: @spot.owner} %>
+    <% if current_user %>
+      <%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} %>
+      <%= render partial: 'messages/message_button', locals: {user: @spot.owner} %>
+    <% else %>
+      <%= button_to "Reserve me", new_session_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window', class: 'btn btn-default', :form => { :id => "reserve-me" }} %>
+      <%= button_to "Send Message", new_session_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window', class: 'btn btn-default', :form => { :id => "reserve-me" }} %>
+    <% end %>
   <% end %>
 </div>
