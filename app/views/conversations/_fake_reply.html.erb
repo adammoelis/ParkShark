@@ -1,0 +1,9 @@
+<div class="media">
+  <div class="media-left">
+    <a href="<%= user_path(current_user) %>"><%= image_for_user current_user, :thumb, 'img-chat rounded', current_user.name %></a>
+  </div>
+
+  <div class="media-body">
+    <h6 class="media-heading"><a href="<%= user_path(current_user) %>">You</a> (<%= time_ago_in_words(Time.now) %> ago)</h6>
+  </div>
+</div>
