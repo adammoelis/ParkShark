@@ -4,12 +4,12 @@
   <section>
     <div class="container inner-top-sm inner-bottom-sm">
       <div class="row">
-        <div class="col-md-9 col-sm-9 center-block">
+        <div class="col-md-7 col-sm-9 center-block">
           <div class="panel panel-default">
             <div class="convo-heading rounded-top"><h3><%= truncate(@conversation.subject, length: 70) %></h3></div>
             <div class="convo-body">
               <div class="messages-container">
-                <% @conversation.receipts_for(current_user).each do |receipt| %>
+                <% @conversation.receipts_for(current_user).order(:created_at).each do |receipt| %>
                   <% if receipt.message.sender.id == current_user.id %>
                     <%= render partial: 'message_sender', locals: {receipt: receipt} %>
                   <% else %>
