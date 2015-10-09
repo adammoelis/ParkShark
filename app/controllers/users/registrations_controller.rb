@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     respond_to do |format|
       flash[:error] = 'Sorry, that email is already in use'
-      format.html { redirect_to root_path }
+      format.html { redirect_to :back }
       format.js
     end
   end

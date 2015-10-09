@@ -45,8 +45,11 @@ class UsersController < ApplicationController
   def user_spots
     @user = User.find(params[:user_id])
     @spots = @user.spots.page(params[:page]).per_page(12)
+<<<<<<< HEAD
     @title = 'My Spots'
     @subtitle = 'View your listings below.'
+=======
+>>>>>>> be009fae210f64b7a4e3b3f77f6306ac0ccc2aa7
   end
 
   private

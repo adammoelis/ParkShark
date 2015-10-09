@@ -8,7 +8,8 @@ class Users::SessionsController < Devise::SessionsController
     yield resource if block_given?
 
     respond_to do |format|
-      format.html
+      flash[:error] = 'Sorry, something went wrong when attempting to sign you in.'
+      format.html { redirect_to :back }
       format.js
     end
   end

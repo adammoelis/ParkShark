@@ -23,8 +23,11 @@ class ConversationsController < ApplicationController
 
   def reply
     current_user.reply_to_conversation(@conversation, params[:body])
-    flash[:notice] = 'Reply sent'
-    redirect_to conversation_path(@conversation)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def destroy
