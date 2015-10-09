@@ -23,6 +23,7 @@ gem 'bootstrap-social-rails'
 
 # auto size textarea elements as user types
 gem 'autosize-rails'
+gem 'aws-sdk'
 
 gem 'font-awesome-rails'
 gem 'omniauth-twitter'
