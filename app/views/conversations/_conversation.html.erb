@@ -1,27 +1,25 @@
 <div class="row">
-  <div class="col-md-12 inbox-conversation-wrap">
+  <div class="col-md-12 inbox-conversation-wrap rounded">
     <li class="list-group-item clearfix">
-      <div class="col-md-1">
+      <div class="col-md-2">
         <%= render 'conversations/participants', conversation: conversation %>
       </div>
 
-      <div class="col-md-10">
-        <div class="col-md-10">
-          <%= link_to conversation.subject, conversation_path(conversation), class: conversation.is_unread?(current_user) ? 'bold' : '' %>
-          <p>
-            <%= conversation.last_message.body %>
-            <small>(<span class="text-muted"><%= time_ago_in_words(conversation.last_message.created_at) %> ago</span>)</small>
-          </p>
-        </div>
+      <div class="col-md-6 word-wrap">
+        <%= link_to truncate(conversation.subject, length: 30), conversation_path(conversation), class: conversation.is_unread?(current_user) ? 'bold' : '' %>
+        <p>
+          <small><span class="text-muted"><%= truncate(conversation.last_message.body, length: 40) %></span></small><br>
+          <small><span class="text-muted">(<%= time_ago_in_words(conversation.last_message.created_at) %> ago)</span></small>
+        </p>
+      </div>
 
-        <div class="col-md-2">
-          <% if conversation.is_trashed?(current_user) %>
-            <%= link_to 'Restore', restore_conversation_path(conversation), class: 'btn btn-default', method: :post %>
-          <% else %>
-            <%= link_to 'Move to Trash', conversation_path(conversation), class: 'btn btn-default', method: :delete,
-                        data: {confirm: 'Are you sure?'} %>
-          <% end %>
-        </div>
+      <div class="col-md-3">
+        <% if conversation.is_trashed?(current_user) %>
+          <%= link_to 'Restore', restore_conversation_path(conversation), class: 'btn btn-default', method: :post %>
+        <% else %>
+          <%= link_to 'Move to Trash', conversation_path(conversation), class: 'btn btn-default', method: :delete,
+                      data: {confirm: 'Are you sure?'} %>
+        <% end %>
       </div>
     </li>
   </div>

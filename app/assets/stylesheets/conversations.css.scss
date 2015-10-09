@@ -10,10 +10,6 @@
   width: 25px;
 }
 
-.inbox-conversation-wrap {
-  margin-bottom: 10px;
-}
-
 .convo-heading-shadow {
   box-shadow: 0 2px 3px 0 rgba(0,0,0,0.6);
   -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.6);
@@ -42,7 +38,7 @@
 }
 
 .messages-container .media-body {
-  max-width: 400px;
+  max-width: 450px;
   word-wrap: break-word;
 }
 
@@ -73,4 +69,17 @@
   resize: none;
   min-height: 0;
   font-size: 1em;
+}
+
+////// begin conversation index page styling //////
+.inbox-list-wrapper {
+  padding: 20px 10px 0 10px;
+}
+
+.inbox-conversation-wrap {
+  margin-bottom: 20px;
+}
+
+.inbox-conversation-wrap .list-group-item {
+  background: #fafafa;
 }

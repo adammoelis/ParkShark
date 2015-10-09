@@ -50,6 +50,10 @@
   padding-right: 0px;
 }
 
+.word-wrap {
+  word-wrap: break-word;
+}
+
 #error_explanation {
   list-style-type: none;
 }
@@ -148,4 +152,4 @@ input[type='submit'] {
 
 #reserve-me {
   display: inline-block;
-}  
+}
