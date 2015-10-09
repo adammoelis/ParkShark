@@ -47,28 +47,6 @@ end
   )
 end
 
-50.times do
-  Car.create(
-    make: Faker::Company.name,
-    model: Faker::Company.name,
-    color: Faker::Commerce.color,
-    year: Faker::Number.number(4),
-    license_plate: Faker::Internet.password(6),
-    visitor_id: User.all.sample.id
-  )
-end
-
-200.times do
-  spot = Spot.all.sample
-  Review.create(
-    rating: [0, 1, 2, 3, 4, 5].sample,
-    body:Faker::Lorem.paragraph,
-    spot_id: spot.id,
-    visitor_id: User.all.sample.id,
-    owner_id: spot.owner.id
-  )
-end
-
 200.times do
   Listing.create(
     beginning_time:Faker::Date.between(2.days.ago, Date.today),
@@ -82,9 +60,30 @@ end
 end
 
 50.times do
+  Car.create(
+    make: Faker::Company.name,
+    model: Faker::Company.name,
+    color: Faker::Commerce.color,
+    year: Faker::Number.number(4),
+    license_plate: Faker::Internet.password(6),
+    visitor_id: User.all.sample.id
+  )
+end
+
+50.times do
   Location.create(
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
     address: Faker::Address.street_address
+  )
+end
+
+200.times do
+  spot = Spot.all.sample
+  Review.create(
+    rating: [0, 1, 2, 3, 4, 5].sample,
+    body:Faker::Lorem.paragraph,
+    spot_id: spot.id,
+    visitor_id: User.all.sample.id,
   )
 end
