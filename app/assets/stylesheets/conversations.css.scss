@@ -15,15 +15,17 @@
 }
 
 .convo-heading-shadow {
-  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.3);
-  -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.3);
-  -moz-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.6);
 }
 
 .convo-heading {
   padding: 10px 20px 0 20px;
   background: #34495e;
   border: solid #34495e 1px;
+  z-index: 9999;
+  position: relative;
 }
 .convo-heading h3 {
   color: #fff;
@@ -35,8 +37,37 @@
 
 .messages-container {
   padding: 20px;
-  max-height: 300px;
+  max-height: 400px;
   overflow-y: auto;
+}
+
+.messages-container .media-body {
+  max-width: 450px;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+.chat-triangle-right {
+  color: #ebebeb;
+  margin-left: -16px;
+  margin-top: 15px;
+}
+
+.chat-triangle-left {
+  color: #1abb9c;
+  margin-right: -16px;
+  margin-top: 15px;
+}
+
+.sender-background-color {
+  background: #ebebeb;
+  padding: 10px 10px 10px 10px;
+}
+
+.receiver-background-color {
+  background: #1abb9c;
+  color: white;
+  padding: 10px 10px 10px 10px;
 }
 
 .thin-textarea {

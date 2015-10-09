@@ -1,0 +1,13 @@
+<div class="media text-right pull-right clear-fix">
+  <% message = receipt.message %>
+  <div class="pull-right">
+    <a href="<%= user_path(message.sender) %>"><%= image_for_user message.sender, :thumb, 'img-chat rounded pull-right', message.sender.name %></a>
+    <span class="glyphicon glyphicon-triangle-right chat-triangle-right pull-right"></span>
+  </div>
+
+  <div class="media-body rounded sender-background-color">
+    <%= message.body %>
+    <h6 class="media-heading"><a href="<%= user_path(message.sender) %>"><%= message.sender.id == current_user.id ? 'You' : message.sender.name %></a>
+      (<%= time_ago_in_words(message.created_at) %> ago)</h6>
+  </div>
+</div>

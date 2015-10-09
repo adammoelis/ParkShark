@@ -6,22 +6,15 @@
       <div class="row">
         <div class="col-md-9 col-sm-9 center-block">
           <div class="panel panel-default">
-            <div class="convo-heading rounded-top"><h3><%= @conversation.subject %></h3></div>
+            <div class="convo-heading rounded-top"><h3><%= truncate(@conversation.subject, length: 70) %></h3></div>
             <div class="convo-body">
               <div class="messages-container">
                 <% @conversation.receipts_for(current_user).each do |receipt| %>
-                  <div class="media">
-                    <% message = receipt.message %>
-                    <div class="media-left">
-                      <a href="<%= user_path(message.sender) %>"><%= image_for_user message.sender, :thumb, 'img-chat rounded', message.sender.name %></a>
-                    </div>
-
-                    <div class="media-body">
-                      <h6 class="media-heading"><a href="<%= user_path(message.sender) %>"><%= message.sender.id == current_user.id ? 'You' : message.sender.name %></a>
-                        (<%= time_ago_in_words(message.created_at) %> ago)</h6>
-                      <%= message.body %>
-                    </div>
-                  </div>
+                  <% if receipt.message.sender.id == current_user.id %>
+                    <%= render partial: 'message_sender', locals: {receipt: receipt} %>
+                  <% else %>
+                    <%= render partial: 'message_receiver', locals: {receipt: receipt} %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -51,7 +44,7 @@
 
       // add reply to view before ajax process complete (much faster than waiting)
       $('.messages-container').append("<%= j render 'fake_reply' %>");
-      $('.media-body').last().append(message);
+      $('.media-body').last().prepend(message);
       e.stopPropagation;
 
       // scroll to bottom of conversation on update

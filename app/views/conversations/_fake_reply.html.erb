@@ -1,9 +1,10 @@
-<div class="media">
-  <div class="media-left">
-    <a href="<%= user_path(current_user) %>"><%= image_for_user current_user, :thumb, 'img-chat rounded', current_user.name %></a>
+<div class="media text-right pull-right clear-fix">
+  <div class="pull-right">
+    <a href="<%= user_path(current_user) %>"><%= image_for_user current_user, :thumb, 'img-chat rounded pull-right', current_user.name %></a>
+    <span class="glyphicon glyphicon-triangle-right chat-triangle-right pull-right"></span>
   </div>
 
-  <div class="media-body">
+  <div class="media-body rounded sender-background-color">
     <h6 class="media-heading"><a href="<%= user_path(current_user) %>">You</a> (<%= time_ago_in_words(Time.now) %> ago)</h6>
   </div>
 </div>
