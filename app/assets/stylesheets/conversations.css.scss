@@ -37,12 +37,12 @@
 
 .messages-container {
   padding: 20px;
-  max-height: 400px;
+  height: 350px;
   overflow-y: auto;
 }
 
 .messages-container .media-body {
-  max-width: 450px;
+  max-width: 400px;
   word-wrap: break-word;
 }
 
