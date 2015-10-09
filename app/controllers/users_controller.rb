@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   def user_spots
     @user = User.find(params[:user_id])
-    @spots = @user.spots
+    @spots = @user.spots.page(params[:page]).per_page(12)
     @title = 'My Spots'
     @subtitle = 'View your listings below.'
   end
