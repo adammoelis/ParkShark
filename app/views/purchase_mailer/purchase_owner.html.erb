@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Congratulations, <%= @owner.name %>! <%= link_to @spot.title, spot_url(@spot) %> was purchased by <%= @visitor.name %></h1>
+    <% if @listing.beginning_time != @listing.ending_time %>
+      <p>This spot is available to them from <%= @listing.beginning_time.strftime("%A, %b #{@listing.beginning_time.day.ordinalize} %Y") %>, <%= @listing.beginning_time_of_day %>, to <%= @listing.ending_time.strftime("%A, %b #{@listing.beginning_time.day.ordinalize} %Y") %>, <%= @listing.ending_time_of_day %></p>
+    <% else %>
+      <p>This spot is available to them from <%= @listing.beginning_time.strftime("%A, %b #{@listing.beginning_time.day.ordinalize} %Y") %>, <%= @listing.beginning_time_of_day %></p>
+    <% end %>
+    <p>
+      To contact your visitor, view their profile <%= link_to 'here', user_url(@visitor) %>, or e-mail them at <%= mail_to @visitor.email %>.
+    </p>
+    <p>Thanks for using ParkShark and have a great day!</p>
+    <hr>
+    <p>
+      Sincerely, <br>
+      ParkShark Team
+    </p>
+  </body>
+</html>

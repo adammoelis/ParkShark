@@ -9,11 +9,11 @@
     <meta name="author" content="">
     <title>ParkShark | <%= yield :page_title %></title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
     <%= render 'layouts/header' %>
 

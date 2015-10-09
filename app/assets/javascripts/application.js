@@ -30,7 +30,6 @@
 //= require owl.carousel.min
 //= require jquery.isotope.min
 //= require jquery.easytabs.min
-//= require google.maps.api.v3
 //= require viewport-units-buggyfill
 //= require scripts
 //= require maskedinput
