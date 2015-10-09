@@ -84,6 +84,6 @@ end
     rating: [0, 1, 2, 3, 4, 5].sample,
     body:Faker::Lorem.paragraph,
     spot_id: spot.id,
-    visitor_id: User.all.sample.id,
+    visitor_id: User.all.sample.id
   )
 end
