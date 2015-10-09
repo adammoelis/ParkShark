@@ -9,7 +9,7 @@
             <div class="convo-heading rounded-top"><h3><%= truncate(@conversation.subject, length: 70) %></h3></div>
             <div class="convo-body">
               <div class="messages-container">
-                <% @conversation.receipts_for(current_user).each do |receipt| %>
+                <% @conversation.receipts_for(current_user).order(:created_at).each do |receipt| %>
                   <% if receipt.message.sender.id == current_user.id %>
                     <%= render partial: 'message_sender', locals: {receipt: receipt} %>
                   <% else %>
@@ -20,12 +20,12 @@
             </div>
             <%= form_tag reply_conversation_path(@conversation), method: :post, remote: true do %>
               <div class="form-group no-margin-bottom no-padding-bottom">
-                <%= text_area_tag 'body', nil, {class: 'rounded-bottom no-margin-bottom no-padding-bottom thin-textarea', rows: 1, placeholder: 'Type something...', autofocus: true, required: true} %>
+                <%= text_area_tag 'body', nil, {class: 'rounded-bottom no-margin-bottom no-padding-bottom thin-textarea', rows: 1, placeholder: 'Type something...', required: true} %>
               </div>
 
               <div class="form-group no-margin-bottom pull-right">
                 <%= link_to "Back", :back, class: 'btn btn-default' %>
-                <%= submit_tag "Send Message", class: 'btn btn-primary sub-button' %>
+                <%= submit_tag "Send Message", class: 'btn btn-primary' %>
               </div>
             <% end %>
           </div>
@@ -45,7 +45,7 @@
       // add reply to view before ajax process complete (much faster than waiting)
       $('.messages-container').append("<%= j render 'fake_reply' %>");
       $('.media-body').last().prepend(message);
-      e.stopPropagation();
+      e.stopPropagation;
 
       // scroll to bottom of conversation on update
       $('.messages-container').animate({ scrollTop: $('.messages-container')[0].scrollHeight}, 1000);
