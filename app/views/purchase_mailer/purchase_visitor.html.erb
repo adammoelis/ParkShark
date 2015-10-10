@@ -10,6 +10,7 @@
     <% else %>
       <p>This spot is available for you from <%= @listing.beginning_time.strftime("%A, %b #{@listing.beginning_time.day.ordinalize} %Y") %>, <%= @listing.beginning_time_of_day %></p>
     <% end %>
+    <p>The spot is located at <%= @listing.spot.address %></p>
     <p>
       To contact the spot's owner to specify details, view their profile <%= link_to 'here', user_url(@owner) %>, or email the owner at <%= mail_to @owner.email %>.
     </p>
