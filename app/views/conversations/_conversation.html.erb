@@ -15,10 +15,9 @@
 
       <div class="col-md-3">
         <% if conversation.is_trashed?(current_user) %>
-          <%= link_to 'Restore', restore_conversation_path(conversation), class: 'btn btn-default', method: :post %>
+          <%= link_to 'Restore', restore_conversation_path(conversation), class: 'btn btn-default', method: :post, remote: true %>
         <% else %>
-          <%= link_to 'Move to Trash', conversation_path(conversation), class: 'btn btn-default', method: :delete,
-                      data: {confirm: 'Are you sure?'} %>
+          <%= link_to 'Move to Trash', conversation_path(conversation), class: 'btn btn-default', method: :delete, remote: true %>
         <% end %>
       </div>
     </li>

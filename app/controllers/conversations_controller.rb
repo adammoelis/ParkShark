@@ -32,22 +32,19 @@ class ConversationsController < ApplicationController
 
   def destroy
     @conversation.move_to_trash(current_user)
-    flash[:notice] = 'The conversation was moved to trash.'
-    redirect_to conversations_path
+    # flash.now[:notice] = 'The conversation was moved to trash.'
   end
 
   def restore
     @conversation.untrash(current_user)
-    flash[:notice] = 'The conversation was restored.'
-    redirect_to conversations_path
+    # flash.now[:notice] = 'The conversation was restored.'
   end
 
   def empty_trash
     @mailbox.trash.each do |conversation|
       conversation.receipts_for(current_user).update_all(deleted: true)
     end
-    flash[:notice] = 'Your trash was cleaned!'
-    redirect_to conversations_path
+    # flash.now[:notice] = 'Your trash was cleaned!'
   end
 
   private
