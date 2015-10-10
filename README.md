@@ -20,6 +20,6 @@ Imagine you live near a busy airport or stadium. With ParkShark, you would be ab
 
 ### Open Source
 
-Since ParkShark is open-source. We welcome any help to improve the product for our users. So fork this repo and submit some pull requests!
+Since ParkShark is open-source, we welcome any help to improve the product for our users. So fork this repo and submit some pull requests!
 
 Created at Flatiron School by Tyler Machen, Adam Moelis, and Tyler Brewer.
