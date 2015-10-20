@@ -106,4 +106,8 @@ class User < ActiveRecord::Base
     self.longitude = longitude
     self.save
   end
+
+  def has_a_password?
+    encrypted_password != ""
+  end
 end
