@@ -25,8 +25,13 @@ class UsersController < ApplicationController
   end
 
   def purchase_information
-    @user = User.find(current_user.id)
-    @token = get_client_token
+    if current_user == User.find(params[:id])
+      @user = User.find(current_user.id)
+      @token = get_client_token
+    else
+      flash[:error] = "You can only edit your own payment information"
+      redirect_to purchase_information_path(current_user.id)
+    end
   end
 
   def update_purchase_information
