@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   attr_accessor :street_address, :city, :state, :zip_code, :account_number, :routing_number
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid, name: auth.info.name, email: auth.extra.raw_info.email).first_or_create do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
@@ -105,5 +105,9 @@ class User < ActiveRecord::Base
     self.latitude = latitude
     self.longitude = longitude
     self.save
+  end
+
+  def has_a_password?
+    encrypted_password != ""
   end
 end

@@ -59,7 +59,9 @@
 									<li><%= link_to 'My Messages', conversations_path %></li>
 									<li><%= link_to "My Spots", user_spots_path(current_user) %></li>
 									<li><%= link_to 'Edit Payment Info', purchase_information_path(current_user) %></li>
+									<% if current_user.has_a_password? %>
 									<li><%= link_to "Change Password", edit_user_registration_path %></li>
+									<% end %>
 									<li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
 								</ul><!-- /.dropdown-menu -->
 							</li><!-- /.dropdown -->
