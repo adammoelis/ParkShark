@@ -15,6 +15,8 @@ class Search < ActiveRecord::Base
       @spots = Spot.near(location, radius)
     elsif location
       @spots = Spot.near(location, Spot.default_search_distance)
+    elsif radius
+      @spots = Spot.near(current_location, radius)
     else
       @spots = Spot.near(current_location, Spot.default_search_distance)
     end

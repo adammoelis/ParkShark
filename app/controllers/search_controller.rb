@@ -28,6 +28,16 @@ class SearchController < ApplicationController
     # end
   end
 
+  def available_now
+    if current_location
+      @spots = Search.search_near(params[:q], params[:radius], current_location)
+    else
+      flash[:error] = "Please enable location access in your browser"
+    end
+    @spots = Spot.spots_with_currently_available_listings(@spots).paginate(:page => params[:page], :per_page => 15)
+    render 'available_now'
+  end
+
   private
 
   def current_location

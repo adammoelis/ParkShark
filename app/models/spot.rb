@@ -17,6 +17,14 @@ class Spot < ActiveRecord::Base
     ["Garage", "Driveway", "Street", "Lot"]
   end
 
+  def self.all_spots_with_currently_available_listings
+    Spot.select {|spot| spot.has_an_available_listing_right_now}
+  end
+
+  def self.spots_with_currently_available_listings(spots_array)
+    spots_array.select {|spot| spot.has_an_available_listing_right_now}
+  end
+
   def full_address
     "#{self.address}, #{self.city}, #{self.state}, #{self.zip_code}"
   end
@@ -66,4 +74,9 @@ class Spot < ActiveRecord::Base
   def available_listings
     self.listings.where(available: true)
   end
+
+  def has_an_available_listing_right_now
+    listings.any?{|listing| listing.available_now?}
+  end
+
 end
