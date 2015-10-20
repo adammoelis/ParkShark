@@ -22,6 +22,10 @@ class SearchController < ApplicationController
       @spots = Search.for(@spots, start_time_filter, end_time_filter, price_filter, beginning_time_of_day_filter, ending_time_of_day_filter).paginate(:page => params[:page], :per_page => 15)
       @spots = Search.sort(@spots, sort_type, current_location).paginate(:page => params[:page], :per_page => 15) if sort_type
     end
+    # respond_to do |format|
+    #     format.html
+    #     format.js
+    # end
   end
 
   private
