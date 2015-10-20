@@ -1,8 +1,8 @@
-<% if @last_8_spots %>
+<% if spots %>
   <div class="row inner-top-sm">
     <div id="owl-latest-works" class="owl-carousel owl-item-gap">
 
-      <% @last_8_spots.each do |spot| %>
+      <% spots.each do |spot| %>
         <div class="item">
           <a href="<%= spot_path(spot) %>">
             <figure>

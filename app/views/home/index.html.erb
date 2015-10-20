@@ -105,23 +105,23 @@
 
 	<!-- ============================================================= SECTION – LATEST WORKS ============================================================= -->
 
+<% if !@spots.empty? %>
 	<section id="latest-works" class="light-bg">
 		<div class="container inner">
 
 			<div class="row">
 				<div class="col-md-8 col-sm-9 center-block text-center">
 					<header>
-						<h1>Check out the latest posts from other ParkSharks</h1>
-						<p>Check out new spots</p>
+						<p>Check out spots available near you</p>
 					</header>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
 
-			<%= render "next_eight_spots" %>
+			<%= render partial: "close_available_spots", locals: {spots: @spots} %>
 
 		</div><!-- /.container -->
 	</section>
-
+<% end %>
 	<!-- ============================================================= SECTION – LATEST WORKS : END ============================================================= -->
 
 	<!-- ============================================================= MAIN : END ============================================================= -->
