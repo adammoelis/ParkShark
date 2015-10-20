@@ -36,6 +36,7 @@ class SearchController < ApplicationController
     end
     @spots = Spot.spots_with_currently_available_listings(@spots).paginate(:page => params[:page], :per_page => 15)
     @listings = @spots.map {|spot| spot.available_listings_now}.flatten.sort_by {|listing| listing.price}
+    flash[:notice] = "There appear to be no available spots near you at the moment" if @listings.empty?
     render 'available_now'
   end
 
