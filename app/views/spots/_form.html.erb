@@ -9,7 +9,7 @@
   <div class="form-group">
       <%= f.label :title, class: 'col-sm-2 control-label' %>
         <div class="col-sm-9">
-      <%= f.text_field :title, :placeholder => 'Title of listing' %>
+      <%= f.text_field :title, :placeholder => 'Title of listing', :required => true %>
     </div>
   </div>
 
@@ -57,7 +57,7 @@
   </div>
 
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-9">    
+    <div class="col-sm-offset-2 col-sm-9">
         <%= link_to "Back", :back, class: 'btn btn-default' %>
         <%= f.submit class: 'btn btn-default', id: 'create-spot' %>
     </div>

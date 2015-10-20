@@ -17,6 +17,14 @@ class Spot < ActiveRecord::Base
     ["Garage", "Driveway", "Street", "Lot"]
   end
 
+  def self.all_spots_with_currently_available_listings
+    Spot.select {|spot| spot.has_an_available_listing_right_now}
+  end
+
+  def self.spots_with_currently_available_listings(spots_array)
+    spots_array.select {|spot| spot.has_an_available_listing_right_now}
+  end
+
   def full_address
     "#{self.address}, #{self.city}, #{self.state}, #{self.zip_code}"
   end
@@ -66,4 +74,17 @@ class Spot < ActiveRecord::Base
   def available_listings
     self.listings.where(available: true)
   end
+
+  def has_an_available_listing_right_now
+    listings.any?{|listing| listing.available_now?}
+  end
+
+  def available_listings_now
+    listings.select{|listing| listing.available_now?}
+  end
+
+  def map_html(width, height, zoom)
+    "<iframe id='map' width='#{width}' height='#{height}' class='center-block' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/view?key=#{ENV['GOOGLE_KEY']}&center=#{self.latitude},#{self.longitude}&zoom=#{zoom}&maptype=roadmap' allowfullscreen></iframe>".html_safe
+  end
+
 end
