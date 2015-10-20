@@ -2,7 +2,9 @@
 <% content_for :page_header do %>Spots Near You Available Now<% end %>
 	<% content_for :page_subheader do %>Spots available now<% end %>
 <% content_for :page_content do %>
-	<%= render @spots %>
+	<% @listings.each do |listing| %>
+		<%= render partial: "listings/listing_stand_alone", locals: {listing: listing} %>
+	<% end %>
 <% end %>
 
 <%= render 'layouts/spots_layout' %>

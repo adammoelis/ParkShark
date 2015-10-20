@@ -79,4 +79,12 @@ class Spot < ActiveRecord::Base
     listings.any?{|listing| listing.available_now?}
   end
 
+  def available_listings_now
+    listings.select{|listing| listing.available_now?}
+  end
+
+  def map_html(width, height, zoom)
+    "<iframe id='map' width='#{width}' height='#{height}' class='center-block' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/view?key=#{ENV['GOOGLE_KEY']}&center=#{self.latitude},#{self.longitude}&zoom=#{zoom}&maptype=roadmap' allowfullscreen></iframe>".html_safe
+  end
+
 end

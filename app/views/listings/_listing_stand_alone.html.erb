@@ -1,0 +1,30 @@
+<li class="item thumb <%= listing.spot.class_type %>" id="spot-<%= listing.spot.id %>">
+  <figure>
+
+    <div class="icon-overlay icn-link">
+      <!-- <a href=" <%= spot_path(listing.spot) %>"><%= image_for_spot(listing.spot, :medium, 'medium-img') %></a> -->
+      <a href=" <%= spot_path(listing.spot) %>"><%= listing.spot.map_html('100%', '300px', '17') %></a>
+    </div><!-- /.icon-overlay -->
+
+    <figcaption class="bordered no-top-border">
+      <div class="info item-info-height">
+
+        <h4><%= link_to "#{listing.spot.title}", spot_path(listing.spot) %></h4>
+        <p><%= listing.spot.city %>, <%= listing.spot.state %></p>
+        <p>
+          <% if current_user %>
+            <%= "#{number_with_delimiter(distance_between(current_user, listing.spot).round(0))} miles away" if current_user %>
+          <% else %>
+            <%= "#{number_with_delimiter(distance_between_me_and(listing.spot).round(0))} miles away" if !current_user %>
+          <% end %>
+        </p>
+        <p>$<%= listing.price.round(0) %></p>
+        <%= render partial: 'listings/reserve_button', locals: {spot: listing.spot, listing: listing} %>
+
+        <%= button_to 'Remove Spot', spot_path(listing.spot), class: 'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } if current_user == listing.spot.owner && request.env['PATH_INFO'] == 'my_spots' %>
+
+      </div><!-- /.info -->
+    </figcaption>
+
+  </figure>
+</li><!-- /.item -->

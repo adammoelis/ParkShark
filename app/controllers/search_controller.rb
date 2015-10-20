@@ -35,6 +35,7 @@ class SearchController < ApplicationController
       flash[:error] = "Please enable location access in your browser"
     end
     @spots = Spot.spots_with_currently_available_listings(@spots).paginate(:page => params[:page], :per_page => 15)
+    @listings = @spots.map {|spot| spot.available_listings_now}.flatten.sort_by {|listing| listing.price}
     render 'available_now'
   end
 
