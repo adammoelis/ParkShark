@@ -19,8 +19,8 @@
       <%= render partial: 'listings/reserve_button', locals: {spot: @spot, listing: listing} %>
       <%= render partial: 'messages/message_button', locals: {user: @spot.owner} %>
     <% else %>
-      <%= button_to "Reserve me", new_session_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window', class: 'btn btn-default', :form => { :id => "reserve-me" }} %>
-      <%= button_to "Send Message", new_session_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window', class: 'btn btn-default', :form => { :id => "reserve-me" }} %>
+      <%= link_to "Reserve me", new_session_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window', class: 'btn btn-default'} %>
+      <%= link_to "Send Message", new_session_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window', class: 'btn btn-default'} %>
     <% end %>
   <% end %>
 </div>

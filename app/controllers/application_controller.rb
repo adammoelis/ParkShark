@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
     redirect_to request.referer || path
   end
 
+  def after_sign_in_path_for(resource)
+    # request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+    request.env['omniauth.origin'] || stored_location_for(resource) || :back
+  end
+
   private
 
   def configure_permitted_parameters
