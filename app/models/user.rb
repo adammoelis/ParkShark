@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   # used to create sub-merchant for owners selling parking spots
   # allows ability to send params over that are not stored in a database column
-  attr_accessor :street_address, :city, :state, :zip_code, :account_number, :routing_number
+  attr_accessor :first_name, :last_name, :street_address, :city, :state, :zip_code, :account_number, :routing_number
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -46,14 +46,13 @@ class User < ActiveRecord::Base
   end
 
   def self.create_braintree_sub_merchant(params, current_user)
-    split_name = current_user.name.split(" ")
     formatted_birthday = current_user.birthday.inspect.split(" ")
     phone = params[:user][:phone]
     phone.gsub!(/[^0-9A-Za-z]/, '')
     Braintree::MerchantAccount.create(
       :individual => {
         :first_name => Braintree::Test::MerchantAccount::Approve,
-        :last_name => split_name[1],
+        :last_name => params[:user][:last_name],
         :email => current_user.email,
         :date_of_birth => "1981-11-19",
         :ssn => "456-45-4567",

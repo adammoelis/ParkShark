@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Your profile was updated successfully!'
       redirect_to new_spot_path
     else
-      flash[:notice] = result.message
+      flash[:error] = result.message
       redirect_to purchase_information_path(current_user.id)
     end
   end
