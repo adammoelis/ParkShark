@@ -12,7 +12,7 @@ ADDRESSES = [["11 Broadway", "New York", "NY", "10001"],
              ["620 Atlantic Ave", "Brooklyn", "NY", "11217"]
             ]
 
-50.times do
+100.times do
   User.create(
     name: Faker::Name.name,
     avatar: Faker::Avatar.image,
@@ -24,7 +24,7 @@ ADDRESSES = [["11 Broadway", "New York", "NY", "10001"],
   )
 end
 
-50.times do
+200.times do
   address_array = ADDRESSES.sample
   spot = Spot.new.tap do |s|
     s.title = Faker::Name.title
@@ -44,6 +44,28 @@ end
   Picture.create(
     picture: File.open(Dir["public/images/seed/*"].sample),
     spot_id: spot.id
+  )
+end
+
+200.times do
+  Listing.create(
+    beginning_time:Faker::Date.between(2.days.ago, Date.today),
+    ending_time: Faker::Date.forward(23),
+    beginning_time_of_day: Listing.time_of_day_options.sample,
+    ending_time_of_day: Listing.time_of_day_options.sample,
+    available: true,
+    spot_id: Spot.all.sample.id,
+    price: Faker::Commerce.price
+  )
+end
+
+200.times do
+  Listing.create(
+    beginning_time:Faker::Date.between(Date.today, 10.days.from_now),
+    beginning_time_of_day: Listing.time_of_day_options.sample,
+    available: true,
+    spot_id: Spot.all.sample.id,
+    price: Faker::Commerce.price
   )
 end
 
