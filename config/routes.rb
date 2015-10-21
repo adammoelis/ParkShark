@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post 'my_location', to: 'home#set_location', as:'set_location'
   get 'nearby-parking', to: 'search#nearby', as: 'nearby_spots'
   get 'find-a-spot', to: 'search#available_now', as: 'available_now'
+  post 'find-a-spot', to: 'search#available_now_query'
   get 'users/purchase_information/:id', to: 'users#purchase_information', as: 'purchase_information'
   patch 'users/update_purchase_information/:id', to: 'users#update_purchase_information', as: 'update_purchase_information'
 

@@ -1,4 +1,6 @@
 class SearchController < ApplicationController
+  before_action :check_current_location, only: [:available_now, :available_now_query]
+
   def nearby
     sort_type = params[:sort_type] if params[:sort_type]
     start_time_filter = parse_time_format(params['listing']['beginning_time']) if params[:listing]
@@ -29,18 +31,25 @@ class SearchController < ApplicationController
   end
 
   def available_now
+    @spots = Spot.spots_with_currently_available_listings(@spots).paginate(:page => params[:page], :per_page => 15)
+    @listings = @spots.map {|spot| spot.available_listings_now}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
+    flash[:notice] = "There appear to be no available spots near you at the moment" if @listings.empty?
+    render 'available_now'
+  end
+
+  def available_now_query
+    @listings = @spots.map {|spot| spot.available_listings_at(params[:time_of_day])}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
+  end
+
+  private
+
+  def check_current_location
     if current_location
       @spots = Search.search_near(params[:q], params[:radius], current_location)
     else
       flash[:error] = "Please enable location access in your browser"
     end
-    @spots = Spot.spots_with_currently_available_listings(@spots).paginate(:page => params[:page], :per_page => 15)
-    @listings = @spots.map {|spot| spot.available_listings_now}.flatten.sort_by {|listing| listing.price}
-    flash[:notice] = "There appear to be no available spots near you at the moment" if @listings.empty?
-    render 'available_now'
   end
-
-  private
 
   def current_location
     if current_user

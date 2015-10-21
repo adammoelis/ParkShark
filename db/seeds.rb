@@ -60,9 +60,13 @@ end
 end
 
 200.times do
+  beginning_time = Faker::Date.between(Date.today, 2.days.from_now)
+  beginning_time_of_day = Listing.time_of_day_options.sample
   Listing.create(
-    beginning_time:Faker::Date.between(Date.today, 10.days.from_now),
-    beginning_time_of_day: Listing.time_of_day_options.sample,
+    beginning_time: beginning_time,
+    beginning_time_of_day: beginning_time_of_day,
+    ending_time: beginning_time,
+    ending_time_of_day: beginning_time_of_day,
     available: true,
     spot_id: Spot.all.sample.id,
     price: Faker::Commerce.price

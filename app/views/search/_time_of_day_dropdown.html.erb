@@ -1,0 +1,5 @@
+  <%= form_tag(available_now_path, remote: true) do %>
+  <%= label_tag "time_of_day", "Now Showng" %>
+  <%= select_tag "time_of_day", options_for_select(Listing.time_of_day_options), :selected => Listing.current_time_of_day%>
+  <%= submit_tag("Filter", class: "btn btn-large") %>
+  <% end %>

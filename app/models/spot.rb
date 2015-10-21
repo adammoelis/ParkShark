@@ -76,11 +76,15 @@ class Spot < ActiveRecord::Base
   end
 
   def has_an_available_listing_right_now
-    available_listings.any?{|listing| listing.available_now?}
+    available_listings.any?{|listing| listing.available_now? && listing.single_day?}
   end
 
   def available_listings_now
-    available_listings.select{|listing| listing.available_now?}
+    available_listings.select{|listing| listing.available_now? && listing.single_day?}
+  end
+
+  def available_listings_at(time_of_day)
+    available_listings.select{|listing| listing.available_at(time_of_day) && listing.single_day?}
   end
 
   def map_html(width, height, zoom)
