@@ -73,7 +73,7 @@
 
 						<div class="card-block card-body">
 							<div class="col-md-9 center-block">
-								<% @spot.listings.where(available: 'true').each do |listing| %>
+								<% @spot.listings.select{|listing| listing.available == true && !listing.expired?}.each do |listing| %>
 									<%= render partial: 'listings/listing', locals: {spot: @spot, listing: listing} %>
 								<% end %>
 							</div>
