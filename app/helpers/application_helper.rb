@@ -47,4 +47,24 @@ module ApplicationHelper
   def mailbox_new_message_count
     current_user.mailbox.receipts.where(is_read: false).count
   end
+
+  def ending_time_of_day_array(time_of_day)
+    case time_of_day
+    when MORNING
+      MORNING_TIME_RANGE
+    when AFTERNOON
+      AFTERNOON_TIME_RANGE
+    when LATE_AFTERNOON
+      LATE_AFTERNOON_TIME_RANGE
+    when EARLY_EVENING
+      EARLY_EVENING_TIME_RANGE
+    when EVENING
+      EVENING_TIME_RANGE
+    when LATE_NIGHT
+      LATE_NIGHT_TIME_RANGE
+    when EARLY_MORNING
+      EARLY_MORNING_TIME_RANGE
+    end
+  end
+
 end

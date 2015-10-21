@@ -85,4 +85,39 @@ class Listing < ActiveRecord::Base
     end
   end
 
+  def self.ending_time_of_day_array(time_of_day)
+    case time_of_day
+    when MORNING
+      1
+    when AFTERNOON
+      2
+    when LATE_AFTERNOON
+      3
+    when EARLY_EVENING
+      4
+    when EVENING
+      5
+    when LATE_NIGHT
+      6
+    when EARLY_MORNING
+      7
+    end
+  end
+
+  def expired?
+    current_hour = DateTime.now.hour
+    if DateTime.now.to_date > self.ending_time.to_date
+      true
+    elsif DateTime.now.to_date < self.ending_time.to_date
+      false
+    else
+      Listing.ending_time_of_day_array(self.ending_time_of_day) < Listing.ending_time_of_day_array(self.current_time_of_day)
+    end
+
+  end
+
+  def multi_day?
+    self.beginning_time == self.ending_time
+  end
+
 end
