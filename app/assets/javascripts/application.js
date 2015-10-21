@@ -56,6 +56,9 @@ $(function() {
       $('#hide-a-day').hide()
       $('#add-a-day').show()
     })
+    $('#location-search-nearby').hide()
+    addLocationSearch()
+
 });
 
 function getLocation() {
@@ -87,7 +90,7 @@ jQuery(function() {
 function hideAdvancedSearch() {
   $('#hide-advanced-search').click(function(){
     $('#advanced-search').hide()
-    $('#hide-advanced-search').replaceWith('<button id="add-advanced-search" class="btn btn-default">Click to search</button>')
+    $('#hide-advanced-search').replaceWith('<button id="add-advanced-search" class="btn btn-default">Click to filter</button>')
     addAdvancedSearch()
   })
 }
@@ -97,5 +100,17 @@ function addAdvancedSearch(){
     $('#advanced-search').show()
     $('#add-advanced-search').replaceWith('<button id="hide-advanced-search" class="btn btn-default">Hide Search</button>')
     hideAdvancedSearch()
+  })
+}
+
+function addLocationSearch(){
+  $('#add-location-search').click(function(){
+    $('#location-search-nearby').toggle()
+    if($('#location-search-nearby').is(":visible")){
+      $("#add-location-search").text("Hide")
+    }
+    else {
+      $("#add-location-search").text("Change Location")
+    }
   })
 }

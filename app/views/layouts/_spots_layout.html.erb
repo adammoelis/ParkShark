@@ -9,9 +9,12 @@
             <p><%= yield :page_subheader %></p>
 
           </header>
-
-          <%= yield :filtering %>
           <%= yield :sorting %>
+          <%= yield :filtering %>
+
+           <%= yield :location_search %>
+
+
 
         </div><!-- /.col -->
       </div><!-- /.row -->

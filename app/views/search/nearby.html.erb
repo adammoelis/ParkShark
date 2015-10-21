@@ -10,6 +10,13 @@
 <% content_for :filtering do %>
 	<%= render 'search/search_filters' %>
 <% end %>
+<% content_for :location_search do %>
+	<br>
+	<%= render 'layouts/search_location_button' %>
+	<div class="col-md-3 inner-bottom-xs center-block" id="location-search-nearby">
+		<%= render 'search/search_location' %>
+	</div>
+<% end %>
 <% content_for :sorting do %>
 	<%= render 'spots/sort' %>
 <% end %>
