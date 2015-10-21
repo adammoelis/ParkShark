@@ -37,7 +37,12 @@
 		</div><!-- /.container -->
     <% if @spots.length != 0 %>
       <div class="pagination_box">
-        <%= will_paginate @spots %>
+        <% if @listings %>
+          <%= will_paginate @listings %>
+        <% else %>
+          <%= will_paginate @spots if @spots %>
+        <% end %>
+
       </div>
     <% end %>
 	</section>

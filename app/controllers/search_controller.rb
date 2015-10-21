@@ -1,15 +1,8 @@
 class SearchController < ApplicationController
+  before_action :check_current_location, only: [:available_now, :available_now_query]
+  before_action :establish_variables, only: [:nearby]
+
   def nearby
-    sort_type = params[:sort_type] if params[:sort_type]
-    start_time_filter = parse_time_format(params['listing']['beginning_time']) if params[:listing]
-    beginning_time_of_day_filter = params['listing']['beginning_time_of_day'] if params[:listing]
-    if params['listing'] && params['listing']['ending_time'] != ""
-      end_time_filter = parse_time_format(params['listing']['ending_time'])
-      ending_time_of_day_filter = params['listing']['ending_time_of_day']
-    elsif start_time_filter
-      end_time_filter = start_time_filter
-    end
-    price_filter = params[:price] if params[:price] && params[:price].size > 0
     if current_location
       @spots = Search.search_near(params[:q], params[:radius], current_location)
     else
@@ -19,8 +12,8 @@ class SearchController < ApplicationController
     if @spots.length == 0
       flash[:error] = "Sorry, there are no spots that meet your requested information."
     else
-      @spots = Search.for(@spots, start_time_filter, end_time_filter, price_filter, beginning_time_of_day_filter, ending_time_of_day_filter).paginate(:page => params[:page], :per_page => 15)
-      @spots = Search.sort(@spots, sort_type, current_location).paginate(:page => params[:page], :per_page => 15) if sort_type
+      @spots = Search.for(@spots, @start_time_filter, @end_time_filter, @price_filter, @beginning_time_of_day_filter, @ending_time_of_day_filter).paginate(:page => params[:page], :per_page => 15)
+      @spots = Search.sort(@spots, @sort_type, current_location).paginate(:page => params[:page], :per_page => 15) if @sort_type
     end
     # respond_to do |format|
     #     format.html
@@ -29,18 +22,38 @@ class SearchController < ApplicationController
   end
 
   def available_now
-    if current_location
-      @spots = Search.search_near(params[:q], params[:radius], current_location)
-    else
-      flash[:error] = "Please enable location access in your browser"
-    end
-    @spots = Spot.spots_with_currently_available_listings(@spots).paginate(:page => params[:page], :per_page => 15)
-    @listings = @spots.map {|spot| spot.available_listings_now}.flatten.sort_by {|listing| listing.price}
+    @listings = @spots.map {|spot| spot.available_listings_now}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
     flash[:notice] = "There appear to be no available spots near you at the moment" if @listings.empty?
     render 'available_now'
   end
 
+  def available_now_query
+    @listings = @spots.map {|spot| spot.available_listings_at(params[:time_of_day])}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
+  end
+
   private
+
+  def establish_variables
+    @sort_type = params[:sort_type] if params[:sort_type]
+    @start_time_filter = parse_time_format(params['listing']['beginning_time']) if params[:listing]
+    @beginning_time_of_day_filter = params['listing']['beginning_time_of_day'] if params[:listing]
+    if params['listing'] && params['listing']['ending_time'] != ""
+      @end_time_filter = parse_time_format(params['listing']['ending_time'])
+      @ending_time_of_day_filter = params['listing']['ending_time_of_day']
+    elsif @start_time_filter
+      @end_time_filter = @start_time_filter
+    end
+    @price_filter = params[:price] if params[:price] && params[:price].size > 0
+  end
+
+  def check_current_location
+    if current_location
+      @spots = Search.search_near(params[:q], params[:radius], current_location)
+    else
+      @spots = []
+      flash[:error] = "Please enable location access in your browser"
+    end
+  end
 
   def current_location
     if current_user

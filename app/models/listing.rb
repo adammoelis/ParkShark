@@ -63,10 +63,10 @@ class Listing < ActiveRecord::Base
   end
 
   def available_at_current_time_of_day?
-    self.beginning_time_of_day == self.current_time_of_day
+    self.beginning_time_of_day == Listing.current_time_of_day
   end
 
-  def current_time_of_day
+  def self.current_time_of_day
     current_hour = DateTime.now.hour
     if MORNING_TIME_RANGE.include?(current_hour)
       MORNING
@@ -111,12 +111,19 @@ class Listing < ActiveRecord::Base
     elsif DateTime.now.to_date < self.ending_time.to_date
       false
     else
-      Listing.ending_time_of_day_array(self.ending_time_of_day) < Listing.ending_time_of_day_array(self.current_time_of_day)
+      Listing.ending_time_of_day_array(self.ending_time_of_day) < Listing.ending_time_of_day_array(Listing.current_time_of_day)
     end
+  end
 
+  def available_at(time_of_day)
+    self.ending_time_of_day == time_of_day
   end
 
   def multi_day?
+    self.beginning_time != self.ending_time
+  end
+
+  def single_day?
     self.beginning_time == self.ending_time
   end
 

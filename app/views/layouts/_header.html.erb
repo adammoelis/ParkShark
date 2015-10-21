@@ -40,9 +40,9 @@
 					<!-- ============================================================= MAIN NAVIGATION ============================================================= -->
 
 					<ul class="nav navbar-nav pull-right">
+						<li><%= link_to 'Find a Spot Now', available_now_path %></li>
+						<li><%= link_to 'Nearby Spots', nearby_spots_path %></li>
 						<% if user_signed_in? %>
-							<li><%= link_to 'Find a Spot Now', available_now_path %></li>
-						  <li><%= link_to 'Nearby Spots', nearby_spots_path %></li>
 							<li><%= link_to 'List Spot', new_spot_path %></li>
 
 							<li class="dropdown">
