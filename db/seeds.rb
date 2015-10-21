@@ -9,7 +9,7 @@ ADDRESSES = [["11 Broadway", "New York", "NY", "10001"],
              ["3700 Coldwater Canyon Ave", "Studio City", "CA", "91604"],
              ["563 N Alfred St", "West Hollywood", "CA", "90048"],
              ["1600 Pennsylvania Ave NW", "Washington", "DC" "20500"],
-             ["620 Atlantic Ave", "Brooklyn", "NY", "11217"]
+             ["620 Atlantic Ave", "Brooklyn", "NY", "11217"],
              ["3685 W Dublin Granville Rd", "Columbus", "OH", "43235"]
             ]
 
