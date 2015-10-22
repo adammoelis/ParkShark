@@ -57,6 +57,7 @@
   $(function() {
     // executeAjaxPost();
     createMap();
+    // displayOnMap(<%= current_location[0] %>, <%= current_location[1] %>)
 
   })
 
@@ -67,22 +68,20 @@
 
   function createMap(){
     handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers([
-        {
-          "lat": <%= current_location[0] %>,
-          "lng": <%= current_location[1] %>,
-          "picture": {
-            "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-            "width":  36,
-            "height": 36
-          },
-          "infowindow": "hello!"
-        }
-      ]);
+    handler.buildMap({ provider: {
+      zoom: 1
+    }, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
     });
   }
+  function displayOnMap(latitude, longitude){
+    var marker = handler.addMarker({
+      lat: latitude,
+      lng: longitude
+    });
+    handler.map.centerOn(marker);
+  };
 
 </script>

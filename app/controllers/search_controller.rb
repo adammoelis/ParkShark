@@ -15,20 +15,35 @@ class SearchController < ApplicationController
       @spots = Search.for(@spots, @start_time_filter, @end_time_filter, @price_filter, @beginning_time_of_day_filter, @ending_time_of_day_filter).paginate(:page => params[:page], :per_page => 15)
       @spots = Search.sort(@spots, @sort_type, current_location).paginate(:page => params[:page], :per_page => 15) if @sort_type
     end
-    # respond_to do |format|
-    #     format.html
-    #     format.js
-    # end
+    @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
+      marker.lat spot.latitude
+      marker.lng spot.longitude
+    end
   end
 
   def available_now
     @listings = @spots.map {|spot| spot.available_listings_now}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
+    @spots = @listings.map {|listing| listing.spot}.uniq
     flash[:notice] = "There appear to be no available spots near you at the moment" if @listings.empty?
+    @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
+      marker.lat spot.latitude
+      marker.lng spot.longitude
+      marker.picture({
+       "width" =>  32,
+       "height" => 32})
+      marker.json({:id => spot.id })
+      marker.infowindow "#{spot.description}"
+    end
     render 'available_now'
   end
 
   def available_now_query
     @listings = @spots.map {|spot| spot.available_listings_at(params[:time_of_day])}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
+    @spots = @listings.map {|listing| listing.spot}.uniq
+    @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
+      marker.lat spot.latitude
+      marker.lng spot.longitude
+    end
   end
 
   def create_map
