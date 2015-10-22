@@ -5,7 +5,8 @@ handler.removeMarkers(storedMarkers)
 markers = <%= raw @hash.to_json %>
 storedMarkers = markers.map(function(m) {
   marker = handler.addMarker(m);
-  marker.serviceObject.set('id', m.id); // You can add other attributes using set
+  marker.serviceObject.set('listingId', m.id); // You can add other attributes using set
+  marker.serviceObject.set('spotId', m.spot_id);
   return marker;
 });
 handler.bounds.extendWith(storedMarkers);

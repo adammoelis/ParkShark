@@ -28,32 +28,17 @@ class SearchController < ApplicationController
 
   def available_now
     @listings = @spots.map {|spot| spot.available_listings_now}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
-    @spots = @listings.map {|listing| listing.spot}.uniq
+    get_unique_spots
     flash[:notice] = "There appear to be no available spots near you at the moment" if @listings.empty?
-    @hash = Gmaps4rails.build_markers(@listings) do |listing, marker|
-      marker.lat listing.spot.latitude
-      marker.lng listing.spot.longitude
-      marker.picture({
-       "width" =>  32,
-       "height" => 32})
-      marker.json({:id => listing.id })
-      marker.infowindow "$#{listing.price.round(0)}"
-    end
+    set_maps_hash
     render 'available_now'
   end
 
   def available_now_query
     @listings = @spots.map {|spot| spot.available_listings_at(params[:time_of_day])}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
-    @spots = @listings.map {|listing| listing.spot}.uniq
-    @hash = Gmaps4rails.build_markers(@listings) do |listing, marker|
-      marker.lat listing.spot.latitude
-      marker.lng listing.spot.longitude
-      marker.picture({
-       "width" =>  32,
-       "height" => 32})
-      marker.json({:id => listing.id })
-      marker.infowindow "$#{listing.price.round(0)}"
-    end
+    get_unique_spots
+    set_maps_hash
+
   end
 
   def create_map
@@ -61,6 +46,22 @@ class SearchController < ApplicationController
   end
 
   private
+
+  def get_unique_spots
+    @spots = @listings.map {|listing| listing.spot}.uniq
+  end
+
+  def set_maps_hash
+    @hash = Gmaps4rails.build_markers(@listings) do |listing, marker|
+      marker.lat listing.spot.latitude
+      marker.lng listing.spot.longitude
+      marker.picture({
+       "width" =>  32,
+       "height" => 32})
+      marker.json({:listingId => listing.id, :spotId => listing.spot.id })
+      marker.infowindow "$#{listing.price.round(0)}"
+    end
+  end
 
   def establish_variables
     @sort_type = params[:sort_type] if params[:sort_type]
