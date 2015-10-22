@@ -80,16 +80,23 @@
   function changeMarkerToGreen(){
     $( "li.listing-square" ).hover(
       function() {
-        spotId = this.id.replace( /^\D+/g, '')
-        marker = _.find(storedMarkers, function(obj) { return obj.serviceObject.spotId == spotId })
-        marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+          spotId = this.id.replace( /^\D+/g, '')
+          makeMarkerRed(spotId)
       }, function() {
         spotId = this.id.replace( /^\D+/g, '')
-        marker = _.find(storedMarkers, function(obj) { return obj.serviceObject.spotId == spotId })
-        marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+        makeMarkerGreen(spotId)
       }
     );
   }
 
+  function makeMarkerRed(spotId){
+    marker = _.find(storedMarkers, function(obj) { return obj.serviceObject.spotId == spotId });
+    marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+  }
+
+  function makeMarkerGreen(){
+    marker = _.find(storedMarkers, function(obj) { return obj.serviceObject.spotId == spotId });
+    marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+  }
 
 </script>
