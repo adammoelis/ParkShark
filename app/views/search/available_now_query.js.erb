@@ -5,9 +5,11 @@ handler.removeMarkers(storedMarkers)
 markers = <%= raw @hash.to_json %>
 storedMarkers = markers.map(function(m) {
   marker = handler.addMarker(m);
-  marker.serviceObject.set('listingId', m.id); // You can add other attributes using set
-  marker.serviceObject.set('spotId', m.spot_id);
+  marker.serviceObject.set('listingId', m.listingId); // You can add other attributes using set
+  marker.serviceObject.set('spotId', m.spotId);
+  marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
   return marker;
 });
 handler.bounds.extendWith(storedMarkers);
 handler.fitMapToBounds();
+changeMarkerToGreen();
