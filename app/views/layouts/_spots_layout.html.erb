@@ -63,14 +63,14 @@
     handler.buildMap({ provider: {
       // zoom: 1
     }, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(<%= raw @hash.to_json %>);
-      // markers = (<%= raw @hash.to_json %>);
-    //   Gmaps.store.markers = markers.map(function(m) {
-    //     marker = handler.addMarker(m);
-    //     marker.serviceObject.set('id', m.id); // You can add other attributes using set
-    //     return marker;
-    // });
-      handler.bounds.extendWith(markers);
+      // markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      markers = <%= raw @hash.to_json %>;
+      storedMarkers = markers.map(function(m) {
+        marker = handler.addMarker(m);
+        marker.serviceObject.set('id', m.id); // You can add other attributes using set
+        return marker;
+    });
+      handler.bounds.extendWith(storedMarkers);
       handler.fitMapToBounds();
     });
   }
