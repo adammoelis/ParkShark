@@ -56,25 +56,24 @@
 <script type="text/javascript">
   $(function() {
     createMap();
-
   })
 
   function createMap(){
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {
-      zoom: 1
+      // zoom: 1
     }, internal: {id: 'map'}}, function(){
       markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      // markers = (<%= raw @hash.to_json %>);
+    //   Gmaps.store.markers = markers.map(function(m) {
+    //     marker = handler.addMarker(m);
+    //     marker.serviceObject.set('id', m.id); // You can add other attributes using set
+    //     return marker;
+    // });
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
     });
   }
-  function displayOnMap(latitude, longitude){
-    var marker = handler.addMarker({
-      lat: latitude,
-      lng: longitude
-    });
-    handler.map.centerOn(marker);
-  };
+
 
 </script>
