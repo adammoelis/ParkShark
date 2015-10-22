@@ -3,6 +3,8 @@ $('.all-spots').html('<%= j render partial: "listings/listing_stand_alone", loca
 // $('#map').html("")
 handler.removeMarkers(markers)
 markers = handler.addMarkers(<%= raw @hash.to_json %>)
+handler.bounds.extendWith(markers);
+handler.fitMapToBounds();
 
 // createMap()
 //
