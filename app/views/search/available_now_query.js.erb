@@ -1,3 +1,15 @@
 $('.all-spots').html('<%= j render partial: "listings/listing_stand_alone", locals: {listings: @listings} %>')
 
-// Gmaps.map.replaceMarkers(<%= @hash.to_json %>)
+$('#map').html("")
+createMap()
+
+function createMap(){
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {
+    zoom: 1
+  }, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%= raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+}

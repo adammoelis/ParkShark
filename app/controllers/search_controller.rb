@@ -18,6 +18,11 @@ class SearchController < ApplicationController
     @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
       marker.lat spot.latitude
       marker.lng spot.longitude
+      marker.picture({
+       "width" =>  32,
+       "height" => 32})
+      marker.json({:id => spot.id })
+      marker.infowindow "#{spot.description}"
     end
   end
 
@@ -25,14 +30,14 @@ class SearchController < ApplicationController
     @listings = @spots.map {|spot| spot.available_listings_now}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
     @spots = @listings.map {|listing| listing.spot}.uniq
     flash[:notice] = "There appear to be no available spots near you at the moment" if @listings.empty?
-    @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
-      marker.lat spot.latitude
-      marker.lng spot.longitude
+    @hash = Gmaps4rails.build_markers(@listings) do |listing, marker|
+      marker.lat listing.spot.latitude
+      marker.lng listing.spot.longitude
       marker.picture({
        "width" =>  32,
        "height" => 32})
-      marker.json({:id => spot.id })
-      marker.infowindow "#{spot.description}"
+      marker.json({:id => listing.id })
+      marker.infowindow "$#{listing.price.round(0)}"
     end
     render 'available_now'
   end
@@ -40,9 +45,14 @@ class SearchController < ApplicationController
   def available_now_query
     @listings = @spots.map {|spot| spot.available_listings_at(params[:time_of_day])}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
     @spots = @listings.map {|listing| listing.spot}.uniq
-    @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
-      marker.lat spot.latitude
-      marker.lng spot.longitude
+    @hash = Gmaps4rails.build_markers(@listings) do |listing, marker|
+      marker.lat listing.spot.latitude
+      marker.lng listing.spot.longitude
+      marker.picture({
+       "width" =>  32,
+       "height" => 32})
+      marker.json({:id => listing.id })
+      marker.infowindow "$#{listing.price.round(0)}"
     end
   end
 
