@@ -20,10 +20,11 @@ gem 'bootstrap-will_paginate'
 gem 'will_paginate'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'bootstrap-social-rails'
-
+gem 'gmaps4rails'
 # auto size textarea elements as user types
 gem 'autosize-rails'
 gem 'aws-sdk'
+gem 'underscore-rails'
 
 gem 'font-awesome-rails'
 gem 'omniauth-twitter'

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   post 'find-a-spot', to: 'search#available_now_query'
   get 'users/purchase_information/:id', to: 'users#purchase_information', as: 'purchase_information'
   patch 'users/update_purchase_information/:id', to: 'users#update_purchase_information', as: 'update_purchase_information'
-
+  post 'create_map', to: 'search#create_map'
   resources :reservations
   resources :transactions
   resources :reviews
