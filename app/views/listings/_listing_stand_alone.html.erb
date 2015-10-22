@@ -21,10 +21,12 @@
         </p>
         <p>$<%= listing.price.round(0) %></p>
         <p><%= listing.beginning_time_of_day %></p>
-        <%= render partial: 'listings/reserve_button', locals: {spot: listing.spot, listing: listing} %>
-
-        <%= button_to 'Remove Spot', spot_path(listing.spot), class: 'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } if current_user == listing.spot.owner && request.env['PATH_INFO'] == 'my_spots' %>
-
+        <% if user_signed_in? %>
+          <%= render partial: 'listings/reserve_button', locals: {spot: listing.spot, listing: listing} %>
+          <%= button_to 'Remove Spot', spot_path(listing.spot), class: 'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } if current_user == listing.spot.owner && request.env['PATH_INFO'] == 'my_spots' %>
+        <% else %>
+          <%= link_to "Sign in to reserve", new_session_path(resource_name), {remote: true, 'data-toggle' => 'modal', 'data-target' => '#modal-window', class: 'btn btn-default'} %>
+        <% end %>
       </div><!-- /.info -->
     </figcaption>
 
