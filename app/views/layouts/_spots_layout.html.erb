@@ -70,7 +70,6 @@
         marker.serviceObject.set('listingId', m.listingId); // You can add other attributes using set
         marker.serviceObject.set('spotId', m.spotId);
         marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
-        // marker.serviceObject.infowindow(m.infowindow)
         return marker;
     });
       handler.bounds.extendWith(storedMarkers);
@@ -81,13 +80,24 @@
   function changeMarkerToGreen(){
     $( "li.listing-square" ).hover(
       function() {
-          spotId = this.id.replace( /^\D+/g, '')
-          makeMarkerRed(spotId)
+        spotId = this.id.replace( /^\D+/g, '')
+        makeMarkerRed(spotId)
+        showInfoWindow(marker)
       }, function() {
         spotId = this.id.replace( /^\D+/g, '')
         makeMarkerGreen(spotId)
+        closeInfoWindow(marker)
+        handler.fitMapToBounds()
       }
     );
+  }
+
+  function showInfoWindow(marker){
+    google.maps.event.trigger(marker.getServiceObject(), 'click');
+  }
+
+  function closeInfoWindow(marker){
+    marker.infowindow.close();
   }
 
   function makeMarkerRed(spotId){
