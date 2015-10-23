@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   post 'purchases/checkout', to: 'purchases#checkout', as: 'checkout'
   post 'spots/:id/listings/:id/reserve', to: 'reservations#confirm_spot', as: 'confirm_spot'
 
-  get 'home/about', to: 'home#about', as: 'about'
-  get 'home/contact', to: 'home#contact', as: 'contact'
+  get 'about', to: 'home#about', as: 'about'
+  get 'contact', to: 'home#contact', as: 'contact'
   get 'my_location', to: 'home#location', as:'my_location'
   post 'my_location', to: 'home#set_location', as:'set_location'
   get 'nearby-parking', to: 'search#nearby', as: 'nearby_spots'
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   post 'find-a-spot', to: 'search#available_now_query'
   get 'users/purchase_information/:id', to: 'users#purchase_information', as: 'purchase_information'
   patch 'users/update_purchase_information/:id', to: 'users#update_purchase_information', as: 'update_purchase_information'
-
+  post 'create_map', to: 'search#create_map'
   resources :reservations
   resources :transactions
   resources :reviews

@@ -12,8 +12,10 @@
           <%= yield :sorting %>
           <%= yield :filtering %>
 
-           <%= yield :location_search %>
-
+          <%= yield :location_search %>
+            <div id="map-container" style='width: 1150px;'>
+              <div id="map" style='width: 1150px; height: 300px;'></div>
+            </div>
 
 
         </div><!-- /.col -->
@@ -50,3 +52,62 @@
     <% end %>
 	</section>
 </main>
+
+<script type="text/javascript">
+  $(function() {
+    createMap();
+    changeMarkerToGreen();
+  })
+
+  function createMap(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {
+
+    }, internal: {id: 'map'}}, function(){
+      markers = <%= raw @hash.to_json %>;
+      storedMarkers = markers.map(function(m) {
+        marker = handler.addMarker(m);
+        marker.serviceObject.set('listingId', m.listingId); // You can add other attributes using set
+        marker.serviceObject.set('spotId', m.spotId);
+        marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+        return marker;
+    });
+      handler.bounds.extendWith(storedMarkers);
+      handler.fitMapToBounds();
+    });
+  }
+
+  function changeMarkerToGreen(){
+    $( "li.listing-square" ).hover(
+      function() {
+        spotId = this.id.replace( /^\D+/g, '');
+        makeMarkerGreen(spotId);
+        showInfoWindow(marker);
+      }, function() {
+        spotId = this.id.replace( /^\D+/g, '');
+        makeMarkerRed(spotId);
+        closeInfoWindow(marker);
+        handler.fitMapToBounds();
+      }
+    );
+  }
+
+  function showInfoWindow(marker){
+    google.maps.event.trigger(marker.getServiceObject(), 'click');
+  }
+
+  function closeInfoWindow(marker){
+    marker.infowindow.close();
+  }
+
+  function makeMarkerGreen(spotId){
+    marker = _.find(storedMarkers, function(obj) { return obj.serviceObject.spotId == spotId });
+    marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+  }
+
+  function makeMarkerRed(){
+    marker = _.find(storedMarkers, function(obj) { return obj.serviceObject.spotId == spotId });
+    marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+  }
+
+</script>

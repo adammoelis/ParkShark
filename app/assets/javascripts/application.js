@@ -38,6 +38,8 @@
 //= require ImageSelect.jquery.js
 //= require gmaps-auto-complete
 //= require bootstrap-datepicker
+//= require underscore
+//= require gmaps/google
 //= require_tree .
 
 $(function() {
