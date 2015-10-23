@@ -59,7 +59,9 @@
 						</div>
 
 						<div class="card-block card-body no-padding">
-							<%= @spot.map_html('100%','600px', '18') %>
+							<div id="map-container" style='width: 1150px;'>
+								<div id="map" style='width: 1150px; height: 600px;'></div>
+							</div>
 						</div>
 					</div><!-- /.card -->
 				</div>
@@ -204,5 +206,32 @@
         $(this).parent().find('i').toggleClass('fa-toggle-off').toggleClass('fa-toggle-on');
       });
     });
+		createMap();
   });
+
+
+	function createMap(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {
+
+    }, internal: {id: 'map'}}, function(){
+			markers = handler.addMarkers([
+			    {
+			      "lat": <%= @spot.latitude %>,
+			      "lng": <%= @spot.longitude %>,
+			      "picture": {
+			        "width":  36,
+			        "height": 36
+			      },
+			      "infowindow": "hello!"
+			    }
+			  ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+			handler.getMap().setZoom(17);
+			markers[0].serviceObject.setVisible(false);
+			circle = [{lng: <%= @spot.longitude %>, lat: <%= @spot.latitude %>, radius: 150, strokeColor: "#FF0000"}];
+			handler.addCircles(circle)
+	  });
+  }
 </script>
