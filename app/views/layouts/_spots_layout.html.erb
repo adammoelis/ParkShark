@@ -80,14 +80,14 @@
   function changeMarkerToGreen(){
     $( "li.listing-square" ).hover(
       function() {
-        spotId = this.id.replace( /^\D+/g, '')
-        makeMarkerRed(spotId)
-        showInfoWindow(marker)
+        spotId = this.id.replace( /^\D+/g, '');
+        makeMarkerRed(spotId);
+        showInfoWindow(marker);
       }, function() {
-        spotId = this.id.replace( /^\D+/g, '')
-        makeMarkerGreen(spotId)
-        closeInfoWindow(marker)
-        handler.fitMapToBounds()
+        spotId = this.id.replace( /^\D+/g, '');
+        makeMarkerGreen(spotId);
+        closeInfoWindow(marker);
+        handler.fitMapToBounds();
       }
     );
   }
