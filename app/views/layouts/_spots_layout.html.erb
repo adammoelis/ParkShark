@@ -81,11 +81,11 @@
     $( "li.listing-square" ).hover(
       function() {
         spotId = this.id.replace( /^\D+/g, '');
-        makeMarkerRed(spotId);
+        makeMarkerGreen(spotId);
         showInfoWindow(marker);
       }, function() {
         spotId = this.id.replace( /^\D+/g, '');
-        makeMarkerGreen(spotId);
+        makeMarkerRed(spotId);
         closeInfoWindow(marker);
         handler.fitMapToBounds();
       }
@@ -100,12 +100,12 @@
     marker.infowindow.close();
   }
 
-  function makeMarkerRed(spotId){
+  function makeMarkerGreen(spotId){
     marker = _.find(storedMarkers, function(obj) { return obj.serviceObject.spotId == spotId });
     marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
   }
 
-  function makeMarkerGreen(){
+  function makeMarkerRed(){
     marker = _.find(storedMarkers, function(obj) { return obj.serviceObject.spotId == spotId });
     marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
   }

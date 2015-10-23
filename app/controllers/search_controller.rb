@@ -21,7 +21,7 @@ class SearchController < ApplicationController
       marker.picture({
        "width" =>  32,
        "height" => 32})
-      marker.json({:id => spot.id })
+      marker.json({:spotId => spot.id })
       marker.infowindow "#{spot.description}"
     end
   end
