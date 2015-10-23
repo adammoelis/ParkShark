@@ -13,9 +13,9 @@
           <%= yield :filtering %>
 
           <%= yield :location_search %>
-          <div id="map-container" style='width: 1150px;'>
-            <div id="map" style='width: 1150px; height: 300px;'></div>
-          </div>
+            <div id="map-container" style='width: 1150px;'>
+              <div id="map" style='width: 1150px; height: 300px;'></div>
+            </div>
 
 
         </div><!-- /.col -->
@@ -70,6 +70,7 @@
         marker.serviceObject.set('listingId', m.listingId); // You can add other attributes using set
         marker.serviceObject.set('spotId', m.spotId);
         marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+        // marker.serviceObject.infowindow(m.infowindow)
         return marker;
     });
       handler.bounds.extendWith(storedMarkers);
