@@ -17,7 +17,7 @@ class Listing < ActiveRecord::Base
   LATE_AFTERNOON_TIME_RANGE = [14, 15, 16]
   EARLY_EVENING_TIME_RANGE = [17, 18, 19]
   EVENING_TIME_RANGE = [20, 21, 22]
-  LATE_NIGHT_TIME_RANGE = [23, 24, 1, 2, 3]
+  LATE_NIGHT_TIME_RANGE = [23, 0, 1, 2, 3]
   EARLY_MORNING_TIME_RANGE = [4, 5, 6, 7]
 
   def self.time_of_day_options

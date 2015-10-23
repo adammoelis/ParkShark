@@ -38,7 +38,6 @@ class SearchController < ApplicationController
     @listings = @spots.map {|spot| spot.available_listings_at(params[:time_of_day])}.flatten.sort_by {|listing| listing.price}.paginate(:page => params[:page], :per_page => 15)
     get_unique_spots
     set_maps_hash
-
   end
 
   def create_map
