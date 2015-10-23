@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   post 'purchases/checkout', to: 'purchases#checkout', as: 'checkout'
   post 'spots/:id/listings/:id/reserve', to: 'reservations#confirm_spot', as: 'confirm_spot'
 
-  get 'home/about', to: 'home#about', as: 'about'
-  get 'home/contact', to: 'home#contact', as: 'contact'
+  get 'about', to: 'home#about', as: 'about'
+  get 'contact', to: 'home#contact', as: 'contact'
   get 'my_location', to: 'home#location', as:'my_location'
   post 'my_location', to: 'home#set_location', as:'set_location'
   get 'nearby-parking', to: 'search#nearby', as: 'nearby_spots'
