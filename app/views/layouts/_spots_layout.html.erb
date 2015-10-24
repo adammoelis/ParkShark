@@ -2,7 +2,7 @@
   <section id="portfolio">
     <div class="container inner">
       <div class="row">
-        <div class="col-md-12 col-sm-9">
+        <div class="col-md-12 col-sm-9 spots-header">
           <header>
 
             <h1><%= yield :page_header %></h1>
@@ -26,7 +26,7 @@
     <div class="container inner-bottom">
       <div class="row">
         <div class="col-sm-9 portfolio">
-          <ul class="filter text-center">
+          <ul class="filter text-center filter-type">
             <li><a href="#" data-filter="*" class="active">All</a></li>
             <li><a href="#" data-filter=".<%= Spot.types_of_spots[0] %>"><%= Spot.types_of_spots[0] %></a></li>
             <li><a href="#" data-filter=".<%= Spot.types_of_spots[1] %>"><%= Spot.types_of_spots[1] %></a></li>
