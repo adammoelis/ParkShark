@@ -168,4 +168,21 @@ input[type='submit'] {
 }
 
 #map-container {
+  position: fixed;
+  top: 0;
+  right: -24px;
+  width: 500px;
+  z-index: 1;
+}
+
+.spots-header {
+  position: fixed;
+  top: 50px;
+  background-color: white;
+  z-index: 1;
+  padding-top: 100px;
+}
+
+.filter-type {
+  padding-top: 100px;
 }
