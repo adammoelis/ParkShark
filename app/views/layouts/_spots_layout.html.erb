@@ -2,7 +2,7 @@
   <section id="portfolio">
     <div class="container inner">
       <div class="row">
-        <div class="col-md-12 col-sm-9 center-block text-center">
+        <div class="col-md-12 col-sm-9">
           <header>
 
             <h1><%= yield :page_header %></h1>
@@ -13,18 +13,19 @@
           <%= yield :filtering %>
 
           <%= yield :location_search %>
-            <div id="map-container" style='width: 1150px;'>
-              <div id="map" style='width: 1150px; height: 300px;'></div>
-            </div>
+
 
 
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container -->
+    <div id="map-container">
+      <div id="map" style='width: 500px; height: 710px;'></div>
+    </div>
 
     <div class="container inner-bottom">
       <div class="row">
-        <div class="col-sm-12 portfolio">
+        <div class="col-sm-9 portfolio">
           <ul class="filter text-center">
             <li><a href="#" data-filter="*" class="active">All</a></li>
             <li><a href="#" data-filter=".<%= Spot.types_of_spots[0] %>"><%= Spot.types_of_spots[0] %></a></li>

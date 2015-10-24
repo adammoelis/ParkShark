@@ -168,4 +168,9 @@ input[type='submit'] {
 }
 
 #map-container {
+  position: fixed;
+  top: 0;
+  right: 0px;
+  width: 500px;
+  z-index: 1;
 }
