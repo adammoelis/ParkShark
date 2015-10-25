@@ -13,7 +13,10 @@
           <%= yield :filtering %>
 
           <%= yield :location_search %>
-          <%= text_field_tag(:q, nil, placeholder: "Where are you going?", id: "q") %>
+          <div class="col-xs-3">
+            <%= text_field_tag(:q, nil, placeholder: "Where are you going?", id: "q", class: "pull-left") %>
+          </div>
+
 
 
 
@@ -59,7 +62,7 @@
   $(function() {
     createMap();
     changeMarkerToGreen();
-    $(document).keypress(function(e) {
+    $('#q').keypress(function(e) {
         if(e.which == 13) {
             codeAddress();
         }
@@ -156,6 +159,8 @@
           ]);
           handler.bounds.extendWith(markers);
           handler.fitMapToBounds();
+          $('#q').val('');
+
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
