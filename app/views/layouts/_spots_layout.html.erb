@@ -48,9 +48,9 @@
     <% if @spots.length != 0 %>
       <div class="pagination_box">
         <% if @listings %>
-          <%= will_paginate @listings %>
+          <%= will_paginate @listings, :inner_window => 2 %>
         <% else %>
-          <%= will_paginate @spots if @spots %>
+          <%= will_paginate @spots, :inner_window => 2 if @spots %>
         <% end %>
 
       </div>
