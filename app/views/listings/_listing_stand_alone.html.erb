@@ -3,7 +3,7 @@
   <figure>
 
     <div class="icon-overlay icn-link">
-      <a href=" <%= spot_path(listing.spot) %>"><%= listing.spot.map_html('100%', '300px', '17') %></a>
+      <a href=" <%= spot_path(listing.spot) %>"><%= image_for_spot(listing.spot, :medium, 'medium-img') %></a>
     </div><!-- /.icon-overlay -->
 
     <figcaption class="bordered no-top-border">

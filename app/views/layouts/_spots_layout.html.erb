@@ -13,6 +13,10 @@
           <%= yield :filtering %>
 
           <%= yield :location_search %>
+          <div class="col-xs-3 where-are-you-going">
+            <%= text_field_tag(:q, nil, placeholder: "Where are you going?", id: "q") %>
+          </div>
+
 
 
 
@@ -44,9 +48,9 @@
     <% if @spots.length != 0 %>
       <div class="pagination_box">
         <% if @listings %>
-          <%= will_paginate @listings %>
+          <%= will_paginate @listings, :inner_window => 2 %>
         <% else %>
-          <%= will_paginate @spots if @spots %>
+          <%= will_paginate @spots, :inner_window => 2 if @spots %>
         <% end %>
 
       </div>
@@ -58,6 +62,11 @@
   $(function() {
     createMap();
     changeMarkerToGreen();
+    $('#q').keypress(function(e) {
+        if(e.which == 13) {
+            codeAddress();
+        }
+    });
   })
 
   function createMap(){
@@ -110,5 +119,53 @@
     marker = _.find(storedMarkers, function(obj) { return obj.serviceObject.spotId == spotId });
     marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
   }
+
+  function addMarkerToMap(){
+    latLong = <%= Geocoder.coordinates("1 union square south") %>;
+    latitude = latLong[0];
+    longtidue = latLong[1];
+    markers = handler.addMarkers([
+    {
+        "lat": latitude,
+        "lng": longitude,
+        "picture": {
+          "url": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+          "width":  36,
+          "height": 36
+        },
+        "infowindow": "hello!"
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    }
+
+    function codeAddress() {
+      var geocoder = new google.maps.Geocoder();
+      var address = document.getElementById("q").value;
+      geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          markers = handler.addMarkers([
+          {
+              "lat": results[0].geometry.location.lat(),
+              "lng": results[0].geometry.location.lng(),
+              "picture": {
+                "url": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                "width":  36,
+                "height": 36
+              },
+              "infowindow": "hello!"
+            }
+          ]);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          $('#q').val('');
+
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+
 
 </script>

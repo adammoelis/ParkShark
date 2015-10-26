@@ -176,7 +176,7 @@ input[type='submit'] {
 }
 
 .spots-header {
-  position: fixed;
+  position: absolute;
   top: 50px;
   background-color: white;
   z-index: 1;
@@ -185,4 +185,18 @@ input[type='submit'] {
 
 .filter-type {
   // padding-top: 100px;
+}
+
+.where-are-you-going {
+  padding: 0px;
+}
+
+div.pagination_box   {
+  width: 900px;
+  margin-left: 0px;
+}
+
+footer.dark-bg {
+  z-index: 99;
+  position: relative;
 }
