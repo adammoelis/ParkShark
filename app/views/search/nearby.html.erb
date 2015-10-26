@@ -1,6 +1,6 @@
 <% content_for :page_title do %>Nearby Parking Spots<% end %>
-<% content_for :page_header do %>Nearby Parking Spots<% end %>
-	<% content_for :page_subheader do %>Browse nearby parking spots below or enter a new location<% end %>
+<% content_for :page_header do %><% end %>
+	<% content_for :page_subheader do %><% end %>
 <% content_for :page_content do %>
 	<%= render @spots %>
 <% end %>
@@ -11,9 +11,7 @@
 	<%= render 'search/search_filters' %>
 <% end %>
 <% content_for :location_search do %>
-	<br>
-	<%= render 'layouts/search_location_button' %>
-	<div class="col-md-3 inner-bottom-xs center-block" id="location-search-nearby">
+	<div class="col-md-3 inner-bottom-xs" id="location-search-nearby">
 		<%= render 'search/search_location' %>
 	</div>
 <% end %>

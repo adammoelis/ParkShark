@@ -44,22 +44,22 @@
 
 $(function() {
     getLocation()
-    $('#advanced-search').hide()
-    $('#ending-time-form').hide()
-    $('#hide-a-day').hide()
-    addAdvancedSearch()
-    $('#add-a-day').click(function(){
-      $('#ending-time-form').show()
-      $('#add-a-day').hide()
-      $('#hide-a-day').show()
-    })
-    $('#hide-a-day').click(function(){
-      $('#ending-time-form').hide()
-      $('#hide-a-day').hide()
-      $('#add-a-day').show()
-    })
-    $('#location-search-nearby').hide()
-    addLocationSearch()
+    // $('#advanced-search').hide()
+    // $('#ending-time-form').hide()
+    // $('#hide-a-day').hide()
+    // addAdvancedSearch()
+    // $('#add-a-day').click(function(){
+    //   $('#ending-time-form').show()
+    //   $('#add-a-day').hide()
+    //   $('#hide-a-day').show()
+    // })
+    // $('#hide-a-day').click(function(){
+    //   $('#ending-time-form').hide()
+    //   $('#hide-a-day').hide()
+    //   $('#add-a-day').show()
+    // })
+    // $('#location-search-nearby').hide()
+    // addLocationSearch()
 
 });
 

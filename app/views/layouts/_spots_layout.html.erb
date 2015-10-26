@@ -1,18 +1,18 @@
 <main>
   <section id="portfolio">
-    <div class="container inner">
+    <div class="container inner spot-layout-wrapper">
       <div class="row">
-        <div class="col-md-12 col-sm-9 spots-header">
+        <div class="col-md-8 col-sm-9 spots-header">
           <header>
 
             <h1><%= yield :page_header %></h1>
             <p><%= yield :page_subheader %></p>
 
           </header>
-          <%= yield :sorting %>
+
           <%= yield :filtering %>
 
-          <%= yield :location_search %>
+          <%= yield :sorting %>
           <div class="col-xs-3 where-are-you-going">
             <%= text_field_tag(:q, nil, placeholder: "Where are you going?", id: "q") %>
           </div>

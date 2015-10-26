@@ -1,15 +1,12 @@
-<%= render 'layouts/add_advanced_search' %>
-<div id="advanced-search" class="col-md-8 col-sm-9 center-block text-center">
+<div id="advanced-search" class="col-md-12 col-sm-9 text-center">
   <%= form_tag(nearby_spots_path, method: "get") do %>
-    <%= render 'layouts/add_a_date' %>
-    <%= render 'layouts/hide_a_date' %>
     <div class="form-group">
-      <%= label_tag :beginning_time, "Start Date", class: 'col-sm-2 control-label' %>
+      <%= label_tag :beginning_time, "Start Date", class: 'col-sm-2 control-label no-left-padding' %>
       <div class="col-sm-6">
         <% if params[:listing] && params["listing"]["beginning_time"] %>
           <input type="text" data-provide='datepicker', name='listing[beginning_time]', placeholder="Start Date", value="<%= params['listing']['beginning_time'] %>" required="required">
         <% else %>
-          <input type="text" data-provide='datepicker', name='listing[beginning_time]', placeholder="Start Date", required="required">
+          <input type="text" data-provide='datepicker', name='listing[beginning_time]', placeholder="Start Date", value="<%= DateTime.now %>" required="required">
         <% end %>
       </div>
       <% if params[:listing] && params["listing"]["beginning_time"] %>
@@ -20,7 +17,7 @@
     </div>
 
     <div id="ending-time-form" class="form-group">
-      <%= label_tag :ending_time, "End Date", class: 'col-sm-2 control-label' %>
+      <%= label_tag :ending_time, "End Date", class: 'col-sm-2 control-label no-left-padding' %>
       <div class="col-sm-6">
         <% if params[:listing] && params[:listing]["ending_time"] %>
           <input type="text" data-provide='datepicker', placeholder="End Date (optional)", name='listing[ending_time]', value="<%= params['listing']['ending_time'] %>">
@@ -36,7 +33,7 @@
     </div>
 
     <div class="form-group">
-      <%= label_tag :price, "Max Price", class: 'col-sm-2 control-label' %>
+      <%= label_tag :price, "Max Price", class: 'col-sm-2 control-label no-left-padding' %>
       <div class="col-sm-6">
         <% if params[:price] && params[:price] != "" %>
         <%= text_field_tag("price", params[:price]) %>
@@ -45,12 +42,31 @@
         <% end %>
       </div>
     </div>
-    <%= hidden_field_tag "q", "#{params[:q]}" if params[:q] %>
-    <%= hidden_field_tag "radius", "#{params[:radius]}" if params[:radius] %>
+    <div class="form-group clear">
+      <%= label_tag :q, "Location:", class: 'col-sm-2 control-label no-left-padding' %>
+      <div class="col-sm-6">
+        <% if params[:q] %>
+          <%= text_field_tag(:q, "#{params[:q]}", placeholder: "Los Angeles, CA or 90001", :required => true, class: 'form-control', id: "q") %>
+        <% else %>
+          <%= text_field_tag(:q, nil, placeholder: "Los Angeles, CA or 90001", :required => true, class: 'form-control', id: "q") %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group clear">
+      <%= label_tag :radius, "Radius:", class: 'col-sm-2 control-label no-left-padding' %>
+      <div class="col-sm-6">
+        <% if params[:radius] %>
+          <%= select_tag(:radius, options_for_select(miles_options, selected: "#{params[:radius]}"), class: 'form-control', id: "miles-select-dropdown") %>
+        <% else %>
+          <%= select_tag(:radius, options_for_select(miles_options, selected: 5), class: 'form-control', id: "miles-select-dropdown") %>
+        <% end %>
+      </div>
+    </div>
     <%= hidden_field_tag "sort_type", "#{params[:sort_type]}" if params[:sort_type] %>
     <div class="form-group">
       <div class="col-sm-9">
-        <%= submit_tag("Find Parking", class: "btn btn-large btn-block btn-primary" ) %>
+        <%= submit_tag("Find Parking", class: "btn btn-large btn-block btn-primary no-left-padding" ) %>
       </div>
     </div>
   <% end %>
