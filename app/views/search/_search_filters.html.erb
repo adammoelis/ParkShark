@@ -36,9 +36,9 @@
       <%= label_tag :price, "Max Price", class: 'col-sm-2 control-label no-left-padding' %>
       <div class="col-sm-6">
         <% if params[:price] && params[:price] != "" %>
-          <input name="price" id="max-price" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="<%= max_price_listing_in(@spots) %>" data-slider-step="1" data-slider-value="#{params[:price]}"/>
+          <input name="price" id="max-price" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="<%= Listing.all.sort_by(&:price).last.price %>" data-slider-step="1" data-slider-value="<%= params[:price] %>"/>
         <% else %>
-          <input name="price" id="max-price" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="<%= max_price_listing_in(@spots) %>" data-slider-step="1" data-slider-value="<%= max_price_listing_in(@spots) %>"/>
+          <input name="price" id="max-price" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="<%= Listing.all.sort_by(&:price).last.price %>" data-slider-step="1" data-slider-value="<%= Listing.max_price(@listings) %>"/>
         <% end %>
       </div>
     </div>

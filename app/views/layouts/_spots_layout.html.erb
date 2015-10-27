@@ -14,7 +14,7 @@
 
           <%= yield :sorting %>
           <div class="col-xs-3 where-are-you-going">
-            <%= text_field_tag(:q, nil, placeholder: "Where are you going?", id: "q") %>
+            <%= text_field_tag(:q, nil, placeholder: "Where are you going?", id: "destination") %>
           </div>
 
 
@@ -62,7 +62,7 @@
   $(function() {
     createMap();
     changeMarkerToGreen();
-    $('#q').keypress(function(e) {
+    $('#destination').keypress(function(e) {
         if(e.which == 13) {
             codeAddress();
         }
@@ -142,7 +142,7 @@
 
     function codeAddress() {
       var geocoder = new google.maps.Geocoder();
-      var address = document.getElementById("q").value;
+      var address = document.getElementById("destination").value;
       geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           markers = handler.addMarkers([

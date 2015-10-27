@@ -2,7 +2,7 @@
 <% content_for :page_header do %><% end %>
 	<% content_for :page_subheader do %><% end %>
 <% content_for :page_content do %>
-	<%= render @spots %>
+	<%= render partial: "listings/listing_stand_alone", locals: {listings: @listings} %>
 <% end %>
 <% content_for :searching do %>
 	<%= render 'spots/spots_search' %>

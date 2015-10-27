@@ -3,7 +3,6 @@ class SearchController < ApplicationController
   before_action :establish_variables, only: [:nearby]
 
   def nearby
-    binding.pry
     if current_location
       @spots = Search.search_near(params[:q], params[:radius], current_location)
     else
@@ -11,12 +10,12 @@ class SearchController < ApplicationController
       @spots = Spot.all
     end
     if @spots.length == 0
-      flash[:error] = "Sorry, there are no spots that meet your requested information."
+      flash[:error] = "Sorry, there are no spots that meet your requested criteria."
     else
-      @spots = Search.for(@spots, @start_time_filter, @end_time_filter, @price_filter, @beginning_time_of_day_filter, @ending_time_of_day_filter).paginate(:page => params[:page], :per_page => 15)
-      @spots = Search.sort(@spots, @sort_type, current_location).paginate(:page => params[:page], :per_page => 15) if @sort_type
+      @listings = Search.for(@spots, @start_time_filter, @end_time_filter, @price_filter, @beginning_time_of_day_filter, @ending_time_of_day_filter).paginate(:page => params[:page], :per_page => 15)
+      @listings = Search.sort(@listings, @sort_type, current_location).paginate(:page => params[:page], :per_page => 15) if @sort_type
     end
-    set_maps_hash_for_spots
+    set_maps_hash
   end
 
   def available_now
@@ -55,23 +54,23 @@ class SearchController < ApplicationController
     end
   end
 
-  def set_maps_hash_for_spots
-    @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
-      marker.lat spot.latitude
-      marker.lng spot.longitude
-      marker.picture({
-       "width" =>  32,
-       "height" => 32})
-      marker.json({:spotId => spot.id })
-      marker.infowindow "#{spot.description}"
-    end
-  end
+  # def set_maps_hash_for_spots
+  #   @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
+  #     marker.lat spot.latitude
+  #     marker.lng spot.longitude
+  #     marker.picture({
+  #      "width" =>  32,
+  #      "height" => 32})
+  #     marker.json({:spotId => spot.id })
+  #     marker.infowindow "#{spot.description}"
+  #   end
+  # end
 
   def establish_variables
     @sort_type = params[:sort_type] if params[:sort_type]
     @start_time_filter = parse_time_format(params['listing']['beginning_time']) if params[:listing]
     @beginning_time_of_day_filter = params['listing']['beginning_time_of_day'] if params[:listing]
-    if params['listing'] && params['listing']['ending_time'] != ""
+    if params['listing'] && params['listing']['ending_time'] != "" && params['listing']['ending_time']
       @end_time_filter = parse_time_format(params['listing']['ending_time'])
       @ending_time_of_day_filter = params['listing']['ending_time_of_day']
     elsif @start_time_filter
