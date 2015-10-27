@@ -77,6 +77,16 @@ jQuery(function() {
     country: "us",
     region: "us"
   });
+
+  completer2 = new GmapsCompleter({
+    inputField: '#destination',
+    errorField: '#gmaps-error'
+  });
+
+  completer2.autoCompleteInit({
+    country: "us",
+    region: "us"
+  });
 });
 
 function hideAdvancedSearch() {

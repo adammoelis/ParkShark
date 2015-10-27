@@ -9,8 +9,8 @@
       <%= hidden_field_tag "listing[ending_time]", "#{params['listing']['ending_time']}"  %>
       <%= hidden_field_tag "listing[ending_time_of_day]", "#{params['listing']['ending_time_of_day']}"  %>
     <% else %>
-      <%= hidden_field_tag "listing[ending_time]", "#{params['listing']['beginning_time']}"  %>
-      <%= hidden_field_tag "listing[ending_time_of_day]", "#{params['listing']['beginning_time_of_day']}"  %>
+      <%= hidden_field_tag "listing[ending_time]", "#{params['listing']['beginning_time']}"  if params[:listing] && params['listing']['beginning_time'] %>
+      <%= hidden_field_tag "listing[ending_time_of_day]", "#{params['listing']['beginning_time_of_day']}" if params[:listing] && params['listing']['beginning_time_of_day'] %>
     <% end %>
     <%= hidden_field_tag "price", "#{params[:price]}" if params[:price] %>
     <%= submit_tag("Sort", :style => "display: none;") %>
