@@ -6,7 +6,7 @@
         <% if params[:listing] && params["listing"]["beginning_time"] %>
           <input type="text" data-provide='datepicker', name='listing[beginning_time]', placeholder="Start Date", value="<%= params['listing']['beginning_time'] %>" required="required">
         <% else %>
-          <input type="text" data-provide='datepicker', name='listing[beginning_time]', placeholder="Start Date", value="<%= DateTime.now %>" required="required">
+          <input type="text" data-provide='datepicker', name='listing[beginning_time]', placeholder="Start Date", value="<%= Time.now.strftime("%m/%d/%Y") %>" required="required">
         <% end %>
       </div>
       <% if params[:listing] && params["listing"]["beginning_time"] %>
@@ -38,7 +38,8 @@
         <% if params[:price] && params[:price] != "" %>
         <%= text_field_tag("price", params[:price]) %>
         <% else %>
-          <%= text_field_tag("price", nil, placeholder: "Max Price", class: 'form-control') %>
+        <%= range_field_tag("price",nil, options = {}) %>
+          <%# text_field_tag("price", nil, placeholder: "Max Price", class: 'form-control') %>
         <% end %>
       </div>
     </div>

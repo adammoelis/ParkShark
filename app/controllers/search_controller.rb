@@ -15,6 +15,7 @@ class SearchController < ApplicationController
       @spots = Search.for(@spots, @start_time_filter, @end_time_filter, @price_filter, @beginning_time_of_day_filter, @ending_time_of_day_filter).paginate(:page => params[:page], :per_page => 15)
       @spots = Search.sort(@spots, @sort_type, current_location).paginate(:page => params[:page], :per_page => 15) if @sort_type
     end
+    binding.pry
     @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
       marker.lat spot.latitude
       marker.lng spot.longitude
