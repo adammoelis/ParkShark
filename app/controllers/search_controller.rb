@@ -3,6 +3,7 @@ class SearchController < ApplicationController
   before_action :establish_variables, only: [:nearby]
 
   def nearby
+    binding.pry
     if current_location
       @spots = Search.search_near(params[:q], params[:radius], current_location)
     else
@@ -15,16 +16,7 @@ class SearchController < ApplicationController
       @spots = Search.for(@spots, @start_time_filter, @end_time_filter, @price_filter, @beginning_time_of_day_filter, @ending_time_of_day_filter).paginate(:page => params[:page], :per_page => 15)
       @spots = Search.sort(@spots, @sort_type, current_location).paginate(:page => params[:page], :per_page => 15) if @sort_type
     end
-    binding.pry
-    @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
-      marker.lat spot.latitude
-      marker.lng spot.longitude
-      marker.picture({
-       "width" =>  32,
-       "height" => 32})
-      marker.json({:spotId => spot.id })
-      marker.infowindow "#{spot.description}"
-    end
+    set_maps_hash_for_spots
   end
 
   def available_now
@@ -60,6 +52,18 @@ class SearchController < ApplicationController
        "height" => 32})
       marker.json({:listingId => listing.id, :spotId => listing.spot.id })
       marker.infowindow "$#{listing.price.round(0)}"
+    end
+  end
+
+  def set_maps_hash_for_spots
+    @hash = Gmaps4rails.build_markers(@spots) do |spot, marker|
+      marker.lat spot.latitude
+      marker.lng spot.longitude
+      marker.picture({
+       "width" =>  32,
+       "height" => 32})
+      marker.json({:spotId => spot.id })
+      marker.infowindow "#{spot.description}"
     end
   end
 

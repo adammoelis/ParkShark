@@ -58,6 +58,7 @@ gem "braintree"
 gem 'rails_12factor', group: :production
 gem 'jquery-ui-rails'
 gem 'gmaps-autocomplete-rails'
+gem 'bootstrap-slider-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

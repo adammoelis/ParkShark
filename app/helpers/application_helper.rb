@@ -68,8 +68,12 @@ module ApplicationHelper
   end
 
   def max_price_listing_in(spots_array)
-    listings = spots_array.sort{|a,b| a.lowest_price_listing.price <=> b.lowest_price_listing.price}.last.listings
-    listings.sort_by(&:price).last.price
+    if spots_array.empty?
+      0
+    else
+      listings = spots_array.sort{|a,b| a.highest_price_listing.price <=> b.highest_price_listing.price}.last.listings
+      listings.sort_by(&:price).last.price
+    end
   end
 
 

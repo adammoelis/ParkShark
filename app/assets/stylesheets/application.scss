@@ -15,6 +15,7 @@
  *= require jquery-ui
  *= require bootstrap-social
  *= require bootstrap-datepicker
+ *= require bootstrap-slider
  *= require_self
  */
 
@@ -214,4 +215,12 @@ footer.dark-bg {
 
 .clear {
   clear: both;
+}
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+
+.sort-form {
+  height: 10px;
 }

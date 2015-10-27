@@ -36,10 +36,9 @@
       <%= label_tag :price, "Max Price", class: 'col-sm-2 control-label no-left-padding' %>
       <div class="col-sm-6">
         <% if params[:price] && params[:price] != "" %>
-        <%= text_field_tag("price", params[:price]) %>
+          <input name="price" id="max-price" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="<%= max_price_listing_in(@spots) %>" data-slider-step="1" data-slider-value="#{params[:price]}"/>
         <% else %>
-        <%= range_field_tag("price",nil, options = {}) %>
-          <%# text_field_tag("price", nil, placeholder: "Max Price", class: 'form-control') %>
+          <input name="price" id="max-price" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="<%= max_price_listing_in(@spots) %>" data-slider-step="1" data-slider-value="<%= max_price_listing_in(@spots) %>"/>
         <% end %>
       </div>
     </div>
@@ -49,7 +48,7 @@
         <% if params[:q] %>
           <%= text_field_tag(:q, "#{params[:q]}", placeholder: "Los Angeles, CA or 90001", :required => true, class: 'form-control', id: "q") %>
         <% else %>
-          <%= text_field_tag(:q, nil, placeholder: "Los Angeles, CA or 90001", :required => true, class: 'form-control', id: "q") %>
+          <%= text_field_tag(:q, "#{Geocoder.search(current_location).first.address}", placeholder: "Los Angeles, CA or 90001", :required => true, class: 'form-control', id: "q") %>
         <% end %>
       </div>
     </div>
