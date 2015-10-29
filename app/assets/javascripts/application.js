@@ -40,26 +40,26 @@
 //= require bootstrap-datepicker
 //= require underscore
 //= require gmaps/google
+//= require bootstrap-slider
 //= require_tree .
 
 $(function() {
-    getLocation()
-    $('#advanced-search').hide()
-    $('#ending-time-form').hide()
-    $('#hide-a-day').hide()
-    addAdvancedSearch()
-    $('#add-a-day').click(function(){
-      $('#ending-time-form').show()
-      $('#add-a-day').hide()
-      $('#hide-a-day').show()
+    getLocation();
+    $('#max-price').bootstrapSlider({
+    	formatter: function(value) {
+    		return 'Current value: ' + value;
+    	}
+    });
+    $('#advanced-search').hide();
+    $('#modify-search').click(function() {
+      $('#advanced-search').toggle();
+      if ($('#advanced-search').is(":visible")){
+        $('#modify-search').text('Hide Search');
+      }
+      else {
+        $('#modify-search').text('Modify Search');
+      }
     })
-    $('#hide-a-day').click(function(){
-      $('#ending-time-form').hide()
-      $('#hide-a-day').hide()
-      $('#add-a-day').show()
-    })
-    $('#location-search-nearby').hide()
-    addLocationSearch()
 
 });
 
@@ -87,9 +87,19 @@ jQuery(function() {
     country: "us",
     region: "us"
   });
+
+  completer2 = new GmapsCompleter({
+    inputField: '#destination',
+    errorField: '#gmaps-error'
+  });
+
+  completer2.autoCompleteInit({
+    country: "us",
+    region: "us"
+  });
 });
 
-function hideAdvancedSearch() {
+function modifySearch() {
   $('#hide-advanced-search').click(function(){
     $('#advanced-search').hide()
     $('#hide-advanced-search').replaceWith('<button id="add-advanced-search" class="btn btn-default">Click to filter</button>')

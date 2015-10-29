@@ -24,6 +24,14 @@ class Listing < ActiveRecord::Base
     [MORNING, AFTERNOON, LATE_AFTERNOON, EARLY_EVENING, EVENING, LATE_NIGHT, EARLY_MORNING]
   end
 
+  def self.max_price(listings_array)
+    if listings_array.empty?
+      Listing.all.sort_by(&:price).last.price
+    else
+      listings_array.sort_by(&:price).last.price
+    end
+  end
+
   def status
     self.available ? "Available" : "Occupied"
   end
@@ -39,7 +47,7 @@ class Listing < ActiveRecord::Base
   end
 
   def is_available_on(start_time)
-    if self.beginning_time == start_time
+    if self.beginning_time.to_date == start_time.to_date
       true
     else
       false

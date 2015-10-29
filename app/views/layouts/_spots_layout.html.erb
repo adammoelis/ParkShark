@@ -1,21 +1,22 @@
 <main>
   <section id="portfolio">
-    <div class="container inner">
+    <div class="container inner spot-layout-wrapper">
       <div class="row">
-        <div class="col-md-12 col-sm-9 spots-header">
+        <div class="col-md-8 col-sm-9 spots-header">
           <header>
 
             <h1><%= yield :page_header %></h1>
             <p><%= yield :page_subheader %></p>
 
           </header>
-          <%= yield :sorting %>
-          <%= yield :filtering %>
 
-          <%= yield :location_search %>
+          <%= yield :filtering %>
+          <button id="add-me-to-map" class="btn btn-default">Add my location to map</button>
+          <%= yield :sorting %>
           <div class="col-xs-3 where-are-you-going">
-            <%= text_field_tag(:q, nil, placeholder: "Where are you going?", id: "q") %>
+            <%= text_field_tag(:q, nil, placeholder: "Where are you going?", id: "destination") %>
           </div>
+
 
 
 
@@ -61,8 +62,9 @@
 <script type="text/javascript">
   $(function() {
     createMap();
+    toggleCurrentLocation();
     changeMarkerToGreen();
-    $('#q').keypress(function(e) {
+    $('#destination').keypress(function(e) {
         if(e.which == 13) {
             codeAddress();
         }
@@ -120,16 +122,25 @@
     marker.serviceObject.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
   }
 
-  function addMarkerToMap(){
-    latLong = <%= Geocoder.coordinates("1 union square south") %>;
-    latitude = latLong[0];
-    longtidue = latLong[1];
+  function addCurrentPositionToMap(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(addLocationToMap);
+    } else {
+        return "Geolocation is not supported by this browser.";
+    }
+
+  }
+
+
+  function addLocationToMap(position){
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
     markers = handler.addMarkers([
     {
         "lat": latitude,
         "lng": longitude,
         "picture": {
-          "url": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+          "url": "http://www.graphicsfactory.com/clip-art/image_files/tn_image/1/1347421-tn_2664-Royalty-Free-Smiling-Shark-Cartoon-Character.jpg",
           "width":  36,
           "height": 36
         },
@@ -140,9 +151,25 @@
     handler.fitMapToBounds();
     }
 
+    function toggleCurrentLocation(){
+      var onMap = false;
+      $('#add-me-to-map').click(function(){
+        if (onMap){
+          handler.removeMarker(markers[0]);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          $('#add-me-to-map').text('Add my Location');
+        }
+        else {
+          addCurrentPositionToMap();
+          $('#add-me-to-map').text('Remove my Location');
+        }
+        onMap = !onMap;
+      })
+    }
     function codeAddress() {
       var geocoder = new google.maps.Geocoder();
-      var address = document.getElementById("q").value;
+      var address = document.getElementById("destination").value;
       geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           markers = handler.addMarkers([
@@ -159,13 +186,14 @@
           ]);
           handler.bounds.extendWith(markers);
           handler.fitMapToBounds();
-          $('#q').val('');
+          $('#destination').val('');
 
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
   }
+
 
 
 </script>

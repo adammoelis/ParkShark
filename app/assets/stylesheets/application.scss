@@ -15,6 +15,7 @@
  *= require jquery-ui
  *= require bootstrap-social
  *= require bootstrap-datepicker
+ *= require bootstrap-slider
  *= require_self
  */
 
@@ -176,11 +177,10 @@ input[type='submit'] {
 }
 
 .spots-header {
-  position: absolute;
-  top: 50px;
+  position: relative;
+  top: 0px;
   background-color: white;
   z-index: 1;
-  padding-top: 70px;
 }
 
 .filter-type {
@@ -199,4 +199,40 @@ div.pagination_box   {
 footer.dark-bg {
   z-index: 99;
   position: relative;
+}
+
+#advanced-search {
+  padding-left: 0px;
+}
+
+.no-left-padding {
+  padding-left: 0px;
+}
+
+.spot-layout-wrapper {
+  padding-top: 0px;
+}
+
+.clear {
+  clear: both;
+}
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+
+.sort-form {
+  height: 10px;
+}
+
+#modify-search {
+  display: block;
+}
+
+#ending-time-form {
+  margin-bottom: 0px;
+}
+
+#max-price-form {
+  height: 30px;
 }

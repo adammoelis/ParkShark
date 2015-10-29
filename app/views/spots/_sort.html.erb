@@ -1,10 +1,17 @@
-<div class="col-md-3 col-sm-9 center-block text-center">
-  <%= form_tag(nearby_spots_path, method: "get") do %>
+<div class="col-md-3 col-sm-9">
+  <%= form_tag(nearby_spots_path, method: "get", id: "sort-form") do %>
     <%= select_tag "sort_type", options_for_select([ "Price", "Closest Time", "Closest Spot" ]), :onchange => ("this.form.submit();"), :include_blank => "Sort..." %>
     <%= hidden_field_tag "q", "#{params[:q]}" if params[:q] %>
     <%= hidden_field_tag "radius", "#{params[:radius]}" if params[:radius] %>
     <%= hidden_field_tag "listing[beginning_time]", "#{params['listing']['beginning_time']}" if params[:listing] && params['listing']['beginning_time'] %>
-    <%= hidden_field_tag "listing[ending_time]", "#{params['listing']['ending_time']}" if params[:listing] && params['listing']['ending_time'] != "" %>
+    <%= hidden_field_tag "listing[beginning_time_of_day]", "#{params['listing']['beginning_time_of_day']}" if params[:listing] && params['listing']['beginning_time_of_day'] %>
+    <% if params[:listing] && params['listing']['ending_time'] != "" %>
+      <%= hidden_field_tag "listing[ending_time]", "#{params['listing']['ending_time']}"  %>
+      <%= hidden_field_tag "listing[ending_time_of_day]", "#{params['listing']['ending_time_of_day']}"  %>
+    <% else %>
+      <%= hidden_field_tag "listing[ending_time]", "#{params['listing']['beginning_time']}"  if params[:listing] && params['listing']['beginning_time'] %>
+      <%= hidden_field_tag "listing[ending_time_of_day]", "#{params['listing']['beginning_time_of_day']}" if params[:listing] && params['listing']['beginning_time_of_day'] %>
+    <% end %>
     <%= hidden_field_tag "price", "#{params[:price]}" if params[:price] %>
     <%= submit_tag("Sort", :style => "display: none;") %>
   <% end %>
