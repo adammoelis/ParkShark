@@ -9,9 +9,9 @@
             <p><%= yield :page_subheader %></p>
 
           </header>
-          <button id="add-me-to-map" class="btn btn-default">Add my location to map</button>
-          <%= yield :filtering %>
 
+          <%= yield :filtering %>
+          <button id="add-me-to-map" class="btn btn-default">Add my location to map</button>
           <%= yield :sorting %>
           <div class="col-xs-3 where-are-you-going">
             <%= text_field_tag(:q, nil, placeholder: "Where are you going?", id: "destination") %>
