@@ -9,14 +9,14 @@
             <p><%= yield :page_subheader %></p>
 
           </header>
-
+          <button id="add-me-to-map" class="btn btn-default">Add my location to map</button>
           <%= yield :filtering %>
 
           <%= yield :sorting %>
           <div class="col-xs-3 where-are-you-going">
             <%= text_field_tag(:q, nil, placeholder: "Where are you going?", id: "destination") %>
           </div>
-            <button id="add-me-to-map" class="btn btn-default">Add my location to map</button>
+
 
 
 
@@ -152,9 +152,21 @@
     }
 
     function toggleCurrentLocation(){
-      $('#add-me-to-map').click(addCurrentPositionToMap);
+      var onMap = false;
+      $('#add-me-to-map').click(function(){
+        if (onMap){
+          handler.removeMarker(markers[0]);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          $('#add-me-to-map').text('Add my Location');
+        }
+        else {
+          addCurrentPositionToMap();
+          $('#add-me-to-map').text('Remove my Location');
+        }
+        onMap = !onMap;
+      })
     }
-
     function codeAddress() {
       var geocoder = new google.maps.Geocoder();
       var address = document.getElementById("destination").value;

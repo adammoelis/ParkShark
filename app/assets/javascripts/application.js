@@ -50,6 +50,16 @@ $(function() {
     		return 'Current value: ' + value;
     	}
     });
+    $('#advanced-search').hide();
+    $('#modify-search').click(function() {
+      $('#advanced-search').toggle();
+      if ($('#advanced-search').is(":visible")){
+        $('#modify-search').text('Hide Search');
+      }
+      else {
+        $('#modify-search').text('Modify Search');
+      }
+    })
 
 });
 
@@ -89,7 +99,7 @@ jQuery(function() {
   });
 });
 
-function hideAdvancedSearch() {
+function modifySearch() {
   $('#hide-advanced-search').click(function(){
     $('#advanced-search').hide()
     $('#hide-advanced-search').replaceWith('<button id="add-advanced-search" class="btn btn-default">Click to filter</button>')
