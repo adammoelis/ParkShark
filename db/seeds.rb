@@ -16,7 +16,7 @@ ADDRESSES = [["11 Broadway", "New York", "NY", "10001"],
 100.times do
   User.create(
     name: Faker::Name.name,
-    avatar: Faker::Avatar.image,
+    # avatar: Faker::Avatar.image,
     phone: Faker::PhoneNumber.cell_phone,
     bio: Faker::Lorem.paragraph(6),
     birthday: Faker::Date.between(20.years.ago, Date.today),
